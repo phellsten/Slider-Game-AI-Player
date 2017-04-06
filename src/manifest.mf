@@ -1,1 +1,2 @@
-Main-Class: <driver>
+Main-Class: driver
+
