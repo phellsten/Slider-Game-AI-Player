@@ -1,4 +1,5 @@
 // Patrick Hudgell phudgell
+// Paul Hellsten phellsten
 
 import java.util.ArrayList;
 import java.util.Scanner;
