@@ -1,7 +1,23 @@
+import java.util.ArrayList;
+import java.util.Scanner;
+
 public class driver {
 	public static void main(String[] args) {
-		Board board = new Board(args);
 		
+		Scanner scan = new Scanner(System.in);
+		ArrayList<String> strings = new ArrayList<String>();
+		
+		while(scan.hasNext())
+		{
+			strings.add(scan.next());
+		}
+		scan.close();
+		
+		String[] arr = new String[strings.size()];
+		arr = strings.toArray(arr);
+		
+		Board board = new Board(arr);
+
 		int i;
 		int j;
 		int numLegalH = 0;
