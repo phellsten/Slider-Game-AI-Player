@@ -34,22 +34,22 @@ public class driver {
 					}
 					if(board.isFree(i,j-1,"H")) {
 						// H can move up
-						numLegalV++;
+						numLegalH++;
 					}
 					if(board.isFree(i,j+1,"H")) {
 						// H can move down
-						numLegalV++;
+						numLegalH++;
 					}
 				}
 				// If piece is 'V'
 				else if (board.blocks[i][j].equals("V")) {
 					if(board.isFree(i-1,j,"V")) {
 						// V can move left
-						numLegalH++;
+						numLegalV++;
 					}
 					if(board.isFree(i+1,j,"V")) {
 						// V can move right
-						numLegalH++;
+						numLegalV++;
 					}
 					if(board.isFree(i,j-1,"V")) {
 						// V can move up
