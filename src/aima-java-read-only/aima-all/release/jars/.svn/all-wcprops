@@ -1,0 +1,23 @@
+K 25
+svn:wc:ra_dav:version-url
+V 45
+/svn/!svn/ver/587/trunk/aima-all/release/jars
+END
+aima-gui.jar
+K 25
+svn:wc:ra_dav:version-url
+V 58
+/svn/!svn/ver/587/trunk/aima-all/release/jars/aima-gui.jar
+END
+aimax-osm.jar
+K 25
+svn:wc:ra_dav:version-url
+V 59
+/svn/!svn/ver/587/trunk/aima-all/release/jars/aimax-osm.jar
+END
+aima-core.jar
+K 25
+svn:wc:ra_dav:version-url
+V 59
+/svn/!svn/ver/587/trunk/aima-all/release/jars/aima-core.jar
+END

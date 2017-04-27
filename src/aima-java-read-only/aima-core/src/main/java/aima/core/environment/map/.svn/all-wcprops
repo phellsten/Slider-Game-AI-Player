@@ -1,0 +1,107 @@
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/svn/!svn/ver/451/trunk/aima-core/src/main/java/aima/core/environment/map
+END
+SimplifiedRoadMapOfPartOfRomania.java
+K 25
+svn:wc:ra_dav:version-url
+V 111
+/svn/!svn/ver/344/trunk/aima-core/src/main/java/aima/core/environment/map/SimplifiedRoadMapOfPartOfRomania.java
+END
+MapEnvironment.java
+K 25
+svn:wc:ra_dav:version-url
+V 93
+/svn/!svn/ver/344/trunk/aima-core/src/main/java/aima/core/environment/map/MapEnvironment.java
+END
+DynAttributeNames.java
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/svn/!svn/ver/404/trunk/aima-core/src/main/java/aima/core/environment/map/DynAttributeNames.java
+END
+Scenario.java
+K 25
+svn:wc:ra_dav:version-url
+V 87
+/svn/!svn/ver/344/trunk/aima-core/src/main/java/aima/core/environment/map/Scenario.java
+END
+MapEnvironmentState.java
+K 25
+svn:wc:ra_dav:version-url
+V 98
+/svn/!svn/ver/344/trunk/aima-core/src/main/java/aima/core/environment/map/MapEnvironmentState.java
+END
+AdaptableHeuristicFunction.java
+K 25
+svn:wc:ra_dav:version-url
+V 105
+/svn/!svn/ver/376/trunk/aima-core/src/main/java/aima/core/environment/map/AdaptableHeuristicFunction.java
+END
+MoveToAction.java
+K 25
+svn:wc:ra_dav:version-url
+V 91
+/svn/!svn/ver/344/trunk/aima-core/src/main/java/aima/core/environment/map/MoveToAction.java
+END
+MapStepCostFunction.java
+K 25
+svn:wc:ra_dav:version-url
+V 98
+/svn/!svn/ver/344/trunk/aima-core/src/main/java/aima/core/environment/map/MapStepCostFunction.java
+END
+ExtendableMap.java
+K 25
+svn:wc:ra_dav:version-url
+V 92
+/svn/!svn/ver/344/trunk/aima-core/src/main/java/aima/core/environment/map/ExtendableMap.java
+END
+MapFunctionFactory.java
+K 25
+svn:wc:ra_dav:version-url
+V 97
+/svn/!svn/ver/344/trunk/aima-core/src/main/java/aima/core/environment/map/MapFunctionFactory.java
+END
+Map.java
+K 25
+svn:wc:ra_dav:version-url
+V 82
+/svn/!svn/ver/344/trunk/aima-core/src/main/java/aima/core/environment/map/Map.java
+END
+MapGoalTest.java
+K 25
+svn:wc:ra_dav:version-url
+V 90
+/svn/!svn/ver/344/trunk/aima-core/src/main/java/aima/core/environment/map/MapGoalTest.java
+END
+package-info.java
+K 25
+svn:wc:ra_dav:version-url
+V 91
+/svn/!svn/ver/451/trunk/aima-core/src/main/java/aima/core/environment/map/package-info.java
+END
+SimplifiedRoadMapOfAustralia.java
+K 25
+svn:wc:ra_dav:version-url
+V 107
+/svn/!svn/ver/344/trunk/aima-core/src/main/java/aima/core/environment/map/SimplifiedRoadMapOfAustralia.java
+END
+BidirectionalMapProblem.java
+K 25
+svn:wc:ra_dav:version-url
+V 102
+/svn/!svn/ver/344/trunk/aima-core/src/main/java/aima/core/environment/map/BidirectionalMapProblem.java
+END
+MapAgent.java
+K 25
+svn:wc:ra_dav:version-url
+V 87
+/svn/!svn/ver/344/trunk/aima-core/src/main/java/aima/core/environment/map/MapAgent.java
+END
+StraightLineDistanceHeuristicFunction.java
+K 25
+svn:wc:ra_dav:version-url
+V 116
+/svn/!svn/ver/344/trunk/aima-core/src/main/java/aima/core/environment/map/StraightLineDistanceHeuristicFunction.java
+END

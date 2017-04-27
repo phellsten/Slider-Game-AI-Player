@@ -1,0 +1,41 @@
+K 25
+svn:wc:ra_dav:version-url
+V 32
+/svn/!svn/ver/587/trunk/aima-all
+END
+.classpath
+K 25
+svn:wc:ra_dav:version-url
+V 43
+/svn/!svn/ver/343/trunk/aima-all/.classpath
+END
+.project
+K 25
+svn:wc:ra_dav:version-url
+V 41
+/svn/!svn/ver/343/trunk/aima-all/.project
+END
+ReleaseCheckList.txt
+K 25
+svn:wc:ra_dav:version-url
+V 53
+/svn/!svn/ver/546/trunk/aima-all/ReleaseCheckList.txt
+END
+build.properties
+K 25
+svn:wc:ra_dav:version-url
+V 49
+/svn/!svn/ver/586/trunk/aima-all/build.properties
+END
+README.txt
+K 25
+svn:wc:ra_dav:version-url
+V 43
+/svn/!svn/ver/586/trunk/aima-all/README.txt
+END
+build.xml
+K 25
+svn:wc:ra_dav:version-url
+V 42
+/svn/!svn/ver/432/trunk/aima-all/build.xml
+END

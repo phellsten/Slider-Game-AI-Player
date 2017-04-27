@@ -1,0 +1,71 @@
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/svn/!svn/ver/344/trunk/aima-core/src/main/java/aima/core/agent
+END
+EnvironmentView.java
+K 25
+svn:wc:ra_dav:version-url
+V 84
+/svn/!svn/ver/344/trunk/aima-core/src/main/java/aima/core/agent/EnvironmentView.java
+END
+State.java
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/svn/!svn/ver/344/trunk/aima-core/src/main/java/aima/core/agent/State.java
+END
+Model.java
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/svn/!svn/ver/344/trunk/aima-core/src/main/java/aima/core/agent/Model.java
+END
+Percept.java
+K 25
+svn:wc:ra_dav:version-url
+V 76
+/svn/!svn/ver/344/trunk/aima-core/src/main/java/aima/core/agent/Percept.java
+END
+Environment.java
+K 25
+svn:wc:ra_dav:version-url
+V 80
+/svn/!svn/ver/344/trunk/aima-core/src/main/java/aima/core/agent/Environment.java
+END
+EnvironmentState.java
+K 25
+svn:wc:ra_dav:version-url
+V 85
+/svn/!svn/ver/344/trunk/aima-core/src/main/java/aima/core/agent/EnvironmentState.java
+END
+AgentProgram.java
+K 25
+svn:wc:ra_dav:version-url
+V 81
+/svn/!svn/ver/344/trunk/aima-core/src/main/java/aima/core/agent/AgentProgram.java
+END
+EnvironmentObject.java
+K 25
+svn:wc:ra_dav:version-url
+V 86
+/svn/!svn/ver/344/trunk/aima-core/src/main/java/aima/core/agent/EnvironmentObject.java
+END
+NotifyEnvironmentViews.java
+K 25
+svn:wc:ra_dav:version-url
+V 91
+/svn/!svn/ver/344/trunk/aima-core/src/main/java/aima/core/agent/NotifyEnvironmentViews.java
+END
+Action.java
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/svn/!svn/ver/344/trunk/aima-core/src/main/java/aima/core/agent/Action.java
+END
+Agent.java
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/svn/!svn/ver/344/trunk/aima-core/src/main/java/aima/core/agent/Agent.java
+END
