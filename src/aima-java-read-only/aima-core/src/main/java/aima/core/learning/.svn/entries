@@ -1,49 +1,0 @@
-10
-
-dir
-588
-http://aima-java.googlecode.com/svn/trunk/aima-core/src/main/java/aima/core/learning
-http://aima-java.googlecode.com/svn
-
-
-
-2009-12-11T00:02:01.528507Z
-338
-ctjoreilly
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-69387497-ef19-0410-9dc2-eda6d4ab8473
-
-knowledge
-dir
-
-reinforcement
-dir
-
-neural
-dir
-
-data
-dir
-
-inductive
-dir
-
-learners
-dir
-
-framework
-dir
-
