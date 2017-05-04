@@ -1,0 +1,131 @@
+K 25
+svn:wc:ra_dav:version-url
+V 83
+/svn/!svn/ver/344/trunk/aima-core/src/main/java/aima/core/logic/fol/inference/proof
+END
+ProofFinal.java
+K 25
+svn:wc:ra_dav:version-url
+V 99
+/svn/!svn/ver/344/trunk/aima-core/src/main/java/aima/core/logic/fol/inference/proof/ProofFinal.java
+END
+ProofStepChainReduction.java
+K 25
+svn:wc:ra_dav:version-url
+V 112
+/svn/!svn/ver/344/trunk/aima-core/src/main/java/aima/core/logic/fol/inference/proof/ProofStepChainReduction.java
+END
+ProofStepFoChAssertFact.java
+K 25
+svn:wc:ra_dav:version-url
+V 112
+/svn/!svn/ver/344/trunk/aima-core/src/main/java/aima/core/logic/fol/inference/proof/ProofStepFoChAssertFact.java
+END
+ProofStepChainCancellation.java
+K 25
+svn:wc:ra_dav:version-url
+V 115
+/svn/!svn/ver/344/trunk/aima-core/src/main/java/aima/core/logic/fol/inference/proof/ProofStepChainCancellation.java
+END
+ProofStepChainDropped.java
+K 25
+svn:wc:ra_dav:version-url
+V 110
+/svn/!svn/ver/344/trunk/aima-core/src/main/java/aima/core/logic/fol/inference/proof/ProofStepChainDropped.java
+END
+ProofStepRenaming.java
+K 25
+svn:wc:ra_dav:version-url
+V 106
+/svn/!svn/ver/344/trunk/aima-core/src/main/java/aima/core/logic/fol/inference/proof/ProofStepRenaming.java
+END
+ProofStepClauseClausifySentence.java
+K 25
+svn:wc:ra_dav:version-url
+V 120
+/svn/!svn/ver/344/trunk/aima-core/src/main/java/aima/core/logic/fol/inference/proof/ProofStepClauseClausifySentence.java
+END
+ProofStepChainFromClause.java
+K 25
+svn:wc:ra_dav:version-url
+V 113
+/svn/!svn/ver/344/trunk/aima-core/src/main/java/aima/core/logic/fol/inference/proof/ProofStepChainFromClause.java
+END
+AbstractProofStep.java
+K 25
+svn:wc:ra_dav:version-url
+V 106
+/svn/!svn/ver/344/trunk/aima-core/src/main/java/aima/core/logic/fol/inference/proof/AbstractProofStep.java
+END
+ProofStepPremise.java
+K 25
+svn:wc:ra_dav:version-url
+V 105
+/svn/!svn/ver/344/trunk/aima-core/src/main/java/aima/core/logic/fol/inference/proof/ProofStepPremise.java
+END
+ProofStepClauseFactor.java
+K 25
+svn:wc:ra_dav:version-url
+V 110
+/svn/!svn/ver/344/trunk/aima-core/src/main/java/aima/core/logic/fol/inference/proof/ProofStepClauseFactor.java
+END
+ProofStepChainContrapositive.java
+K 25
+svn:wc:ra_dav:version-url
+V 117
+/svn/!svn/ver/344/trunk/aima-core/src/main/java/aima/core/logic/fol/inference/proof/ProofStepChainContrapositive.java
+END
+ProofStepClauseParamodulation.java
+K 25
+svn:wc:ra_dav:version-url
+V 118
+/svn/!svn/ver/344/trunk/aima-core/src/main/java/aima/core/logic/fol/inference/proof/ProofStepClauseParamodulation.java
+END
+ProofStep.java
+K 25
+svn:wc:ra_dav:version-url
+V 98
+/svn/!svn/ver/344/trunk/aima-core/src/main/java/aima/core/logic/fol/inference/proof/ProofStep.java
+END
+ProofStepFoChAlreadyAFact.java
+K 25
+svn:wc:ra_dav:version-url
+V 114
+/svn/!svn/ver/344/trunk/aima-core/src/main/java/aima/core/logic/fol/inference/proof/ProofStepFoChAlreadyAFact.java
+END
+ProofStepClauseDemodulation.java
+K 25
+svn:wc:ra_dav:version-url
+V 116
+/svn/!svn/ver/344/trunk/aima-core/src/main/java/aima/core/logic/fol/inference/proof/ProofStepClauseDemodulation.java
+END
+ProofStepGoal.java
+K 25
+svn:wc:ra_dav:version-url
+V 102
+/svn/!svn/ver/344/trunk/aima-core/src/main/java/aima/core/logic/fol/inference/proof/ProofStepGoal.java
+END
+Proof.java
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/svn/!svn/ver/344/trunk/aima-core/src/main/java/aima/core/logic/fol/inference/proof/Proof.java
+END
+ProofStepClauseBinaryResolvent.java
+K 25
+svn:wc:ra_dav:version-url
+V 119
+/svn/!svn/ver/344/trunk/aima-core/src/main/java/aima/core/logic/fol/inference/proof/ProofStepClauseBinaryResolvent.java
+END
+ProofStepBwChGoal.java
+K 25
+svn:wc:ra_dav:version-url
+V 106
+/svn/!svn/ver/344/trunk/aima-core/src/main/java/aima/core/logic/fol/inference/proof/ProofStepBwChGoal.java
+END
+ProofPrinter.java
+K 25
+svn:wc:ra_dav:version-url
+V 101
+/svn/!svn/ver/344/trunk/aima-core/src/main/java/aima/core/logic/fol/inference/proof/ProofPrinter.java
+END

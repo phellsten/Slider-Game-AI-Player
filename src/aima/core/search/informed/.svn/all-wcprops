@@ -1,0 +1,41 @@
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/svn/!svn/ver/344/trunk/aima-core/src/main/java/aima/core/search/informed
+END
+AStarSearch.java
+K 25
+svn:wc:ra_dav:version-url
+V 90
+/svn/!svn/ver/344/trunk/aima-core/src/main/java/aima/core/search/informed/AStarSearch.java
+END
+RecursiveBestFirstSearch.java
+K 25
+svn:wc:ra_dav:version-url
+V 103
+/svn/!svn/ver/344/trunk/aima-core/src/main/java/aima/core/search/informed/RecursiveBestFirstSearch.java
+END
+GreedyBestFirstEvaluationFunction.java
+K 25
+svn:wc:ra_dav:version-url
+V 112
+/svn/!svn/ver/344/trunk/aima-core/src/main/java/aima/core/search/informed/GreedyBestFirstEvaluationFunction.java
+END
+AStarEvaluationFunction.java
+K 25
+svn:wc:ra_dav:version-url
+V 102
+/svn/!svn/ver/344/trunk/aima-core/src/main/java/aima/core/search/informed/AStarEvaluationFunction.java
+END
+GreedyBestFirstSearch.java
+K 25
+svn:wc:ra_dav:version-url
+V 100
+/svn/!svn/ver/344/trunk/aima-core/src/main/java/aima/core/search/informed/GreedyBestFirstSearch.java
+END
+BestFirstSearch.java
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/svn/!svn/ver/344/trunk/aima-core/src/main/java/aima/core/search/informed/BestFirstSearch.java
+END

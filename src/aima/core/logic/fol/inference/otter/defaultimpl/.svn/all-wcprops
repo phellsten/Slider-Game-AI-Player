@@ -1,0 +1,23 @@
+K 25
+svn:wc:ra_dav:version-url
+V 95
+/svn/!svn/ver/344/trunk/aima-core/src/main/java/aima/core/logic/fol/inference/otter/defaultimpl
+END
+DefaultLightestClauseHeuristic.java
+K 25
+svn:wc:ra_dav:version-url
+V 131
+/svn/!svn/ver/344/trunk/aima-core/src/main/java/aima/core/logic/fol/inference/otter/defaultimpl/DefaultLightestClauseHeuristic.java
+END
+DefaultClauseSimplifier.java
+K 25
+svn:wc:ra_dav:version-url
+V 124
+/svn/!svn/ver/344/trunk/aima-core/src/main/java/aima/core/logic/fol/inference/otter/defaultimpl/DefaultClauseSimplifier.java
+END
+DefaultClauseFilter.java
+K 25
+svn:wc:ra_dav:version-url
+V 120
+/svn/!svn/ver/344/trunk/aima-core/src/main/java/aima/core/logic/fol/inference/otter/defaultimpl/DefaultClauseFilter.java
+END

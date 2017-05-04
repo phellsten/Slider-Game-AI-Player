@@ -1,0 +1,53 @@
+K 25
+svn:wc:ra_dav:version-url
+V 86
+/svn/!svn/ver/344/trunk/aima-core/src/main/java/aima/core/logic/propositional/visitors
+END
+PositiveSymbolCollector.java
+K 25
+svn:wc:ra_dav:version-url
+V 115
+/svn/!svn/ver/344/trunk/aima-core/src/main/java/aima/core/logic/propositional/visitors/PositiveSymbolCollector.java
+END
+NegativeSymbolCollector.java
+K 25
+svn:wc:ra_dav:version-url
+V 115
+/svn/!svn/ver/344/trunk/aima-core/src/main/java/aima/core/logic/propositional/visitors/NegativeSymbolCollector.java
+END
+BasicTraverser.java
+K 25
+svn:wc:ra_dav:version-url
+V 106
+/svn/!svn/ver/344/trunk/aima-core/src/main/java/aima/core/logic/propositional/visitors/BasicTraverser.java
+END
+CNFClauseGatherer.java
+K 25
+svn:wc:ra_dav:version-url
+V 109
+/svn/!svn/ver/344/trunk/aima-core/src/main/java/aima/core/logic/propositional/visitors/CNFClauseGatherer.java
+END
+CNFTransformer.java
+K 25
+svn:wc:ra_dav:version-url
+V 106
+/svn/!svn/ver/344/trunk/aima-core/src/main/java/aima/core/logic/propositional/visitors/CNFTransformer.java
+END
+SymbolClassifier.java
+K 25
+svn:wc:ra_dav:version-url
+V 108
+/svn/!svn/ver/344/trunk/aima-core/src/main/java/aima/core/logic/propositional/visitors/SymbolClassifier.java
+END
+SymbolCollector.java
+K 25
+svn:wc:ra_dav:version-url
+V 107
+/svn/!svn/ver/344/trunk/aima-core/src/main/java/aima/core/logic/propositional/visitors/SymbolCollector.java
+END
+AndDetector.java
+K 25
+svn:wc:ra_dav:version-url
+V 103
+/svn/!svn/ver/344/trunk/aima-core/src/main/java/aima/core/logic/propositional/visitors/AndDetector.java
+END

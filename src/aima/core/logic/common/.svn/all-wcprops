@@ -1,0 +1,41 @@
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/svn/!svn/ver/344/trunk/aima-core/src/main/java/aima/core/logic/common
+END
+Lexer.java
+K 25
+svn:wc:ra_dav:version-url
+V 81
+/svn/!svn/ver/344/trunk/aima-core/src/main/java/aima/core/logic/common/Lexer.java
+END
+Visitor.java
+K 25
+svn:wc:ra_dav:version-url
+V 83
+/svn/!svn/ver/344/trunk/aima-core/src/main/java/aima/core/logic/common/Visitor.java
+END
+Token.java
+K 25
+svn:wc:ra_dav:version-url
+V 81
+/svn/!svn/ver/344/trunk/aima-core/src/main/java/aima/core/logic/common/Token.java
+END
+ParseTreeNode.java
+K 25
+svn:wc:ra_dav:version-url
+V 89
+/svn/!svn/ver/344/trunk/aima-core/src/main/java/aima/core/logic/common/ParseTreeNode.java
+END
+LogicTokenTypes.java
+K 25
+svn:wc:ra_dav:version-url
+V 91
+/svn/!svn/ver/344/trunk/aima-core/src/main/java/aima/core/logic/common/LogicTokenTypes.java
+END
+Parser.java
+K 25
+svn:wc:ra_dav:version-url
+V 82
+/svn/!svn/ver/344/trunk/aima-core/src/main/java/aima/core/logic/common/Parser.java
+END

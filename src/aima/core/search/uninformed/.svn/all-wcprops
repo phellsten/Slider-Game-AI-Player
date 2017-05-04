@@ -1,0 +1,41 @@
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/svn/!svn/ver/361/trunk/aima-core/src/main/java/aima/core/search/uninformed
+END
+IterativeDeepeningSearch.java
+K 25
+svn:wc:ra_dav:version-url
+V 105
+/svn/!svn/ver/344/trunk/aima-core/src/main/java/aima/core/search/uninformed/IterativeDeepeningSearch.java
+END
+DepthLimitedSearch.java
+K 25
+svn:wc:ra_dav:version-url
+V 99
+/svn/!svn/ver/361/trunk/aima-core/src/main/java/aima/core/search/uninformed/DepthLimitedSearch.java
+END
+DepthFirstSearch.java
+K 25
+svn:wc:ra_dav:version-url
+V 97
+/svn/!svn/ver/344/trunk/aima-core/src/main/java/aima/core/search/uninformed/DepthFirstSearch.java
+END
+BreadthFirstSearch.java
+K 25
+svn:wc:ra_dav:version-url
+V 99
+/svn/!svn/ver/344/trunk/aima-core/src/main/java/aima/core/search/uninformed/BreadthFirstSearch.java
+END
+UniformCostSearch.java
+K 25
+svn:wc:ra_dav:version-url
+V 98
+/svn/!svn/ver/344/trunk/aima-core/src/main/java/aima/core/search/uninformed/UniformCostSearch.java
+END
+BidirectionalSearch.java
+K 25
+svn:wc:ra_dav:version-url
+V 100
+/svn/!svn/ver/344/trunk/aima-core/src/main/java/aima/core/search/uninformed/BidirectionalSearch.java
+END

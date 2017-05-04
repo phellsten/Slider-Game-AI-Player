@@ -1,0 +1,35 @@
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/svn/!svn/ver/344/trunk/aima-core/src/main/java/aima/core/logic/fol/kb/data
+END
+Chain.java
+K 25
+svn:wc:ra_dav:version-url
+V 86
+/svn/!svn/ver/344/trunk/aima-core/src/main/java/aima/core/logic/fol/kb/data/Chain.java
+END
+CNF.java
+K 25
+svn:wc:ra_dav:version-url
+V 84
+/svn/!svn/ver/344/trunk/aima-core/src/main/java/aima/core/logic/fol/kb/data/CNF.java
+END
+ReducedLiteral.java
+K 25
+svn:wc:ra_dav:version-url
+V 95
+/svn/!svn/ver/344/trunk/aima-core/src/main/java/aima/core/logic/fol/kb/data/ReducedLiteral.java
+END
+Literal.java
+K 25
+svn:wc:ra_dav:version-url
+V 88
+/svn/!svn/ver/344/trunk/aima-core/src/main/java/aima/core/logic/fol/kb/data/Literal.java
+END
+Clause.java
+K 25
+svn:wc:ra_dav:version-url
+V 87
+/svn/!svn/ver/344/trunk/aima-core/src/main/java/aima/core/logic/fol/kb/data/Clause.java
+END

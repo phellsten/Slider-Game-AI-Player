@@ -1,0 +1,29 @@
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/svn/!svn/ver/344/trunk/aima-core/src/main/java/aima/core/util/math
+END
+Vector.java
+K 25
+svn:wc:ra_dav:version-url
+V 79
+/svn/!svn/ver/344/trunk/aima-core/src/main/java/aima/core/util/math/Vector.java
+END
+Matrix.java
+K 25
+svn:wc:ra_dav:version-url
+V 79
+/svn/!svn/ver/344/trunk/aima-core/src/main/java/aima/core/util/math/Matrix.java
+END
+MixedRadixNumber.java
+K 25
+svn:wc:ra_dav:version-url
+V 89
+/svn/!svn/ver/344/trunk/aima-core/src/main/java/aima/core/util/math/MixedRadixNumber.java
+END
+LUDecomposition.java
+K 25
+svn:wc:ra_dav:version-url
+V 88
+/svn/!svn/ver/344/trunk/aima-core/src/main/java/aima/core/util/math/LUDecomposition.java
+END

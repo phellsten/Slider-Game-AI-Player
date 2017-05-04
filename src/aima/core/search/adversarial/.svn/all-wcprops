@@ -1,0 +1,29 @@
+K 25
+svn:wc:ra_dav:version-url
+V 76
+/svn/!svn/ver/344/trunk/aima-core/src/main/java/aima/core/search/adversarial
+END
+AlphaBeta.java
+K 25
+svn:wc:ra_dav:version-url
+V 91
+/svn/!svn/ver/344/trunk/aima-core/src/main/java/aima/core/search/adversarial/AlphaBeta.java
+END
+GameAgent.java
+K 25
+svn:wc:ra_dav:version-url
+V 91
+/svn/!svn/ver/344/trunk/aima-core/src/main/java/aima/core/search/adversarial/GameAgent.java
+END
+Game.java
+K 25
+svn:wc:ra_dav:version-url
+V 86
+/svn/!svn/ver/344/trunk/aima-core/src/main/java/aima/core/search/adversarial/Game.java
+END
+GameState.java
+K 25
+svn:wc:ra_dav:version-url
+V 91
+/svn/!svn/ver/344/trunk/aima-core/src/main/java/aima/core/search/adversarial/GameState.java
+END

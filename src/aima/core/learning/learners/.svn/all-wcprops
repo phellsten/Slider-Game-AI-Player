@@ -1,0 +1,41 @@
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/svn/!svn/ver/344/trunk/aima-core/src/main/java/aima/core/learning/learners
+END
+StumpLearner.java
+K 25
+svn:wc:ra_dav:version-url
+V 93
+/svn/!svn/ver/344/trunk/aima-core/src/main/java/aima/core/learning/learners/StumpLearner.java
+END
+DecisionListLearner.java
+K 25
+svn:wc:ra_dav:version-url
+V 100
+/svn/!svn/ver/344/trunk/aima-core/src/main/java/aima/core/learning/learners/DecisionListLearner.java
+END
+AdaBoostLearner.java
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/svn/!svn/ver/344/trunk/aima-core/src/main/java/aima/core/learning/learners/AdaBoostLearner.java
+END
+DecisionTreeLearner.java
+K 25
+svn:wc:ra_dav:version-url
+V 100
+/svn/!svn/ver/344/trunk/aima-core/src/main/java/aima/core/learning/learners/DecisionTreeLearner.java
+END
+MajorityLearner.java
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/svn/!svn/ver/344/trunk/aima-core/src/main/java/aima/core/learning/learners/MajorityLearner.java
+END
+CurrentBestLearner.java
+K 25
+svn:wc:ra_dav:version-url
+V 99
+/svn/!svn/ver/344/trunk/aima-core/src/main/java/aima/core/learning/learners/CurrentBestLearner.java
+END

@@ -1,0 +1,65 @@
+K 25
+svn:wc:ra_dav:version-url
+V 76
+/svn/!svn/ver/344/trunk/aima-core/src/main/java/aima/core/util/datastructure
+END
+Point2D.java
+K 25
+svn:wc:ra_dav:version-url
+V 89
+/svn/!svn/ver/344/trunk/aima-core/src/main/java/aima/core/util/datastructure/Point2D.java
+END
+Triplet.java
+K 25
+svn:wc:ra_dav:version-url
+V 89
+/svn/!svn/ver/344/trunk/aima-core/src/main/java/aima/core/util/datastructure/Triplet.java
+END
+Queue.java
+K 25
+svn:wc:ra_dav:version-url
+V 87
+/svn/!svn/ver/344/trunk/aima-core/src/main/java/aima/core/util/datastructure/Queue.java
+END
+PriorityQueue.java
+K 25
+svn:wc:ra_dav:version-url
+V 95
+/svn/!svn/ver/344/trunk/aima-core/src/main/java/aima/core/util/datastructure/PriorityQueue.java
+END
+Table.java
+K 25
+svn:wc:ra_dav:version-url
+V 87
+/svn/!svn/ver/344/trunk/aima-core/src/main/java/aima/core/util/datastructure/Table.java
+END
+FIFOQueue.java
+K 25
+svn:wc:ra_dav:version-url
+V 91
+/svn/!svn/ver/344/trunk/aima-core/src/main/java/aima/core/util/datastructure/FIFOQueue.java
+END
+XYLocation.java
+K 25
+svn:wc:ra_dav:version-url
+V 92
+/svn/!svn/ver/344/trunk/aima-core/src/main/java/aima/core/util/datastructure/XYLocation.java
+END
+LabeledGraph.java
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/svn/!svn/ver/344/trunk/aima-core/src/main/java/aima/core/util/datastructure/LabeledGraph.java
+END
+Pair.java
+K 25
+svn:wc:ra_dav:version-url
+V 86
+/svn/!svn/ver/344/trunk/aima-core/src/main/java/aima/core/util/datastructure/Pair.java
+END
+LIFOQueue.java
+K 25
+svn:wc:ra_dav:version-url
+V 91
+/svn/!svn/ver/344/trunk/aima-core/src/main/java/aima/core/util/datastructure/LIFOQueue.java
+END

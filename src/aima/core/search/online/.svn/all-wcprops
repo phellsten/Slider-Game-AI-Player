@@ -1,0 +1,29 @@
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/svn/!svn/ver/344/trunk/aima-core/src/main/java/aima/core/search/online
+END
+OnlineDFSAgent.java
+K 25
+svn:wc:ra_dav:version-url
+V 91
+/svn/!svn/ver/344/trunk/aima-core/src/main/java/aima/core/search/online/OnlineDFSAgent.java
+END
+OnlineSearchProblem.java
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/svn/!svn/ver/344/trunk/aima-core/src/main/java/aima/core/search/online/OnlineSearchProblem.java
+END
+LRTAStarAgent.java
+K 25
+svn:wc:ra_dav:version-url
+V 90
+/svn/!svn/ver/344/trunk/aima-core/src/main/java/aima/core/search/online/LRTAStarAgent.java
+END
+StateAction.java
+K 25
+svn:wc:ra_dav:version-url
+V 88
+/svn/!svn/ver/344/trunk/aima-core/src/main/java/aima/core/search/online/StateAction.java
+END

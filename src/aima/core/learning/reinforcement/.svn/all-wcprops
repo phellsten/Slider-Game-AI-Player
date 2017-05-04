@@ -1,0 +1,35 @@
+K 25
+svn:wc:ra_dav:version-url
+V 80
+/svn/!svn/ver/344/trunk/aima-core/src/main/java/aima/core/learning/reinforcement
+END
+QLearningAgent.java
+K 25
+svn:wc:ra_dav:version-url
+V 100
+/svn/!svn/ver/344/trunk/aima-core/src/main/java/aima/core/learning/reinforcement/QLearningAgent.java
+END
+MDPAgent.java
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/svn/!svn/ver/344/trunk/aima-core/src/main/java/aima/core/learning/reinforcement/MDPAgent.java
+END
+PassiveTDAgent.java
+K 25
+svn:wc:ra_dav:version-url
+V 100
+/svn/!svn/ver/344/trunk/aima-core/src/main/java/aima/core/learning/reinforcement/PassiveTDAgent.java
+END
+QTable.java
+K 25
+svn:wc:ra_dav:version-url
+V 92
+/svn/!svn/ver/344/trunk/aima-core/src/main/java/aima/core/learning/reinforcement/QTable.java
+END
+PassiveADPAgent.java
+K 25
+svn:wc:ra_dav:version-url
+V 101
+/svn/!svn/ver/344/trunk/aima-core/src/main/java/aima/core/learning/reinforcement/PassiveADPAgent.java
+END
