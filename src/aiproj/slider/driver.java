@@ -1,5 +1,6 @@
 // Patrick Hudgell phudgell
 // Paul Hellsten phellsten
+package aiproj.slider;
 
 import java.util.ArrayList;
 import java.util.Scanner;
