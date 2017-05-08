@@ -1,0 +1,17 @@
+/aima/
+/comments.txt
+/input.txt
+/manifest.mf
+/Board.class
+/CPUTimer.class
+/Move$Direction.class
+/Move.class
+/Referee$Board.class
+/Referee$IllegalMoveException.class
+/Referee$Options.class
+/Referee$Piece.class
+/Referee$Player.class
+/Referee.class
+/SliderPlayer.class
+/driver.class
+/aiproj/
