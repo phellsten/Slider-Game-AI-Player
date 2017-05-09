@@ -30,6 +30,10 @@ public class SliderPhai implements SliderPlayer {
 		// opponents move: move;
 		// opponent moved piece board[move.i][move.j] in direction move.d
 		// new board representation:...
+		if(move == null) {
+			return;
+		}
+		
 		int x = move.i;
 		int y = move.j;
 		String piece = board.blocks[x][y];
