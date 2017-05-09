@@ -5,11 +5,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import aima.core.agent.Action;
-import aima.core.agent.Percept;
-import aima.core.agent.impl.AbstractAgent;
-import aima.core.agent.impl.aprog.TableDrivenAgentProgram;
-
 /**
  * Artificial Intelligence A Modern Approach (3rd Edition): Figure 2.3, page 36.
  * 

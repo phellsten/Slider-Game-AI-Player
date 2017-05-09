@@ -6,11 +6,6 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import aima.core.learning.framework.DataSet;
-import aima.core.learning.framework.Example;
-import aima.core.util.Util;
-import aima.core.util.datastructure.Pair;
-
 /**
  * @author Ravi Mohan
  * 

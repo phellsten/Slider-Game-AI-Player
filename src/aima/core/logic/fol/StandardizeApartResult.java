@@ -2,10 +2,6 @@ package aima.core.logic.fol;
 
 import java.util.Map;
 
-import aima.core.logic.fol.parsing.ast.Sentence;
-import aima.core.logic.fol.parsing.ast.Term;
-import aima.core.logic.fol.parsing.ast.Variable;
-
 /**
  * @author Ciaran O'Reilly
  * 

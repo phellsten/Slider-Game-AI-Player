@@ -1,8 +1,5 @@
 package aima.core.learning.neural;
 
-import aima.core.util.math.Matrix;
-import aima.core.util.math.Vector;
-
 /**
  * @author Ravi Mohan
  * 
@@ -23,6 +20,7 @@ public class BackPropLearning implements NNTrainingScheme {
 
 	}
 
+	@Override
 	public void setNeuralNetwork(FunctionApproximator fapp) {
 		FeedForwardNeuralNetwork ffnn = (FeedForwardNeuralNetwork) fapp;
 		this.hiddenLayer = ffnn.getHiddenLayer();

@@ -2,8 +2,6 @@ package aima.core.learning.knowledge;
 
 import java.util.List;
 
-import aima.core.logic.fol.kb.FOLKnowledgeBase;
-
 /**
  * Artificial Intelligence A Modern Approach (3rd Edition): Figure 19.2, page 771.
  * 

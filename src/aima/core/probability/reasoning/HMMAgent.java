@@ -1,7 +1,5 @@
 package aima.core.probability.reasoning;
 
-import aima.core.probability.RandomVariable;
-
 /**
  * @author Ravi Mohan
  * 

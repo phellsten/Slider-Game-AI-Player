@@ -14,10 +14,12 @@ public class NumericAttribute implements Attribute {
 		this.spec = spec;
 	}
 
+	@Override
 	public String valueAsString() {
 		return Double.toString(value);
 	}
 
+	@Override
 	public String name() {
 		return spec.getAttributeName().trim();
 	}

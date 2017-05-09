@@ -1,10 +1,5 @@
 package aima.core.agent.impl;
 
-import aima.core.agent.Action;
-import aima.core.agent.Agent;
-import aima.core.agent.AgentProgram;
-import aima.core.agent.Percept;
-
 /**
  * @author Ravi Mohan
  * @author Ciaran O'Reilly

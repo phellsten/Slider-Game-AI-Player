@@ -2,9 +2,6 @@ package aima.core.logic.fol.inference.trace;
 
 import java.util.Set;
 
-import aima.core.logic.fol.inference.InferenceResult;
-import aima.core.logic.fol.kb.data.Clause;
-
 /**
  * @author Ciaran O'Reilly
  * 

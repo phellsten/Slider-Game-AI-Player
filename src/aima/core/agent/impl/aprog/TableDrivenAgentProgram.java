@@ -4,12 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-import aima.core.agent.Action;
-import aima.core.agent.AgentProgram;
-import aima.core.agent.Percept;
-import aima.core.agent.impl.NoOpAction;
-import aima.core.util.datastructure.Table;
-
 /**
  * Artificial Intelligence A Modern Approach (3rd Edition): Figure 2.7, page 47.
  * <code>

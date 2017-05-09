@@ -2,14 +2,6 @@ package aima.core.agent.impl.aprog;
 
 import java.util.Set;
 
-import aima.core.agent.Action;
-import aima.core.agent.AgentProgram;
-import aima.core.agent.Model;
-import aima.core.agent.Percept;
-import aima.core.agent.impl.DynamicState;
-import aima.core.agent.impl.NoOpAction;
-import aima.core.agent.impl.aprog.simplerule.Rule;
-
 /**
  * Artificial Intelligence A Modern Approach (3rd Edition): Figure 2.12, page 51.
  * <code>

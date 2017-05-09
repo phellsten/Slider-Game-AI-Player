@@ -5,21 +5,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-import aima.core.logic.fol.SubstVisitor;
-import aima.core.logic.fol.Unifier;
-import aima.core.logic.fol.VariableCollector;
-import aima.core.logic.fol.parsing.FOLVisitor;
-import aima.core.logic.fol.parsing.ast.AtomicSentence;
-import aima.core.logic.fol.parsing.ast.ConnectedSentence;
-import aima.core.logic.fol.parsing.ast.Constant;
-import aima.core.logic.fol.parsing.ast.Function;
-import aima.core.logic.fol.parsing.ast.NotSentence;
-import aima.core.logic.fol.parsing.ast.Predicate;
-import aima.core.logic.fol.parsing.ast.QuantifiedSentence;
-import aima.core.logic.fol.parsing.ast.Term;
-import aima.core.logic.fol.parsing.ast.TermEquality;
-import aima.core.logic.fol.parsing.ast.Variable;
-
 /**
  * Abstract base class for Demodulation and Paramodulation algorithms. 
  */

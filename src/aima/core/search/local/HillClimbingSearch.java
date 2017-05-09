@@ -2,14 +2,6 @@ package aima.core.search.local;
 
 import java.util.List;
 
-import aima.core.agent.Action;
-import aima.core.search.framework.HeuristicFunction;
-import aima.core.search.framework.Node;
-import aima.core.search.framework.NodeExpander;
-import aima.core.search.framework.Problem;
-import aima.core.search.framework.Search;
-import aima.core.search.framework.SearchUtils;
-
 /**
  * Artificial Intelligence A Modern Approach (3rd Edition): Figure 4.2, page 122.
  * 

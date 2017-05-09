@@ -1,0 +1,8 @@
+/AbstractAgent.class
+/AbstractEnvironment.class
+/DynamicAction.class
+/DynamicEnvironmentState.class
+/DynamicPercept.class
+/DynamicState.class
+/NoOpAction.class
+/ObjectWithDynamicAttributes.class

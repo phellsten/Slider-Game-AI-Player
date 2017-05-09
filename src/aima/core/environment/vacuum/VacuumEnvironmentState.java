@@ -3,9 +3,6 @@ package aima.core.environment.vacuum;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
-import aima.core.agent.Agent;
-import aima.core.agent.EnvironmentState;
-
 /**
  * @author Ciaran O'Reilly
  * 
@@ -44,6 +41,7 @@ public class VacuumEnvironmentState implements EnvironmentState {
 		state.put(location, s);
 	}
 
+	@Override
 	public String toString() {
 		return state.toString();
 	}

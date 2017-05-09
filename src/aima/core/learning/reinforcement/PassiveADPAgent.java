@@ -3,13 +3,6 @@ package aima.core.learning.reinforcement;
 import java.util.Hashtable;
 import java.util.List;
 
-import aima.core.probability.decision.MDP;
-import aima.core.probability.decision.MDPPerception;
-import aima.core.probability.decision.MDPPolicy;
-import aima.core.probability.decision.MDPTransition;
-import aima.core.probability.decision.MDPUtilityFunction;
-import aima.core.util.datastructure.Pair;
-
 /**
  * @author Ravi Mohan
  * 

@@ -2,14 +2,6 @@ package aima.core.search.uninformed;
 
 import java.util.List;
 
-import aima.core.agent.Action;
-import aima.core.search.framework.Metrics;
-import aima.core.search.framework.Node;
-import aima.core.search.framework.Problem;
-import aima.core.search.framework.QueueSearch;
-import aima.core.search.framework.Search;
-import aima.core.util.datastructure.LIFOQueue;
-
 /**
  * Artificial Intelligence A Modern Approach (3rd Edition): page 85.
  * 

@@ -5,12 +5,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import aima.core.agent.Action;
-import aima.core.agent.Percept;
-import aima.core.agent.impl.AbstractAgent;
-import aima.core.agent.impl.NoOpAction;
-import aima.core.search.framework.PerceptToStateFunction;
-
 /**
  * Artificial Intelligence A Modern Approach (3rd Edition): Figure 4.21, page 150.
  * <code>

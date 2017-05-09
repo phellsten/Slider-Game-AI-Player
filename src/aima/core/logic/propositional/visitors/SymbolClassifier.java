@@ -2,10 +2,6 @@ package aima.core.logic.propositional.visitors;
 
 import java.util.Set;
 
-import aima.core.logic.propositional.parsing.ast.Sentence;
-import aima.core.logic.propositional.parsing.ast.Symbol;
-import aima.core.util.SetOps;
-
 /**
  * @author Ravi Mohan
  * 

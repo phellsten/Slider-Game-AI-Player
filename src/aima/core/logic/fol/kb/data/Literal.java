@@ -1,8 +1,5 @@
 package aima.core.logic.fol.kb.data;
 
-import aima.core.logic.fol.parsing.ast.AtomicSentence;
-import aima.core.logic.fol.parsing.ast.Term;
-
 /**
  * Artificial Intelligence A Modern Approach (3rd Edition): page 244.
  * 

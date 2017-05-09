@@ -4,8 +4,6 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-import aima.core.logic.fol.parsing.FOLVisitor;
-
 /**
  * @author Ravi Mohan
  * @author Ciaran O'Reilly
@@ -41,14 +39,17 @@ public class QuantifiedSentence implements Sentence {
 
 	//
 	// START-Sentence
+	@Override
 	public String getSymbolicName() {
 		return getQuantifier();
 	}
 
+	@Override
 	public boolean isCompound() {
 		return true;
 	}
 
+	@Override
 	public List<FOLNode> getArgs() {
 		return Collections.unmodifiableList(args);
 	}
@@ -57,6 +58,7 @@ public class QuantifiedSentence implements Sentence {
 		return v.visitQuantifiedSentence(this, arg);
 	}
 
+	@Override
 	public QuantifiedSentence copy() {
 		List<Variable> copyVars = new ArrayList<Variable>();
 		for (Variable v : variables) {

@@ -44,14 +44,17 @@ public class PriorityQueue<E> extends java.util.PriorityQueue<E> implements
 
 	//
 	// START-Queue
+	@Override
 	public boolean isEmpty() {
 		return 0 == size();
 	}
 
+	@Override
 	public E pop() {
 		return poll();
 	}
 
+	@Override
 	public Queue<E> insert(E element) {
 		if (offer(element)) {
 			return this;

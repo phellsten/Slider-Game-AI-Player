@@ -1,7 +1,5 @@
 package aima.core.search.online;
 
-import aima.core.agent.Action;
-
 /**
  * @author Ciaran O'Reilly
  */

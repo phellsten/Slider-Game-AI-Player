@@ -3,10 +3,6 @@ package aima.core.environment.eightpuzzle;
 import java.util.LinkedHashSet;
 import java.util.Set;
 
-import aima.core.agent.Action;
-import aima.core.search.framework.ActionsFunction;
-import aima.core.search.framework.ResultFunction;
-
 /**
  * @author Ravi Mohan
  * @author Ciaran O'Reilly

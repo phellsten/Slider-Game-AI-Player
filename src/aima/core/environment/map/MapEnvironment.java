@@ -1,12 +1,5 @@
 package aima.core.environment.map;
 
-import aima.core.agent.Action;
-import aima.core.agent.Agent;
-import aima.core.agent.EnvironmentState;
-import aima.core.agent.Percept;
-import aima.core.agent.impl.AbstractEnvironment;
-import aima.core.agent.impl.DynamicPercept;
-
 /**
  * Represents the environment a MapAgent can navigate.
  */

@@ -3,8 +3,6 @@ package aima.core.search.framework;
 import java.util.ArrayList;
 import java.util.List;
 
-import aima.core.agent.Action;
-
 /**
  * @author Ravi Mohan
  * 

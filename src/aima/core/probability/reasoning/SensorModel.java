@@ -3,9 +3,6 @@ package aima.core.probability.reasoning;
 import java.util.ArrayList;
 import java.util.List;
 
-import aima.core.util.datastructure.Table;
-import aima.core.util.math.Matrix;
-
 /**
  * @author Ravi Mohan
  * 

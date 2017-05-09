@@ -2,9 +2,6 @@ package aima.core.environment.nqueens;
 
 import java.util.List;
 
-import aima.core.search.framework.GoalTest;
-import aima.core.util.datastructure.XYLocation;
-
 /**
  * @author Ravi Mohan
  * 

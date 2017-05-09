@@ -3,10 +3,6 @@ package aima.core.logic.propositional.algorithms;
 import java.util.ArrayList;
 import java.util.List;
 
-import aima.core.logic.propositional.parsing.PEParser;
-import aima.core.logic.propositional.parsing.ast.Sentence;
-import aima.core.logic.propositional.visitors.CNFTransformer;
-
 /**
  * @author Ravi Mohan
  * 

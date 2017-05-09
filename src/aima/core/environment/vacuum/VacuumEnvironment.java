@@ -2,13 +2,6 @@ package aima.core.environment.vacuum;
 
 import java.util.Random;
 
-import aima.core.agent.Action;
-import aima.core.agent.Agent;
-import aima.core.agent.EnvironmentState;
-import aima.core.agent.Percept;
-import aima.core.agent.impl.AbstractEnvironment;
-import aima.core.agent.impl.DynamicAction;
-
 /**
  * @author Ravi Mohan
  * @author Ciaran O'Reilly

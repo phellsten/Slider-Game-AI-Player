@@ -3,17 +3,6 @@ package aima.core.environment.vacuum;
 import java.util.LinkedHashSet;
 import java.util.Set;
 
-import aima.core.agent.Action;
-import aima.core.agent.Model;
-import aima.core.agent.Percept;
-import aima.core.agent.impl.AbstractAgent;
-import aima.core.agent.impl.DynamicState;
-import aima.core.agent.impl.NoOpAction;
-import aima.core.agent.impl.aprog.ModelBasedReflexAgentProgram;
-import aima.core.agent.impl.aprog.simplerule.ANDCondition;
-import aima.core.agent.impl.aprog.simplerule.EQUALCondition;
-import aima.core.agent.impl.aprog.simplerule.Rule;
-
 /**
  * @author Ciaran O'Reilly
  * 

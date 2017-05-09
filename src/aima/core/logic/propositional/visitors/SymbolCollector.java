@@ -3,9 +3,6 @@ package aima.core.logic.propositional.visitors;
 import java.util.HashSet;
 import java.util.Set;
 
-import aima.core.logic.propositional.parsing.ast.Sentence;
-import aima.core.logic.propositional.parsing.ast.Symbol;
-
 /**
  * @author Ravi Mohan
  * 

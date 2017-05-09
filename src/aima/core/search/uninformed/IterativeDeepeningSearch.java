@@ -3,12 +3,6 @@ package aima.core.search.uninformed;
 import java.util.Collections;
 import java.util.List;
 
-import aima.core.agent.Action;
-import aima.core.search.framework.Metrics;
-import aima.core.search.framework.NodeExpander;
-import aima.core.search.framework.Problem;
-import aima.core.search.framework.Search;
-
 /**
  * Artificial Intelligence A Modern Approach (3rd Edition): Figure 3.18, page 89.
  * 

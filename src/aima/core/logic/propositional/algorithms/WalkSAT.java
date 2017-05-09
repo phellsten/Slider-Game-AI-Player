@@ -5,15 +5,6 @@ import java.util.List;
 import java.util.Random;
 import java.util.Set;
 
-import aima.core.logic.propositional.parsing.PEParser;
-import aima.core.logic.propositional.parsing.ast.Sentence;
-import aima.core.logic.propositional.parsing.ast.Symbol;
-import aima.core.logic.propositional.visitors.CNFClauseGatherer;
-import aima.core.logic.propositional.visitors.CNFTransformer;
-import aima.core.logic.propositional.visitors.SymbolCollector;
-import aima.core.util.Converter;
-import aima.core.util.Util;
-
 /**
  * @author Ravi Mohan
  * 

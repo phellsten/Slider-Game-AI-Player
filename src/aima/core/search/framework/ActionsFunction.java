@@ -2,8 +2,6 @@ package aima.core.search.framework;
 
 import java.util.Set;
 
-import aima.core.agent.Action;
-
 /**
  * Artificial Intelligence A Modern Approach (3rd Edition): page 67.
  * 

@@ -11,29 +11,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-import aima.core.logic.fol.StandardizeApart;
-import aima.core.logic.fol.StandardizeApartIndexical;
-import aima.core.logic.fol.StandardizeApartIndexicalFactory;
-import aima.core.logic.fol.SubstVisitor;
-import aima.core.logic.fol.Unifier;
-import aima.core.logic.fol.VariableCollector;
-import aima.core.logic.fol.inference.proof.ProofStep;
-import aima.core.logic.fol.inference.proof.ProofStepClauseBinaryResolvent;
-import aima.core.logic.fol.inference.proof.ProofStepClauseFactor;
-import aima.core.logic.fol.inference.proof.ProofStepPremise;
-import aima.core.logic.fol.parsing.FOLVisitor;
-import aima.core.logic.fol.parsing.ast.AtomicSentence;
-import aima.core.logic.fol.parsing.ast.ConnectedSentence;
-import aima.core.logic.fol.parsing.ast.Constant;
-import aima.core.logic.fol.parsing.ast.Function;
-import aima.core.logic.fol.parsing.ast.NotSentence;
-import aima.core.logic.fol.parsing.ast.Predicate;
-import aima.core.logic.fol.parsing.ast.QuantifiedSentence;
-import aima.core.logic.fol.parsing.ast.Term;
-import aima.core.logic.fol.parsing.ast.TermEquality;
-import aima.core.logic.fol.parsing.ast.Variable;
-import aima.core.util.math.MixedRadixNumber;
-
 /**
  * A Clause: A disjunction of literals.
  * 
@@ -673,6 +650,7 @@ public class Clause {
 }
 
 class LiteralsSorter implements Comparator<Literal> {
+	@Override
 	public int compare(Literal o1, Literal o2) {
 		int rVal = 0;
 		// If literals are not negated the same

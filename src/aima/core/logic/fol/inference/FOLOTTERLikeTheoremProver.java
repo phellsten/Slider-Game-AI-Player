@@ -8,27 +8,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-import aima.core.logic.fol.Connectors;
-import aima.core.logic.fol.SubsumptionElimination;
-import aima.core.logic.fol.inference.otter.ClauseFilter;
-import aima.core.logic.fol.inference.otter.ClauseSimplifier;
-import aima.core.logic.fol.inference.otter.LightestClauseHeuristic;
-import aima.core.logic.fol.inference.otter.defaultimpl.DefaultClauseFilter;
-import aima.core.logic.fol.inference.otter.defaultimpl.DefaultClauseSimplifier;
-import aima.core.logic.fol.inference.otter.defaultimpl.DefaultLightestClauseHeuristic;
-import aima.core.logic.fol.inference.proof.Proof;
-import aima.core.logic.fol.inference.proof.ProofFinal;
-import aima.core.logic.fol.inference.proof.ProofStepGoal;
-import aima.core.logic.fol.kb.FOLKnowledgeBase;
-import aima.core.logic.fol.kb.data.Clause;
-import aima.core.logic.fol.kb.data.Literal;
-import aima.core.logic.fol.parsing.ast.ConnectedSentence;
-import aima.core.logic.fol.parsing.ast.NotSentence;
-import aima.core.logic.fol.parsing.ast.Sentence;
-import aima.core.logic.fol.parsing.ast.Term;
-import aima.core.logic.fol.parsing.ast.TermEquality;
-import aima.core.logic.fol.parsing.ast.Variable;
-
 /**
  * Artificial Intelligence A Modern Approach (2nd Edition): Figure 9.14, page 307.
  * 
@@ -487,22 +466,27 @@ public class FOLOTTERLikeTheoremProver implements InferenceProcedure {
 
 		//
 		// START-InferenceResult
+		@Override
 		public boolean isPossiblyFalse() {
 			return !timedOut && proofs.size() == 0;
 		}
 
+		@Override
 		public boolean isTrue() {
 			return proofs.size() > 0;
 		}
 
+		@Override
 		public boolean isUnknownDueToTimeout() {
 			return timedOut && proofs.size() == 0;
 		}
 
+		@Override
 		public boolean isPartialResultDueToTimeout() {
 			return timedOut && proofs.size() > 0;
 		}
 
+		@Override
 		public List<Proof> getProofs() {
 			return proofs;
 		}

@@ -8,31 +8,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-import aima.core.logic.fol.Connectors;
-import aima.core.logic.fol.StandardizeApartInPlace;
-import aima.core.logic.fol.SubstVisitor;
-import aima.core.logic.fol.SubsumptionElimination;
-import aima.core.logic.fol.Unifier;
-import aima.core.logic.fol.inference.proof.Proof;
-import aima.core.logic.fol.inference.proof.ProofFinal;
-import aima.core.logic.fol.inference.proof.ProofStepChainCancellation;
-import aima.core.logic.fol.inference.proof.ProofStepChainDropped;
-import aima.core.logic.fol.inference.proof.ProofStepChainFromClause;
-import aima.core.logic.fol.inference.proof.ProofStepChainReduction;
-import aima.core.logic.fol.inference.proof.ProofStepGoal;
-import aima.core.logic.fol.inference.trace.FOLModelEliminationTracer;
-import aima.core.logic.fol.kb.FOLKnowledgeBase;
-import aima.core.logic.fol.kb.data.Chain;
-import aima.core.logic.fol.kb.data.Clause;
-import aima.core.logic.fol.kb.data.Literal;
-import aima.core.logic.fol.kb.data.ReducedLiteral;
-import aima.core.logic.fol.parsing.ast.AtomicSentence;
-import aima.core.logic.fol.parsing.ast.ConnectedSentence;
-import aima.core.logic.fol.parsing.ast.NotSentence;
-import aima.core.logic.fol.parsing.ast.Sentence;
-import aima.core.logic.fol.parsing.ast.Term;
-import aima.core.logic.fol.parsing.ast.Variable;
-
 /**
  * Based on lecture notes from:
  * http://logic.stanford.edu/classes/cs157/2008/lectures/lecture13.pdf
@@ -306,22 +281,27 @@ public class FOLModelElimination implements InferenceProcedure {
 
 		//
 		// START-InferenceResult
+		@Override
 		public boolean isPossiblyFalse() {
 			return !timedOut && proofs.size() == 0;
 		}
 
+		@Override
 		public boolean isTrue() {
 			return proofs.size() > 0;
 		}
 
+		@Override
 		public boolean isUnknownDueToTimeout() {
 			return timedOut && proofs.size() == 0;
 		}
 
+		@Override
 		public boolean isPartialResultDueToTimeout() {
 			return timedOut && proofs.size() > 0;
 		}
 
+		@Override
 		public List<Proof> getProofs() {
 			return proofs;
 		}

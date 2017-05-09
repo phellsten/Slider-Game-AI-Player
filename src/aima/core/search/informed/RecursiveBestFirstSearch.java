@@ -3,14 +3,6 @@ package aima.core.search.informed;
 import java.util.ArrayList;
 import java.util.List;
 
-import aima.core.agent.Action;
-import aima.core.search.framework.EvaluationFunction;
-import aima.core.search.framework.Node;
-import aima.core.search.framework.NodeExpander;
-import aima.core.search.framework.Problem;
-import aima.core.search.framework.Search;
-import aima.core.search.framework.SearchUtils;
-
 /**
  * Artificial Intelligence A Modern Approach (3rd Edition): Figure 3.26, page 99.
  * 

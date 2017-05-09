@@ -3,13 +3,6 @@ package aima.core.search.online;
 import java.util.HashMap;
 import java.util.Set;
 
-import aima.core.agent.Action;
-import aima.core.agent.Percept;
-import aima.core.agent.impl.AbstractAgent;
-import aima.core.agent.impl.NoOpAction;
-import aima.core.search.framework.HeuristicFunction;
-import aima.core.search.framework.PerceptToStateFunction;
-
 /**
  * Artificial Intelligence A Modern Approach 3rdd Edition): Figure 4.24, page 152.<br>
  * <code>

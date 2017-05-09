@@ -6,16 +6,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import aima.core.agent.Action;
-import aima.core.search.framework.BidirectionalProblem;
-import aima.core.search.framework.GraphSearch;
-import aima.core.search.framework.Metrics;
-import aima.core.search.framework.Node;
-import aima.core.search.framework.Problem;
-import aima.core.search.framework.Search;
-import aima.core.search.framework.SearchUtils;
-import aima.core.util.datastructure.FIFOQueue;
-
 /**
  * Artificial Intelligence A Modern Approach (3rd Edition): page 90.
  * Bidirectional search.

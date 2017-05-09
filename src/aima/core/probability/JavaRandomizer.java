@@ -9,6 +9,7 @@ import java.util.Random;
 public class JavaRandomizer implements Randomizer {
 	static Random r = new Random();
 
+	@Override
 	public double nextDouble() {
 		return r.nextDouble();
 	}

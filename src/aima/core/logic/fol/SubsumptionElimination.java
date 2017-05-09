@@ -5,8 +5,6 @@ import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
-import aima.core.logic.fol.kb.data.Clause;
-
 /**
  * Artificial Intelligence A Modern Approach (3rd Edition): page 356.
  * 

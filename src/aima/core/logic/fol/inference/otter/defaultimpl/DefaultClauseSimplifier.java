@@ -3,11 +3,6 @@ package aima.core.logic.fol.inference.otter.defaultimpl;
 import java.util.ArrayList;
 import java.util.List;
 
-import aima.core.logic.fol.inference.Demodulation;
-import aima.core.logic.fol.inference.otter.ClauseSimplifier;
-import aima.core.logic.fol.kb.data.Clause;
-import aima.core.logic.fol.parsing.ast.TermEquality;
-
 /**
  * @author Ciaran O'Reilly
  * 

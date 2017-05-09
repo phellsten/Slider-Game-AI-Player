@@ -9,31 +9,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-import aima.core.logic.fol.CNFConverter;
-import aima.core.logic.fol.StandardizeApart;
-import aima.core.logic.fol.StandardizeApartIndexical;
-import aima.core.logic.fol.StandardizeApartIndexicalFactory;
-import aima.core.logic.fol.StandardizeApartResult;
-import aima.core.logic.fol.SubstVisitor;
-import aima.core.logic.fol.Unifier;
-import aima.core.logic.fol.VariableCollector;
-import aima.core.logic.fol.domain.FOLDomain;
-import aima.core.logic.fol.inference.FOLOTTERLikeTheoremProver;
-import aima.core.logic.fol.inference.InferenceProcedure;
-import aima.core.logic.fol.inference.InferenceResult;
-import aima.core.logic.fol.inference.proof.Proof;
-import aima.core.logic.fol.inference.proof.ProofStepClauseClausifySentence;
-import aima.core.logic.fol.kb.data.CNF;
-import aima.core.logic.fol.kb.data.Chain;
-import aima.core.logic.fol.kb.data.Clause;
-import aima.core.logic.fol.kb.data.Literal;
-import aima.core.logic.fol.parsing.FOLParser;
-import aima.core.logic.fol.parsing.ast.FOLNode;
-import aima.core.logic.fol.parsing.ast.Predicate;
-import aima.core.logic.fol.parsing.ast.Sentence;
-import aima.core.logic.fol.parsing.ast.Term;
-import aima.core.logic.fol.parsing.ast.Variable;
-
 /**
  * A First Order Logic (FOL) Knowledge Base.
  */

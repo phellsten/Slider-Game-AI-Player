@@ -3,8 +3,6 @@ package aima.core.environment.nqueens;
 import java.util.ArrayList;
 import java.util.List;
 
-import aima.core.util.datastructure.XYLocation;
-
 /**
  * @author Ravi Mohan
  * 

@@ -5,10 +5,6 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Set;
 
-import aima.core.logic.fol.inference.proof.ProofStep;
-import aima.core.logic.fol.inference.proof.ProofStepChainContrapositive;
-import aima.core.logic.fol.inference.proof.ProofStepPremise;
-
 /**
  * @see http://logic.stanford.edu/classes/cs157/2008/lectures/lecture13.pdf
  * 

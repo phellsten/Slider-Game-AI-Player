@@ -1,7 +1,5 @@
 package aima.core.logic.propositional.parsing.ast;
 
-import aima.core.logic.propositional.parsing.PLVisitor;
-
 /**
  * @author Ravi Mohan
  * 

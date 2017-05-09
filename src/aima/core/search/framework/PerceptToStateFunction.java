@@ -1,7 +1,5 @@
 package aima.core.search.framework;
 
-import aima.core.agent.Percept;
-
 /**
  * This interface is to define how to Map a Percept to a State representation
  * for a problem solver within a specific environment. This arises in the

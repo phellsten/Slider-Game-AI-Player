@@ -1,7 +1,5 @@
 package aima.core.search.framework;
 
-import aima.core.agent.Action;
-
 /**
  * @author Ravi Mohan
  * 

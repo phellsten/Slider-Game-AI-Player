@@ -2,8 +2,6 @@ package aima.core.probability;
 
 import java.util.Hashtable;
 
-import aima.core.util.Util;
-
 /**
  * @author Ravi Mohan
  * 

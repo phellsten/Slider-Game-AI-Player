@@ -1,8 +1,5 @@
 package aima.core.logic.fol.inference;
 
-import aima.core.logic.fol.kb.FOLKnowledgeBase;
-import aima.core.logic.fol.parsing.ast.Sentence;
-
 /**
  * @author Ciaran O'Reilly
  * 

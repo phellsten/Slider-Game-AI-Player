@@ -1,7 +1,5 @@
 package aima.core.environment.eightpuzzle;
 
-import aima.core.search.framework.GoalTest;
-
 /**
  * @author Ravi Mohan
  * 

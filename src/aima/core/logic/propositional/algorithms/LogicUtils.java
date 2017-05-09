@@ -2,9 +2,6 @@ package aima.core.logic.propositional.algorithms;
 
 import java.util.List;
 
-import aima.core.logic.propositional.parsing.ast.BinarySentence;
-import aima.core.logic.propositional.parsing.ast.Sentence;
-
 /**
  * @author Ravi Mohan
  * 

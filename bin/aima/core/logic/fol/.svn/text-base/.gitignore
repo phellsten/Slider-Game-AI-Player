@@ -1,0 +1,13 @@
+/CNFConverter.java.svn-base
+/Connectors.java.svn-base
+/PredicateCollector.java.svn-base
+/Quantifiers.java.svn-base
+/StandardizeApart.java.svn-base
+/StandardizeApartInPlace.java.svn-base
+/StandardizeApartIndexical.java.svn-base
+/StandardizeApartIndexicalFactory.java.svn-base
+/StandardizeApartResult.java.svn-base
+/SubstVisitor.java.svn-base
+/SubsumptionElimination.java.svn-base
+/Unifier.java.svn-base
+/VariableCollector.java.svn-base

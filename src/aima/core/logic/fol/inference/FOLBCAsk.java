@@ -5,17 +5,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import aima.core.logic.fol.inference.proof.Proof;
-import aima.core.logic.fol.inference.proof.ProofFinal;
-import aima.core.logic.fol.inference.proof.ProofStepBwChGoal;
-import aima.core.logic.fol.kb.FOLKnowledgeBase;
-import aima.core.logic.fol.kb.data.Clause;
-import aima.core.logic.fol.kb.data.Literal;
-import aima.core.logic.fol.parsing.ast.AtomicSentence;
-import aima.core.logic.fol.parsing.ast.Sentence;
-import aima.core.logic.fol.parsing.ast.Term;
-import aima.core.logic.fol.parsing.ast.Variable;
-
 /**
  * Artificial Intelligence A Modern Approach (2nd Edition): Figure 9.6, page 288.
  * 
@@ -183,22 +172,27 @@ public class FOLBCAsk implements InferenceProcedure {
 
 		//
 		// START-InferenceResult
+		@Override
 		public boolean isPossiblyFalse() {
 			return proofs.size() == 0;
 		}
 
+		@Override
 		public boolean isTrue() {
 			return proofs.size() > 0;
 		}
 
+		@Override
 		public boolean isUnknownDueToTimeout() {
 			return false;
 		}
 
+		@Override
 		public boolean isPartialResultDueToTimeout() {
 			return false;
 		}
 
+		@Override
 		public List<Proof> getProofs() {
 			return proofs;
 		}

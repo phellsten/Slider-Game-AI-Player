@@ -1,7 +1,5 @@
 package aima.core.agent.impl.aprog.simplerule;
 
-import aima.core.agent.impl.ObjectWithDynamicAttributes;
-
 /**
  * Implementation of a NOT condition.
  *

@@ -7,7 +7,9 @@ import java.util.List;
  * 
  */
 public interface AtomicSentence extends Sentence {
+	@Override
 	List<Term> getArgs();
 
+	@Override
 	AtomicSentence copy();
 }

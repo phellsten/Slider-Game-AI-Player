@@ -4,9 +4,6 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-import aima.core.logic.fol.kb.data.Chain;
-import aima.core.logic.fol.kb.data.Clause;
-
 /**
  * @author Ciaran O'Reilly
  * 

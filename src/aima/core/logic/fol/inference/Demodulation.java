@@ -5,14 +5,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-import aima.core.logic.fol.inference.proof.ProofStepClauseDemodulation;
-import aima.core.logic.fol.kb.data.Clause;
-import aima.core.logic.fol.kb.data.Literal;
-import aima.core.logic.fol.parsing.ast.AtomicSentence;
-import aima.core.logic.fol.parsing.ast.Term;
-import aima.core.logic.fol.parsing.ast.TermEquality;
-import aima.core.logic.fol.parsing.ast.Variable;
-
 /**
  * Artificial Intelligence A Modern Approach (3rd Edition): page 354.<br>
  * Demodulation: For any terms x, y, and z, where z appears somewhere in literal m<sub>i</sub>

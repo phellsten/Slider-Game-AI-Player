@@ -1,8 +1,5 @@
 package aima.core.probability.decision;
 
-import aima.core.environment.cellworld.CellWorld;
-import aima.core.environment.cellworld.CellWorldPosition;
-
 /**
  * @author Ravi Mohan
  * 

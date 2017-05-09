@@ -2,21 +2,43 @@
 // Paul Hellsten phellsten
 package aiproj.slider;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.LinkedList;
+import java.util.List;
 
 public class Board {
 	String blocks[][];
 	int size;
 	
-	public Board(String[] args) {
+	public Board(String args, int size) {
 		LinkedList<String> vars = new LinkedList<String>();
+		ArrayList<String> ar = new ArrayList<String>();
+
 		// Convert args to mutable LinkedList
-		for(String i : args) {
+		
+		
+		String[] line = args.split("\n");
+		// line = {"H + + +", "H + B +", ...
+		
+		
+		List<String> list = Arrays.asList(line);
+		Collections.reverse(list);
+		line = (String[]) list.toArray();
+		
+		
+		
+		for(int i=0; i < size; i++) {
+			for(String j : line[i].split(" ")) {
+				ar.add(j);
+			}
+		}
+
+		for(String i : ar) {
 			vars.add(i);
 		}
-		
-		int size = Integer.parseInt(vars.remove(0));
-		
+				
 		// Read pieces of board into 2D Array
 		String board[][] = new String[size][size];
 		int i;
@@ -29,7 +51,14 @@ public class Board {
 		}
 		
 		this.blocks = board;
+		
 		this.size = size;
+		
+		
+		
+
+
+		
 	}
 	
 	public boolean isFree(int x, int y, String piece) {

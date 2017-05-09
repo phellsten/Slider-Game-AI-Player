@@ -1,7 +1,5 @@
 package aima.core.search.adversarial;
 
-import aima.core.agent.impl.AbstractAgent;
-
 /**
  * @author Ravi Mohan
  * 

@@ -1,7 +1,5 @@
 package aima.core.learning.knowledge;
 
-import aima.core.logic.fol.parsing.ast.Sentence;
-
 /**
  * @author Ciaran O'Reilly
  * 

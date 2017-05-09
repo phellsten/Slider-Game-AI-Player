@@ -26,14 +26,17 @@ public class FIFOQueue<E> extends LinkedList<E> implements Queue<E> {
 
 	//
 	// START-Queue
+	@Override
 	public boolean isEmpty() {
 		return 0 == size();
 	}
 
+	@Override
 	public E pop() {
 		return poll();
 	}
 
+	@Override
 	public Queue<E> insert(E element) {
 		if (offer(element)) {
 			return this;

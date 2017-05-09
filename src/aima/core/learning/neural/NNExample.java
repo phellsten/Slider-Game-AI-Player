@@ -3,8 +3,6 @@ package aima.core.learning.neural;
 import java.util.ArrayList;
 import java.util.List;
 
-import aima.core.util.math.Vector;
-
 /**
  * @author Ravi Mohan
  * 

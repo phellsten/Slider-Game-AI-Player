@@ -4,8 +4,6 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-import aima.core.logic.fol.parsing.FOLVisitor;
-
 /**
  * @author Ravi Mohan
  * @author Ciaran O'Reilly
@@ -31,14 +29,17 @@ public class Function implements Term {
 
 	//
 	// START-Term
+	@Override
 	public String getSymbolicName() {
 		return getFunctionName();
 	}
 
+	@Override
 	public boolean isCompound() {
 		return true;
 	}
 
+	@Override
 	public List<Term> getArgs() {
 		return getTerms();
 	}
@@ -47,6 +48,7 @@ public class Function implements Term {
 		return v.visitFunction(this, arg);
 	}
 
+	@Override
 	public Function copy() {
 		List<Term> copyTerms = new ArrayList<Term>();
 		for (Term t : terms) {

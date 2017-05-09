@@ -1,7 +1,5 @@
 package aima.core.environment.map;
 
-import aima.core.util.datastructure.Point2D;
-
 /**
  * @author R. Lunde
  */

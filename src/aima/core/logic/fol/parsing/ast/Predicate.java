@@ -4,8 +4,6 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-import aima.core.logic.fol.parsing.FOLVisitor;
-
 /**
  * @author Ravi Mohan
  * @author Ciaran O'Reilly
@@ -31,14 +29,17 @@ public class Predicate implements AtomicSentence {
 
 	//
 	// START-AtomicSentence
+	@Override
 	public String getSymbolicName() {
 		return getPredicateName();
 	}
 
+	@Override
 	public boolean isCompound() {
 		return true;
 	}
 
+	@Override
 	public List<Term> getArgs() {
 		return getTerms();
 	}
@@ -47,6 +48,7 @@ public class Predicate implements AtomicSentence {
 		return v.visitPredicate(this, arg);
 	}
 
+	@Override
 	public Predicate copy() {
 		List<Term> copyTerms = new ArrayList<Term>();
 		for (Term t : terms) {

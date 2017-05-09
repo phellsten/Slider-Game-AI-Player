@@ -1,7 +1,5 @@
 package aima.core.agent.impl;
 
-import aima.core.agent.Percept;
-
 /**
  * @author Ravi Mohan
  * @author Ciaran O'Reilly

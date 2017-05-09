@@ -3,20 +3,6 @@ package aima.core.logic.fol.parsing;
 import java.util.ArrayList;
 import java.util.List;
 
-import aima.core.logic.common.LogicTokenTypes;
-import aima.core.logic.common.Token;
-import aima.core.logic.fol.domain.FOLDomain;
-import aima.core.logic.fol.parsing.ast.ConnectedSentence;
-import aima.core.logic.fol.parsing.ast.Constant;
-import aima.core.logic.fol.parsing.ast.Function;
-import aima.core.logic.fol.parsing.ast.NotSentence;
-import aima.core.logic.fol.parsing.ast.Predicate;
-import aima.core.logic.fol.parsing.ast.QuantifiedSentence;
-import aima.core.logic.fol.parsing.ast.Sentence;
-import aima.core.logic.fol.parsing.ast.Term;
-import aima.core.logic.fol.parsing.ast.TermEquality;
-import aima.core.logic.fol.parsing.ast.Variable;
-
 /**
  * @author Ravi Mohan
  * 

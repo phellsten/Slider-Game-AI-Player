@@ -4,9 +4,6 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import aima.core.util.datastructure.Table;
-import aima.core.util.math.Matrix;
-
 /**
  * @author Ravi Mohan
  * 

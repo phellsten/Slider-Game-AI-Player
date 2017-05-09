@@ -7,12 +7,6 @@ import java.util.List;
 import java.util.Set;
 import java.util.Stack;
 
-import aima.core.logic.propositional.parsing.ast.BinarySentence;
-import aima.core.logic.propositional.parsing.ast.Sentence;
-import aima.core.logic.propositional.parsing.ast.Symbol;
-import aima.core.logic.propositional.visitors.SymbolCollector;
-import aima.core.util.Converter;
-
 /**
  * @author Ravi Mohan
  * 

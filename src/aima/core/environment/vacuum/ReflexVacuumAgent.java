@@ -1,11 +1,5 @@
 package aima.core.environment.vacuum;
 
-import aima.core.agent.Action;
-import aima.core.agent.AgentProgram;
-import aima.core.agent.Percept;
-import aima.core.agent.impl.AbstractAgent;
-import aima.core.agent.impl.NoOpAction;
-
 /**
  * Artificial Intelligence A Modern Approach (3rd Edition): Figure 2.8, page 48.
  * <code>

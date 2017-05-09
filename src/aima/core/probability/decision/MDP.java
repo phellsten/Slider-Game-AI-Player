@@ -2,9 +2,6 @@ package aima.core.probability.decision;
 
 import java.util.List;
 
-import aima.core.probability.Randomizer;
-import aima.core.util.datastructure.Pair;
-
 /**
  * @author Ravi Mohan
  * 

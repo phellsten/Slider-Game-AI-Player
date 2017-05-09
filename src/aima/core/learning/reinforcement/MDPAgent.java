@@ -1,9 +1,5 @@
 package aima.core.learning.reinforcement;
 
-import aima.core.probability.Randomizer;
-import aima.core.probability.decision.MDP;
-import aima.core.probability.decision.MDPPerception;
-
 /**
  * @author Ravi Mohan
  * 

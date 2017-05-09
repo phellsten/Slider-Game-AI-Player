@@ -1,10 +1,5 @@
 package aima.core.logic.propositional.visitors;
 
-import aima.core.logic.propositional.parsing.AbstractPLVisitor;
-import aima.core.logic.propositional.parsing.ast.BinarySentence;
-import aima.core.logic.propositional.parsing.ast.Sentence;
-import aima.core.logic.propositional.parsing.ast.UnarySentence;
-
 /**
  * @author Ravi Mohan
  * 

@@ -2,10 +2,6 @@ package aima.core.environment.map;
 
 import java.util.HashMap;
 
-import aima.core.agent.Agent;
-import aima.core.agent.EnvironmentState;
-import aima.core.util.datastructure.Pair;
-
 /**
  * @author Ciaran O'Reilly
  * 

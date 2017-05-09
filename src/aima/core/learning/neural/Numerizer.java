@@ -2,9 +2,6 @@ package aima.core.learning.neural;
 
 import java.util.List;
 
-import aima.core.learning.framework.Example;
-import aima.core.util.datastructure.Pair;
-
 /**
  * @author Ravi Mohan
  * 

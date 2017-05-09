@@ -2,9 +2,6 @@ package aima.core.probability.reasoning;
 
 import java.util.ArrayList;
 
-import aima.core.probability.RandomVariable;
-import aima.core.util.math.Matrix;
-
 /**
  * @author Ravi Mohan
  * 

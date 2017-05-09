@@ -3,8 +3,6 @@ package aima.core.probability.reasoning;
 import java.util.Arrays;
 import java.util.List;
 
-import aima.core.probability.RandomVariable;
-
 /**
  * @author Ravi Mohan
  * 

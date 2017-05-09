@@ -6,11 +6,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-import aima.core.logic.fol.parsing.ast.FOLNode;
-import aima.core.logic.fol.parsing.ast.Function;
-import aima.core.logic.fol.parsing.ast.Term;
-import aima.core.logic.fol.parsing.ast.Variable;
-
 /**
  * Artificial Intelligence A Modern Approach (3rd Edition): Figure 9.1, page 328.
  * 

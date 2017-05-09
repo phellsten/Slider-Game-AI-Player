@@ -8,6 +8,7 @@ import java.util.Comparator;
  */
 public class SymbolComparator implements Comparator {
 
+	@Override
 	public int compare(Object symbol1, Object symbol2) {
 		Symbol one = (Symbol) symbol1;
 		Symbol two = (Symbol) symbol2;

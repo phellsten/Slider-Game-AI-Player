@@ -4,14 +4,6 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-import aima.core.agent.Action;
-import aima.core.search.framework.CutOffIndicatorAction;
-import aima.core.search.framework.Node;
-import aima.core.search.framework.NodeExpander;
-import aima.core.search.framework.Problem;
-import aima.core.search.framework.Search;
-import aima.core.search.framework.SearchUtils;
-
 /**
  * Artificial Intelligence A Modern Approach (3rd Edition): Figure 3.17, page 88.
  * 

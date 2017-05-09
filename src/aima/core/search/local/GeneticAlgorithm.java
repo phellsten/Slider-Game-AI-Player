@@ -4,10 +4,6 @@ import java.util.HashSet;
 import java.util.Random;
 import java.util.Set;
 
-import aima.core.search.framework.GoalTest;
-import aima.core.search.framework.Metrics;
-import aima.core.util.Util;
-
 /**
  * Artificial Intelligence A Modern Approach (3rd Edition): Figure 4.8, page 129.
  * 

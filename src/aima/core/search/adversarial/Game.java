@@ -2,8 +2,6 @@ package aima.core.search.adversarial;
 
 import java.util.ArrayList;
 
-import aima.core.util.Util;
-
 /**
  * @author Ravi Mohan
  * 

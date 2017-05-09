@@ -248,6 +248,7 @@ public class Referee {
 
 		/** represent a board as text for rendering */
 		private static final char[] SYMBOLS = {'+', 'B', 'H', 'V'};
+		@Override
 		public String toString(){
 			StringBuilder s = new StringBuilder(2 * n * n);
 			for (int j = n-1; j >= 0; j--) {

@@ -1,9 +1,5 @@
 package aima.core.learning.neural;
 
-import aima.core.learning.framework.DataSet;
-import aima.core.util.math.Matrix;
-import aima.core.util.math.Vector;
-
 /**
  * @author Ravi Mohan
  * 

@@ -13,6 +13,7 @@ public class NumericAttributeSpecification implements AttributeSpecification {
 		this.name = name;
 	}
 
+	@Override
 	public boolean isValid(String string) {
 		try {
 			Double.parseDouble(string);
@@ -22,10 +23,12 @@ public class NumericAttributeSpecification implements AttributeSpecification {
 		}
 	}
 
+	@Override
 	public String getAttributeName() {
 		return name;
 	}
 
+	@Override
 	public Attribute createAttribute(String rawValue) {
 		return new NumericAttribute(Double.parseDouble(rawValue), this);
 	}

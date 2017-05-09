@@ -4,10 +4,6 @@ import java.util.Collections;
 import java.util.Hashtable;
 import java.util.List;
 
-import aima.core.util.Util;
-import aima.core.util.datastructure.LabeledGraph;
-import aima.core.util.datastructure.Point2D;
-
 /**
  * Implements a map with locations, distance labeled links between the
  * locations, straight line distances, and 2d-placement positions of locations.
@@ -47,6 +43,7 @@ public class ExtendableMap implements Map {
 	}
 
 	/** Returns a list of all locations. */
+	@Override
 	public List<String> getLocations() {
 		return links.getVertexLabels();
 	}
@@ -60,6 +57,7 @@ public class ExtendableMap implements Map {
 	 * Answers to the question: Where can I get, following one of the
 	 * connections starting at the specified location?
 	 */
+	@Override
 	public List<String> getLocationsLinkedTo(String fromLocation) {
 		List<String> result = links.getSuccessors(fromLocation);
 		Collections.sort(result);
@@ -70,6 +68,7 @@ public class ExtendableMap implements Map {
 	 * Returns the travel distance between the two specified locations if they
 	 * are linked by a connection and null otherwise.
 	 */
+	@Override
 	public Double getDistance(String fromLocation, String toLocation) {
 		return links.get(fromLocation, toLocation);
 	}
@@ -93,6 +92,7 @@ public class ExtendableMap implements Map {
 	/**
 	 * Returns a location which is selected by random.
 	 */
+	@Override
 	public String randomlyGenerateDestination() {
 		return Util.selectRandomlyFromList(getLocations());
 	}
@@ -141,6 +141,7 @@ public class ExtendableMap implements Map {
 	 * Returns the position of the specified location as with respect to an
 	 * orthogonal coordinate system.
 	 */
+	@Override
 	public Point2D getPosition(String loc) {
 		return locationPositions.get(loc);
 	}

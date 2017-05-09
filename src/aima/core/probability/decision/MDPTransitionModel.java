@@ -4,8 +4,6 @@ import java.util.ArrayList;
 import java.util.Hashtable;
 import java.util.List;
 
-import aima.core.util.datastructure.Pair;
-
 /**
  * @author Ravi Mohan
  * 

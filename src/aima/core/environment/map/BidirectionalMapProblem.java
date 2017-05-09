@@ -1,8 +1,5 @@
 package aima.core.environment.map;
 
-import aima.core.search.framework.BidirectionalProblem;
-import aima.core.search.framework.Problem;
-
 /**
  * @author Ciaran O'Reilly
  * 

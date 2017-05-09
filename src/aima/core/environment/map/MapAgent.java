@@ -4,16 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
-import aima.core.agent.Action;
-import aima.core.agent.NotifyEnvironmentViews;
-import aima.core.agent.Percept;
-import aima.core.agent.State;
-import aima.core.agent.impl.DynamicPercept;
-import aima.core.agent.impl.DynamicState;
-import aima.core.search.framework.Problem;
-import aima.core.search.framework.Search;
-import aima.core.search.framework.SimpleProblemSolvingAgent;
-
 /**
  * @author Ciaran O'Reilly
  * 

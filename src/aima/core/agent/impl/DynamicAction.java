@@ -1,7 +1,5 @@
 package aima.core.agent.impl;
 
-import aima.core.agent.Action;
-
 /**
  * @author Ciaran O'Reilly
  */

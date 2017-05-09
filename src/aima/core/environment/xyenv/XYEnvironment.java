@@ -5,15 +5,6 @@ import java.util.LinkedHashSet;
 import java.util.Map;
 import java.util.Set;
 
-import aima.core.agent.Action;
-import aima.core.agent.Agent;
-import aima.core.agent.EnvironmentObject;
-import aima.core.agent.EnvironmentState;
-import aima.core.agent.Percept;
-import aima.core.agent.impl.AbstractEnvironment;
-import aima.core.agent.impl.DynamicPercept;
-import aima.core.util.datastructure.XYLocation;
-
 /**
  * @author Ravi Mohan
  * @author Ciaran O'Reilly

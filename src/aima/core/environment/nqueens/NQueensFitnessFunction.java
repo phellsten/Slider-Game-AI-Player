@@ -5,10 +5,6 @@ import java.util.List;
 import java.util.Random;
 import java.util.Set;
 
-import aima.core.search.framework.GoalTest;
-import aima.core.search.local.FitnessFunction;
-import aima.core.util.datastructure.XYLocation;
-
 /**
  * A class whose purpose is to evaluate the fitness of NQueen individuals
  * and to provide utility methods for translating between an NQueensBoard

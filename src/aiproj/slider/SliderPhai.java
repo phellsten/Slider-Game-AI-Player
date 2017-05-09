@@ -1,24 +1,25 @@
 package aiproj.slider;
 
-//import aima.core.search.uninformed.DepthFirstSearch;
-import aima.core.search.adversarial.Game;
-import aima.core.search.adversarial.GameAgent;
-import aima.core.search.adversarial.GameState;
-import aima.core.search.adversarial.AlphaBeta;
+import aiproj.slider.SliderPlayer;
+import aiproj.slider.Move;
 
 
 
 
 public class SliderPhai implements SliderPlayer {
 
+	Board board;
+	
 	public SliderPhai() {
 		
 	}
 
 	@Override
 	public void init(int dimension, String board, char player) {
-		// TODO Auto-generated method stub
-		
+		this.board = new Board(board, dimension);
+		System.out.println("0, 0: " + this.board.blocks[0][0]);
+		System.out.println("1, 2: " + this.board.blocks[1][2]);
+		System.out.println("3, 1: " + this.board.blocks[3][1]);
 	}
 
 	@Override

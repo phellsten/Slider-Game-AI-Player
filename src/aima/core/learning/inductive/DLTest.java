@@ -2,9 +2,6 @@ package aima.core.learning.inductive;
 
 import java.util.Hashtable;
 
-import aima.core.learning.framework.DataSet;
-import aima.core.learning.framework.Example;
-
 /**
  * @author Ravi Mohan
  * 

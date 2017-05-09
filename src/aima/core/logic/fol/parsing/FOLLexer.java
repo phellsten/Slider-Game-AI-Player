@@ -3,13 +3,6 @@ package aima.core.logic.fol.parsing;
 import java.util.HashSet;
 import java.util.Set;
 
-import aima.core.logic.common.Lexer;
-import aima.core.logic.common.LogicTokenTypes;
-import aima.core.logic.common.Token;
-import aima.core.logic.fol.Connectors;
-import aima.core.logic.fol.Quantifiers;
-import aima.core.logic.fol.domain.FOLDomain;
-
 /**
  * @author Ravi Mohan
  * 

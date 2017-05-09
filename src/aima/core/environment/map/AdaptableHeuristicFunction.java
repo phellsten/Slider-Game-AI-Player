@@ -1,7 +1,5 @@
 package aima.core.environment.map;
 
-import aima.core.search.framework.HeuristicFunction;
-
 /**
  * This class extends heuristic functions in two ways: It maintains a goal and a
  * map to estimate distance to goal for states in route planning problems, and

@@ -2,8 +2,6 @@ package aima.core.environment.map;
 
 import java.util.List;
 
-import aima.core.util.datastructure.Point2D;
-
 /**
  * Provides a general interface for maps.
  * 

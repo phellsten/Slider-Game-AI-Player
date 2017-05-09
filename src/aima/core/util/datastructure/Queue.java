@@ -24,6 +24,7 @@ public interface Queue<E> extends java.util.Queue<E> {
 	 * 
 	 * @return true only if there are no elements on the queue.
 	 */
+	@Override
 	boolean isEmpty();
 
 	/**

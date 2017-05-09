@@ -3,8 +3,6 @@ package aima.core.search.csp;
 import java.util.ArrayList;
 import java.util.List;
 
-import aima.core.util.Util;
-
 /**
  * @author Ravi Mohan
  * 

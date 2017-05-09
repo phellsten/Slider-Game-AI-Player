@@ -7,21 +7,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-import aima.core.logic.fol.kb.data.CNF;
-import aima.core.logic.fol.kb.data.Clause;
-import aima.core.logic.fol.parsing.FOLParser;
-import aima.core.logic.fol.parsing.FOLVisitor;
-import aima.core.logic.fol.parsing.ast.ConnectedSentence;
-import aima.core.logic.fol.parsing.ast.Constant;
-import aima.core.logic.fol.parsing.ast.Function;
-import aima.core.logic.fol.parsing.ast.NotSentence;
-import aima.core.logic.fol.parsing.ast.Predicate;
-import aima.core.logic.fol.parsing.ast.QuantifiedSentence;
-import aima.core.logic.fol.parsing.ast.Sentence;
-import aima.core.logic.fol.parsing.ast.Term;
-import aima.core.logic.fol.parsing.ast.TermEquality;
-import aima.core.logic.fol.parsing.ast.Variable;
-
 /**
  * Artificial Intelligence A Modern Approach (3rd Edition): page 345.
  * 
@@ -251,10 +236,12 @@ class StandardizeQuantiferVariables implements FOLVisitor {
 	private StandardizeApartIndexical quantifiedIndexical = new StandardizeApartIndexical() {
 		private int index = 0;
 
+		@Override
 		public String getPrefix() {
 			return "q";
 		}
 
+		@Override
 		public int getNextIndex() {
 			return index++;
 		}

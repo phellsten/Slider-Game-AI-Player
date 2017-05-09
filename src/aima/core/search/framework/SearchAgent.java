@@ -4,11 +4,6 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Properties;
 
-import aima.core.agent.Action;
-import aima.core.agent.Percept;
-import aima.core.agent.impl.AbstractAgent;
-import aima.core.agent.impl.NoOpAction;
-
 /**
  * @author Ravi Mohan
  * 

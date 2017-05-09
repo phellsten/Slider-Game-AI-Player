@@ -3,10 +3,6 @@ package aima.core.logic.propositional.parsing;
 import java.util.HashSet;
 import java.util.Set;
 
-import aima.core.logic.common.Lexer;
-import aima.core.logic.common.LogicTokenTypes;
-import aima.core.logic.common.Token;
-
 /**
  * @author Ravi Mohan
  * 

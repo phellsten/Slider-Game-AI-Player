@@ -6,17 +6,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-import aima.core.logic.fol.StandardizeApart;
-import aima.core.logic.fol.StandardizeApartIndexical;
-import aima.core.logic.fol.StandardizeApartIndexicalFactory;
-import aima.core.logic.fol.inference.proof.ProofStepClauseParamodulation;
-import aima.core.logic.fol.kb.data.Clause;
-import aima.core.logic.fol.kb.data.Literal;
-import aima.core.logic.fol.parsing.ast.AtomicSentence;
-import aima.core.logic.fol.parsing.ast.Term;
-import aima.core.logic.fol.parsing.ast.TermEquality;
-import aima.core.logic.fol.parsing.ast.Variable;
-
 /**
  * Artificial Intelligence A Modern Approach (3r Edition): page 354.<br>
  * 

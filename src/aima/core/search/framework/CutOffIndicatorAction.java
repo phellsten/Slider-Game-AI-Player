@@ -1,7 +1,5 @@
 package aima.core.search.framework;
 
-import aima.core.agent.impl.DynamicAction;
-
 /**
  * A NoOp action that indicates a CutOff has occurred in a search. Used
  * primarily by DepthLimited and IterativeDeepening search routines. 

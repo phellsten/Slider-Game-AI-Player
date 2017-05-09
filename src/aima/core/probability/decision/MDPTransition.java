@@ -1,7 +1,5 @@
 package aima.core.probability.decision;
 
-import aima.core.util.datastructure.Triplet;
-
 /**
  * @author Ravi Mohan
  * 

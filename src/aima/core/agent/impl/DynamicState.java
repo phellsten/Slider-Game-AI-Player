@@ -1,7 +1,5 @@
 package aima.core.agent.impl;
 
-import aima.core.agent.State;
-
 /**
  * @author Ciaran O'Reilly
  */

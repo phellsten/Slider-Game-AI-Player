@@ -2,11 +2,6 @@ package aima.core.search.uninformed;
 
 import java.util.Comparator;
 
-import aima.core.search.framework.GraphSearch;
-import aima.core.search.framework.Node;
-import aima.core.search.framework.PrioritySearch;
-import aima.core.search.framework.QueueSearch;
-
 /**
  * Artificial Intelligence A Modern Approach (3rd Edition): Figure 3.14, page 84. 
  * <code>

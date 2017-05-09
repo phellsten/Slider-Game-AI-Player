@@ -1,7 +1,5 @@
 package aima.core.environment.vacuum;
 
-import aima.core.agent.impl.DynamicPercept;
-
 /**
  * @author Ravi Mohan
  * @author Ciaran O'Reilly

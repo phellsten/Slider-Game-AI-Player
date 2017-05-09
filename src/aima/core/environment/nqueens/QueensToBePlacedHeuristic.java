@@ -1,7 +1,5 @@
 package aima.core.environment.nqueens;
 
-import aima.core.search.framework.HeuristicFunction;
-
 /**
  * @author Ravi Mohan
  * 

@@ -1,9 +1,5 @@
 package aima.core.logic.fol.kb;
 
-import aima.core.logic.fol.domain.DomainFactory;
-import aima.core.logic.fol.domain.FOLDomain;
-import aima.core.logic.fol.inference.InferenceProcedure;
-
 /**
  * @author Ciaran O'Reilly
  * 

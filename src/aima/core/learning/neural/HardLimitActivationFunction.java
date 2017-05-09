@@ -6,6 +6,7 @@ package aima.core.learning.neural;
  */
 public class HardLimitActivationFunction implements ActivationFunction {
 
+	@Override
 	public double activation(double parameter) {
 
 		if (parameter < 0.0) {
@@ -15,6 +16,7 @@ public class HardLimitActivationFunction implements ActivationFunction {
 		}
 	}
 
+	@Override
 	public double deriv(double parameter) {
 		return 0.0;
 	}

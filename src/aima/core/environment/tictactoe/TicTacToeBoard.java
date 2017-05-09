@@ -3,8 +3,6 @@ package aima.core.environment.tictactoe;
 import java.util.ArrayList;
 import java.util.List;
 
-import aima.core.util.datastructure.XYLocation;
-
 /**
  * @author Ravi Mohan
  * 

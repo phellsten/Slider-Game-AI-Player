@@ -1,7 +1,5 @@
 package aima.core.logic.fol.kb.data;
 
-import aima.core.logic.fol.parsing.ast.AtomicSentence;
-
 /**
  * @see http://logic.stanford.edu/classes/cs157/2008/lectures/lecture13.pdf
  */

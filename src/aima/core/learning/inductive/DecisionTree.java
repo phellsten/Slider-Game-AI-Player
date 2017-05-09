@@ -4,10 +4,6 @@ import java.util.ArrayList;
 import java.util.Hashtable;
 import java.util.List;
 
-import aima.core.learning.framework.DataSet;
-import aima.core.learning.framework.Example;
-import aima.core.util.Util;
-
 /**
  * @author Ravi Mohan
  * 

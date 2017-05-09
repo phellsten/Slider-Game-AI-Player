@@ -4,13 +4,6 @@ import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Set;
 
-import aima.core.agent.Action;
-import aima.core.agent.Percept;
-import aima.core.agent.impl.DynamicPercept;
-import aima.core.search.framework.ActionsFunction;
-import aima.core.search.framework.PerceptToStateFunction;
-import aima.core.search.framework.ResultFunction;
-
 /**
  * @author Ciaran O'Reilly
  * 

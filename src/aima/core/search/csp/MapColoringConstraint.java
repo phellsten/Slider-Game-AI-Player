@@ -14,6 +14,7 @@ public class MapColoringConstraint implements Constraint {
 		this.neighbors = neighbors;
 	}
 
+	@Override
 	public boolean isSatisfiedWith(Assignment assignment, String variable,
 			Object value) {
 		List variableNeighbors = (List) neighbors.get(variable);

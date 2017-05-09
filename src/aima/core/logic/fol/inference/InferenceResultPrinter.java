@@ -1,8 +1,5 @@
 package aima.core.logic.fol.inference;
 
-import aima.core.logic.fol.inference.proof.Proof;
-import aima.core.logic.fol.inference.proof.ProofPrinter;
-
 /**
  * @author Ciaran O'Reilly
  * 

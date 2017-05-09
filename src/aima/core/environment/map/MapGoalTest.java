@@ -1,7 +1,5 @@
 package aima.core.environment.map;
 
-import aima.core.search.framework.GoalTest;
-
 /**
  * Implementation of the GoalTest interface for testing if at a desired location.
  */

@@ -7,15 +7,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-import aima.core.agent.Action;
-import aima.core.agent.Agent;
-import aima.core.agent.Environment;
-import aima.core.agent.EnvironmentObject;
-import aima.core.agent.EnvironmentState;
-import aima.core.agent.EnvironmentView;
-import aima.core.agent.NotifyEnvironmentViews;
-import aima.core.agent.Percept;
-
 /**
  * @author Ravi Mohan
  * @author Ciaran O'Reilly

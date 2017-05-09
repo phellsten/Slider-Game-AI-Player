@@ -2,8 +2,6 @@ package aima.core.logic.fol.inference;
 
 import java.util.List;
 
-import aima.core.logic.fol.inference.proof.Proof;
-
 /**
  * @author Ciaran O'Reilly
  * 

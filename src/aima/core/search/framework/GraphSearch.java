@@ -8,9 +8,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-import aima.core.agent.Action;
-import aima.core.util.datastructure.Queue;
-
 /**
  * Artificial Intelligence A Modern Approach (3rd Edition): Figure 3.7, page 77. 
  * <code>

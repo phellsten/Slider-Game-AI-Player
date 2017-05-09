@@ -3,8 +3,6 @@ package aima.core.search.framework;
 import java.util.ArrayList;
 import java.util.List;
 
-import aima.core.agent.Action;
-
 /**
  * Artificial Intelligence A Modern Approach (3rd Edition): Figure 3.10, page 79.<br>
  * 

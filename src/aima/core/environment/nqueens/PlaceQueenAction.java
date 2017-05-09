@@ -1,7 +1,5 @@
 package aima.core.environment.nqueens;
 
-import aima.core.agent.impl.DynamicAction;
-
 /**
  * @author Ravi Mohan
  * 

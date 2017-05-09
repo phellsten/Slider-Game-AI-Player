@@ -7,7 +7,9 @@ import java.util.List;
  * @author Ciaran O'Reilly
  */
 public interface Term extends FOLNode {
+	@Override
 	List<Term> getArgs();
 
+	@Override
 	Term copy();
 }

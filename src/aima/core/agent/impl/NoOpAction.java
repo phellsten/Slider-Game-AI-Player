@@ -6,6 +6,7 @@ public class NoOpAction extends DynamicAction {
 
 	//
 	// START-Action
+	@Override
 	public boolean isNoOp() {
 		return true;
 	}

@@ -3,10 +3,6 @@ package aima.core.environment.eightpuzzle;
 import java.util.ArrayList;
 import java.util.List;
 
-import aima.core.agent.Action;
-import aima.core.agent.impl.DynamicAction;
-import aima.core.util.datastructure.XYLocation;
-
 /**
  * @author Ravi Mohan
  * 

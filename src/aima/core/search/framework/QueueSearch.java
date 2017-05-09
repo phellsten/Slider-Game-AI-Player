@@ -3,10 +3,6 @@ package aima.core.search.framework;
 import java.util.Collections;
 import java.util.List;
 
-import aima.core.agent.Action;
-import aima.core.util.CancelableThread;
-import aima.core.util.datastructure.Queue;
-
 /**
  * @author Ravi Mohan
  * @author Ciaran O'Reilly

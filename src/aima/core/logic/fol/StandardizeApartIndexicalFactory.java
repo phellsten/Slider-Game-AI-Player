@@ -58,10 +58,12 @@ class StandardizeApartIndexicalImpl implements StandardizeApartIndexical {
 
 	//
 	// START-StandardizeApartIndexical
+	@Override
 	public String getPrefix() {
 		return prefix;
 	}
 
+	@Override
 	public int getNextIndex() {
 		return index++;
 	}

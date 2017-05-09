@@ -14,10 +14,12 @@ public class StringAttribute implements Attribute {
 		this.value = value;
 	}
 
+	@Override
 	public String valueAsString() {
 		return value.trim();
 	}
 
+	@Override
 	public String name() {
 		return spec.getAttributeName().trim();
 	}
