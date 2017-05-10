@@ -7,20 +7,34 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-/**
- * Artificial Intelligence A Modern Approach (3rd Edition): page 345.
- * 
- * Every sentence of first-order logic can be converted into an inferentially
- * equivalent CNF sentence.
- * 
- * Note: Transformation rules extracted from 346 and 347, which
- * are essentially the INSEADO method outlined in:
- * http://logic.stanford.edu/classes/cs157/2008/lectures/lecture09.pdf
- */
+import aima.core.logic.fol.kb.data.CNF;
+import aima.core.logic.fol.kb.data.Clause;
+import aima.core.logic.fol.parsing.FOLParser;
+import aima.core.logic.fol.parsing.FOLVisitor;
+import aima.core.logic.fol.parsing.ast.ConnectedSentence;
+import aima.core.logic.fol.parsing.ast.Constant;
+import aima.core.logic.fol.parsing.ast.Function;
+import aima.core.logic.fol.parsing.ast.NotSentence;
+import aima.core.logic.fol.parsing.ast.Predicate;
+import aima.core.logic.fol.parsing.ast.QuantifiedSentence;
+import aima.core.logic.fol.parsing.ast.Sentence;
+import aima.core.logic.fol.parsing.ast.Term;
+import aima.core.logic.fol.parsing.ast.TermEquality;
+import aima.core.logic.fol.parsing.ast.Variable;
 
 /**
- * @author Ciaran O'Reilly
+ * Artificial Intelligence A Modern Approach (3rd Edition): page 345.<br>
+ * <br>
+ * Every sentence of first-order logic can be converted into an inferentially
+ * equivalent CNF sentence.<br>
+ * <br>
+ * <b>Note:</b> Transformation rules extracted from 346 and 347, which are
+ * essentially the INSEADO method outlined in: <a
+ * href="http://logic.stanford.edu/classes/cs157/2008/lectures/lecture09.pdf"
+ * >INSEADO Rules</a>
  * 
+ * @author Ciaran O'Reilly
+ * @author Mike Stampone
  */
 public class CNFConverter {
 
@@ -33,6 +47,16 @@ public class CNFConverter {
 		this.substVisitor = new SubstVisitor();
 	}
 
+	/**
+	 * Returns the specified sentence as a list of clauses, where each clause is
+	 * a disjunction of literals.
+	 * 
+	 * @param aSentence
+	 *            a sentence in first order logic (predicate calculus)
+	 * 
+	 * @return the specified sentence as a list of clauses, where each clause is
+	 *         a disjunction of literals.
+	 */
 	public CNF convertToCNF(Sentence aSentence) {
 		// I)mplications Out:
 		Sentence implicationsOut = (Sentence) aSentence.accept(
@@ -127,9 +151,9 @@ class ImplicationsOut implements FOLVisitor {
 	public Object visitQuantifiedSentence(QuantifiedSentence sentence,
 			Object arg) {
 
-		return new QuantifiedSentence(sentence.getQuantifier(), sentence
-				.getVariables(), (Sentence) sentence.getQuantified().accept(
-				this, arg));
+		return new QuantifiedSentence(sentence.getQuantifier(),
+				sentence.getVariables(), (Sentence) sentence.getQuantified()
+						.accept(this, arg));
 	}
 }
 
@@ -197,19 +221,19 @@ class NegationsIn implements FOLVisitor {
 		if (negated instanceof QuantifiedSentence) {
 			QuantifiedSentence negQuantified = (QuantifiedSentence) negated;
 			// I need to ensure the ~ is moved in deeper
-			Sentence notP = (Sentence) (new NotSentence(negQuantified
-					.getQuantified())).accept(this, arg);
+			Sentence notP = (Sentence) (new NotSentence(
+					negQuantified.getQuantified())).accept(this, arg);
 
 			// ~FORALL x p becomes EXISTS x ~p
 			if (Quantifiers.isFORALL(negQuantified.getQuantifier())) {
-				return new QuantifiedSentence(Quantifiers.EXISTS, negQuantified
-						.getVariables(), notP);
+				return new QuantifiedSentence(Quantifiers.EXISTS,
+						negQuantified.getVariables(), notP);
 			}
 
 			// ~EXISTS x p becomes FORALL x ~p
 			if (Quantifiers.isEXISTS(negQuantified.getQuantifier())) {
-				return new QuantifiedSentence(Quantifiers.FORALL, negQuantified
-						.getVariables(), notP);
+				return new QuantifiedSentence(Quantifiers.FORALL,
+						negQuantified.getVariables(), notP);
 			}
 		}
 
@@ -225,9 +249,9 @@ class NegationsIn implements FOLVisitor {
 	public Object visitQuantifiedSentence(QuantifiedSentence sentence,
 			Object arg) {
 
-		return new QuantifiedSentence(sentence.getQuantifier(), sentence
-				.getVariables(), (Sentence) sentence.getQuantified().accept(
-				this, arg));
+		return new QuantifiedSentence(sentence.getQuantifier(),
+				sentence.getVariables(), (Sentence) sentence.getQuantified()
+						.accept(this, arg));
 	}
 }
 
@@ -236,12 +260,10 @@ class StandardizeQuantiferVariables implements FOLVisitor {
 	private StandardizeApartIndexical quantifiedIndexical = new StandardizeApartIndexical() {
 		private int index = 0;
 
-		@Override
 		public String getPrefix() {
 			return "q";
 		}
 
-		@Override
 		public int getNextIndex() {
 			return index++;
 		}
@@ -309,8 +331,8 @@ class StandardizeQuantiferVariables implements FOLVisitor {
 		}
 
 		// Apply the local subst
-		Sentence subst = substVisitor.subst(localSubst, sentence
-				.getQuantified());
+		Sentence subst = substVisitor.subst(localSubst,
+				sentence.getQuantified());
 
 		// Ensure all my existing and replaced variable
 		// names are tracked

@@ -7,11 +7,20 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import aima.core.agent.Action;
+import aima.core.agent.Agent;
+import aima.core.agent.Environment;
+import aima.core.agent.EnvironmentObject;
+import aima.core.agent.EnvironmentView;
+import aima.core.agent.EnvironmentViewNotifier;
+import aima.core.agent.Percept;
+
 /**
  * @author Ravi Mohan
  * @author Ciaran O'Reilly
  */
-public abstract class AbstractEnvironment implements Environment, NotifyEnvironmentViews {
+public abstract class AbstractEnvironment implements Environment,
+		EnvironmentViewNotifier {
 
 	// Note: Use LinkedHashSet's in order to ensure order is respected as
 	// provide
@@ -27,14 +36,21 @@ public abstract class AbstractEnvironment implements Environment, NotifyEnvironm
 	//
 	// PRUBLIC METHODS
 	//
-
-	// 
+	
+	//
 	// Methods to be implemented by subclasses.
-	public abstract EnvironmentState getCurrentState();
 
-	public abstract EnvironmentState executeAction(Agent agent, Action action);
+	public abstract void executeAction(Agent agent, Action action);
 
 	public abstract Percept getPerceptSeenBy(Agent anAgent);
+
+	/**
+	 * Method for implementing dynamic environments in which not all changes are
+	 * directly caused by agent action execution. The default implementation
+	 * does nothing.
+	 */
+	public void createExogenousChange() {
+	}
 
 	//
 	// START-Environment
@@ -62,7 +78,7 @@ public abstract class AbstractEnvironment implements Environment, NotifyEnvironm
 			Agent a = (Agent) eo;
 			if (!agents.contains(a)) {
 				agents.add(a);
-				this.updateEnvironmentViewsAgentAdded(a);
+				this.notifyEnvironmentViews(a);
 			}
 		}
 	}
@@ -72,18 +88,21 @@ public abstract class AbstractEnvironment implements Environment, NotifyEnvironm
 		agents.remove(eo);
 	}
 
+	/**
+	 * Central template method for controlling agent simulation. The concrete
+	 * behavior is determined by the primitive operations
+	 * {@link #getPerceptSeenBy(Agent)}, {@link #executeAction(Agent, Action)},
+	 * and {@link #createExogenousChange()}.
+	 */
 	public void step() {
-		if (!isDone()) {
-			for (Agent agent : agents) {
-				if (agent.isAlive()) {
-					Action anAction = agent.execute(getPerceptSeenBy(agent));
-
-					EnvironmentState es = executeAction(agent, anAction);
-
-					updateEnvironmentViewsAgentActed(agent, anAction, es);
-				}
+		for (Agent agent : agents) {
+			if (agent.isAlive()) {
+				Action anAction = agent.execute(getPerceptSeenBy(agent));
+				executeAction(agent, anAction);
+				notifyEnvironmentViews(agent, anAction);
 			}
 		}
+		createExogenousChange();
 	}
 
 	public void step(int n) {
@@ -143,16 +162,15 @@ public abstract class AbstractEnvironment implements Environment, NotifyEnvironm
 				+ addTo);
 	}
 
-	protected void updateEnvironmentViewsAgentAdded(Agent agent) {
+	protected void notifyEnvironmentViews(Agent agent) {
 		for (EnvironmentView view : views) {
-			view.agentAdded(agent, getCurrentState());
+			view.agentAdded(agent, this);
 		}
 	}
 
-	protected void updateEnvironmentViewsAgentActed(Agent agent, Action action,
-			EnvironmentState state) {
+	protected void notifyEnvironmentViews(Agent agent, Action action) {
 		for (EnvironmentView view : views) {
-			view.agentActed(agent, action, state);
+			view.agentActed(agent, action, this);
 		}
 	}
 }

@@ -1,5 +1,8 @@
 package aima.core.learning.neural;
 
+import aima.core.util.math.Matrix;
+import aima.core.util.math.Vector;
+
 /**
  * @author Ravi Mohan
  * 
@@ -20,7 +23,6 @@ public class BackPropLearning implements NNTrainingScheme {
 
 	}
 
-	@Override
 	public void setNeuralNetwork(FunctionApproximator fapp) {
 		FeedForwardNeuralNetwork ffnn = (FeedForwardNeuralNetwork) fapp;
 		this.hiddenLayer = ffnn.getHiddenLayer();
@@ -45,10 +47,10 @@ public class BackPropLearning implements NNTrainingScheme {
 				.sensitivityMatrixFromSucceedingLayer(outputSensitivity);
 
 		// calculate weight Updates
-		calculateWeightUpdates(outputSensitivity, hiddenLayer
-				.getLastActivationValues(), learningRate, momentum);
-		calculateWeightUpdates(hiddenSensitivity, hiddenLayer
-				.getLastInputValues(), learningRate, momentum);
+		calculateWeightUpdates(outputSensitivity,
+				hiddenLayer.getLastActivationValues(), learningRate, momentum);
+		calculateWeightUpdates(hiddenSensitivity,
+				hiddenLayer.getLastInputValues(), learningRate, momentum);
 
 		// calculate Bias Updates
 		calculateBiasUpdates(outputSensitivity, learningRate, momentum);
@@ -69,8 +71,8 @@ public class BackPropLearning implements NNTrainingScheme {
 		Matrix activationTranspose = previousLayerActivationOrInput.transpose();
 		Matrix momentumLessUpdate = layerSensitivity.getSensitivityMatrix()
 				.times(activationTranspose).times(alpha).times(-1.0);
-		Matrix updateWithMomentum = layer.getLastWeightUpdateMatrix().times(
-				momentum).plus(momentumLessUpdate.times(1.0 - momentum));
+		Matrix updateWithMomentum = layer.getLastWeightUpdateMatrix()
+				.times(momentum).plus(momentumLessUpdate.times(1.0 - momentum));
 		layer.acceptNewWeightUpdate(updateWithMomentum.copy());
 		return updateWithMomentum;
 	}
@@ -93,10 +95,10 @@ public class BackPropLearning implements NNTrainingScheme {
 				.getSensitivityMatrix().times(alpha).times(-1.0);
 
 		Matrix biasUpdateMatrixWithMomentum = layer.getLastBiasUpdateVector()
-				.times(momentum).plus(
-						biasUpdateMatrixWithoutMomentum.times(1.0 - momentum));
-		Vector result = new Vector(biasUpdateMatrixWithMomentum
-				.getRowDimension());
+				.times(momentum)
+				.plus(biasUpdateMatrixWithoutMomentum.times(1.0 - momentum));
+		Vector result = new Vector(
+				biasUpdateMatrixWithMomentum.getRowDimension());
 		for (int i = 0; i < biasUpdateMatrixWithMomentum.getRowDimension(); i++) {
 			result.setValue(i, biasUpdateMatrixWithMomentum.get(i, 0));
 		}

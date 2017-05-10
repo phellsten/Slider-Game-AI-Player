@@ -1,10 +1,12 @@
 package aima.core.logic.fol.kb.data;
 
-/**
- * @see http://logic.stanford.edu/classes/cs157/2008/lectures/lecture13.pdf
- */
+import aima.core.logic.fol.parsing.ast.AtomicSentence;
 
 /**
+ * @see <a
+ *      href="http://logic.stanford.edu/classes/cs157/2008/lectures/lecture13.pdf"
+ *      >Reduced Literal</a>
+ * 
  * @author Ciaran O'Reilly
  * 
  */

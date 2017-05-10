@@ -6,6 +6,12 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import aima.core.learning.data.DataResource;
+import aima.core.learning.framework.DataSet;
+import aima.core.learning.framework.Example;
+import aima.core.util.Util;
+import aima.core.util.datastructure.Pair;
+
 /**
  * @author Ravi Mohan
  * 
@@ -23,7 +29,7 @@ public abstract class NNDataSet {
 	/*
 	 * a copy from which examples are drawn.
 	 */
-	private List<NNExample> presentlyProcessed = new ArrayList<NNExample>();;
+	private List<NNExample> presentlyProcessed = new ArrayList<NNExample>();
 
 	/*
 	 * list of mean Values for all components of raw data set
@@ -60,12 +66,14 @@ public abstract class NNDataSet {
 		List<List<Double>> rds = new ArrayList<List<Double>>();
 
 		// create raw data set
-		BufferedReader reader = new BufferedReader(
-				new InputStreamReader(this.getClass().getResourceAsStream(
-						"../data/" + filename + ".csv")));
-		String line;
-		while ((line = reader.readLine()) != null) {
-			rds.add(exampleFromString(line, ","));
+		try (BufferedReader reader = new BufferedReader(new InputStreamReader(
+				DataResource.class.getResourceAsStream(filename + ".csv")))) {
+
+			String line;
+
+			while ((line = reader.readLine()) != null) {
+				rds.add(exampleFromString(line, ","));
+			}
 		}
 
 		// normalize raw dataset
@@ -85,7 +93,7 @@ public abstract class NNDataSet {
 		// normalize raw dataset
 		nds = normalize(rds);
 	}
-	
+
 	/*
 	 * Gets (and removes) a random example from the 'presentlyProcessed'
 	 */
@@ -162,11 +170,11 @@ public abstract class NNDataSet {
 	public List<Double> getStdevs() {
 		return stdevs;
 	}
-	
+
 	//
 	// PRIVATE METHODS
 	//
-	
+
 	/*
 	 * create Example instances from a normalized data "table".
 	 */

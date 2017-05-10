@@ -1,148 +1,117 @@
 package aima.core.search.csp;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Hashtable;
-import java.util.Iterator;
 import java.util.List;
 
 /**
- * @author Ravi Mohan
+ * An assignment assigns values to some or all variables of a CSP.
  * 
+ * @author Ruediger Lunde
  */
 public class Assignment {
-	Hashtable<String, Object> variablesToValues;
-
-	List<String> variables;
+	/**
+	 * Contains all assigned variables. Positions reflect the the order in which
+	 * the variables were assigned to values.
+	 */
+	List<Variable> variables;
+	/** Maps variables to their assigned values. */
+	Hashtable<Variable, Object> variableToValue;
 
 	public Assignment() {
-		this(new ArrayList<String>());
+		variables = new ArrayList<Variable>();
+		variableToValue = new Hashtable<Variable, Object>();
 	}
 
-	public Assignment(List<String> variables) {
-		variablesToValues = new Hashtable<String, Object>();
-		this.variables = variables;
+	public List<Variable> getVariables() {
+		return Collections.unmodifiableList(variables);
 	}
 
-	public void setAssignment(String variable, Object value) {
-		variablesToValues.put(variable, value);
+	public Object getAssignment(Variable var) {
+		return variableToValue.get(var);
 	}
 
-	public Object getAssignment(String variable) {
-		return variablesToValues.get(variable);
+	public void setAssignment(Variable var, Object value) {
+		if (!variableToValue.containsKey(var))
+			variables.add(var);
+		variableToValue.put(var, value);
 	}
 
-	public boolean isComplete() {
-
-		return everyVariableIsAKeyAndHasAValue();
+	public void removeAssignment(Variable var) {
+		if (hasAssignmentFor(var)) {
+			variables.remove(var);
+			variableToValue.remove(var);
+		}
 	}
 
-	private boolean everyVariableIsAKeyAndHasAValue() {
+	public boolean hasAssignmentFor(Variable var) {
+		return variableToValue.get(var) != null;
+	}
 
-		Iterator<String> iter = variables.iterator();
-		while (iter.hasNext()) {
-			String variable = iter.next();
-			if (!variablesToValues.keySet().contains(variable)) {
+	/**
+	 * Returns true if this assignment does not violate any constraints of
+	 * <code>constraints</code>.
+	 */
+	public boolean isConsistent(List<Constraint> constraints) {
+		for (Constraint cons : constraints)
+			if (!cons.isSatisfiedWith(this))
 				return false;
-			} else {
-				if (variablesToValues.get(variable) == null) {
-					return false;
-				}
-			}
+		return true;
+	}
+
+	/**
+	 * Returns true if this assignment assigns values to every variable of
+	 * <code>vars</code>.
+	 */
+	public boolean isComplete(List<Variable> vars) {
+		for (Variable var : vars) {
+			if (!hasAssignmentFor(var))
+				return false;
 		}
 		return true;
 	}
 
-	public void remove(String variable) {
-		if (variablesToValues.keySet().contains(variable)) {
-			variablesToValues.remove(variable);
+	/**
+	 * Returns true if this assignment assigns values to every variable of
+	 * <code>vars</code>.
+	 */
+	public boolean isComplete(Variable[] vars) {
+		for (Variable var : vars) {
+			if (!hasAssignmentFor(var))
+				return false;
 		}
+		return true;
 	}
 
-	public String selectFirstUnassignedVariable() {
-		Iterator<String> iter = variables.iterator();
-		while (iter.hasNext()) {
-			String variable = iter.next();
-			if (!(variablesToValues.keySet().contains(variable))) {
-				return variable;
-			}
-		}
-		return null;
-
-	}
-
-	public boolean hasAssignmentFor(String variable) {
-		return variablesToValues.keySet().contains(variable);
-	}
-
-	@Override
-	public String toString() {
-		return variablesToValues.toString();
+	/**
+	 * Returns true if this assignment is consistent as well as complete with
+	 * respect to the given CSP.
+	 */
+	public boolean isSolution(CSP csp) {
+		return isConsistent(csp.getConstraints())
+				&& isComplete(csp.getVariables());
 	}
 
 	public Assignment copy() {
 		Assignment copy = new Assignment();
-		for (int i = 0; i < variables.size(); i++) {
-			copy.variables.add(variables.get(i));
-		}
-		Iterator<String> iter = variablesToValues.keySet().iterator();
-		while (iter.hasNext()) {
-			String key = iter.next();
-			copy.variablesToValues.put(key, variablesToValues.get(key));
+		for (Variable var : variables) {
+			copy.setAssignment(var, variableToValue.get(var));
 		}
 		return copy;
 	}
 
-	public int getNumberOfConflictsFor(String conflictedVariable, Object value,
-			Constraint constraint) {
-		Assignment duplicate = copy();
-		duplicate.setAssignment(conflictedVariable, value);
-		return duplicate.getConflictedVariables(constraint).size();
-	}
-
-	public List<String> getConflictedVariables(Constraint constraint) {
-		List<String> conflictedVariables = new ArrayList<String>();
-		List<String> variables = getVariables();
-		for (String variable : variables) {
-			Object value = getAssignment(variable);
-			if (!(constraint.isSatisfiedWith(this, variable, value))) {
-				conflictedVariables.add(variable);
-			}
+	@Override
+	public String toString() {
+		boolean comma = false;
+		StringBuffer result = new StringBuffer("{");
+		for (Variable var : variables) {
+			if (comma)
+				result.append(", ");
+			result.append(var + "=" + variableToValue.get(var));
+			comma = true;
 		}
-		return conflictedVariables;
-	}
-
-	public Object getMinimumConflictingValueFor(String conflictedVariable,
-			List<Object> domain, Constraint constraint) {
-		int minConflict = Integer.MAX_VALUE;
-		Object minConflictValue = null;
-
-		for (int i = 0; i < domain.size(); i++) {
-			Object value = domain.get(i);
-			if (getNumberOfConflictsFor(conflictedVariable, value, constraint) < minConflict) {
-				minConflict = getNumberOfConflictsFor(conflictedVariable,
-						value, constraint);
-				minConflictValue = value;
-			}
-		}
-		return minConflictValue;
-	}
-
-	public boolean satisfies(Constraint constraint) {
-		if (isComplete()) {
-			for (int j = 0; j < getVariables().size(); j++) {
-				String variable = getVariables().get(j);
-				Object value = getAssignment(variable);
-				if (!(constraint.isSatisfiedWith(this, variable, value))) {
-					return false;
-				}
-			}
-			return true;
-		} else {
-			return false;
-		}
-	}
-
-	public List<String> getVariables() {
-		return variables;
+		result.append("}");
+		return result.toString();
 	}
 }

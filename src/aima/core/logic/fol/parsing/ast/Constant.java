@@ -2,6 +2,8 @@ package aima.core.logic.fol.parsing.ast;
 
 import java.util.List;
 
+import aima.core.logic.fol.parsing.FOLVisitor;
+
 /**
  * @author Ravi Mohan
  * @author Ciaran O'Reilly
@@ -20,17 +22,14 @@ public class Constant implements Term {
 
 	//
 	// START-Term
-	@Override
 	public String getSymbolicName() {
 		return getValue();
 	}
 
-	@Override
 	public boolean isCompound() {
 		return false;
 	}
 
-	@Override
 	public List<Term> getArgs() {
 		// Is not Compound, therefore should
 		// return null for its arguments
@@ -41,7 +40,6 @@ public class Constant implements Term {
 		return v.visitConstant(this, arg);
 	}
 
-	@Override
 	public Constant copy() {
 		return new Constant(value);
 	}

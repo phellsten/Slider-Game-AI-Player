@@ -3,6 +3,8 @@ package aima.core.learning.inductive;
 import java.util.ArrayList;
 import java.util.List;
 
+import aima.core.learning.framework.DataSet;
+
 /**
  * @author Ravi Mohan
  * 

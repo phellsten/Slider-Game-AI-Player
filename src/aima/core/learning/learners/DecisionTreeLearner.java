@@ -3,9 +3,16 @@ package aima.core.learning.learners;
 import java.util.Iterator;
 import java.util.List;
 
+import aima.core.learning.framework.DataSet;
+import aima.core.learning.framework.Example;
+import aima.core.learning.framework.Learner;
+import aima.core.learning.inductive.ConstantDecisonTree;
+import aima.core.learning.inductive.DecisionTree;
+import aima.core.util.Util;
+
 /**
  * @author Ravi Mohan
- * 
+ * @author Mike Stampone
  */
 public class DecisionTreeLearner implements Learner {
 	private DecisionTree tree;
@@ -23,16 +30,28 @@ public class DecisionTreeLearner implements Learner {
 		this.defaultValue = defaultValue;
 	}
 
+	//
+	// START-Learner
+
+	/**
+	 * Induces the decision tree from the specified set of examples
+	 * 
+	 * @param ds
+	 *            a set of examples for constructing the decision tree
+	 */
+	@Override
 	public void train(DataSet ds) {
 		List<String> attributes = ds.getNonTargetAttributes();
 		this.tree = decisionTreeLearning(ds, attributes,
 				new ConstantDecisonTree(defaultValue));
 	}
 
+	@Override
 	public String predict(Example e) {
 		return (String) tree.predict(e);
 	}
 
+	@Override
 	public int[] test(DataSet ds) {
 		int[] results = new int[] { 0, 0 };
 
@@ -45,7 +64,15 @@ public class DecisionTreeLearner implements Learner {
 		}
 		return results;
 	}
-	
+
+	// END-Learner
+	//
+
+	/**
+	 * Returns the decision tree of this decision tree learner
+	 * 
+	 * @return the decision tree of this decision tree learner
+	 */
 	public DecisionTree getDecisionTree() {
 		return tree;
 	}
@@ -53,7 +80,7 @@ public class DecisionTreeLearner implements Learner {
 	//
 	// PRIVATE METHODS
 	//
-	
+
 	private DecisionTree decisionTreeLearning(DataSet ds,
 			List<String> attributeNames, ConstantDecisonTree defaultTree) {
 		if (ds.size() == 0) {

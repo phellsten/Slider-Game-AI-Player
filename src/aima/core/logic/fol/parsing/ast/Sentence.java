@@ -5,6 +5,5 @@ package aima.core.logic.fol.parsing.ast;
  * @author Ciaran O'Reilly
  */
 public interface Sentence extends FOLNode {
-	@Override
 	Sentence copy();
 }

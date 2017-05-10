@@ -23,7 +23,6 @@ public class StringAttributeSpecification implements AttributeSpecification {
 		this(attributeName, Arrays.asList(attributePossibleValues));
 	}
 
-	@Override
 	public boolean isValid(String value) {
 		return (attributePossibleValues.contains(value));
 	}
@@ -31,7 +30,6 @@ public class StringAttributeSpecification implements AttributeSpecification {
 	/**
 	 * @return Returns the attributeName.
 	 */
-	@Override
 	public String getAttributeName() {
 		return attributeName;
 	}
@@ -40,7 +38,6 @@ public class StringAttributeSpecification implements AttributeSpecification {
 		return attributePossibleValues;
 	}
 
-	@Override
 	public Attribute createAttribute(String rawValue) {
 		return new StringAttribute(rawValue, this);
 	}

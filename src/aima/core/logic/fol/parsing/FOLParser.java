@@ -3,6 +3,20 @@ package aima.core.logic.fol.parsing;
 import java.util.ArrayList;
 import java.util.List;
 
+import aima.core.logic.common.LogicTokenTypes;
+import aima.core.logic.common.Token;
+import aima.core.logic.fol.domain.FOLDomain;
+import aima.core.logic.fol.parsing.ast.ConnectedSentence;
+import aima.core.logic.fol.parsing.ast.Constant;
+import aima.core.logic.fol.parsing.ast.Function;
+import aima.core.logic.fol.parsing.ast.NotSentence;
+import aima.core.logic.fol.parsing.ast.Predicate;
+import aima.core.logic.fol.parsing.ast.QuantifiedSentence;
+import aima.core.logic.fol.parsing.ast.Sentence;
+import aima.core.logic.fol.parsing.ast.Term;
+import aima.core.logic.fol.parsing.ast.TermEquality;
+import aima.core.logic.fol.parsing.ast.Variable;
+
 /**
  * @author Ravi Mohan
  * 
@@ -33,7 +47,6 @@ public class FOLParser {
 	}
 
 	public void setUpToParse(String s) {
-		lexer.clear();
 		lookAheadBuffer = new Token[1];
 		lexer.setInput(s);
 		fillLookAheadBuffer();
@@ -112,7 +125,7 @@ public class FOLParser {
 		match("NOT");
 		return new NotSentence(parseSentence());
 	}
-	
+
 	//
 	// PROTECTED METHODS
 	//
@@ -168,7 +181,7 @@ public class FOLParser {
 		}
 
 	}
-	
+
 	//
 	// PRIVATE METHODS
 	//
@@ -221,7 +234,7 @@ public class FOLParser {
 	}
 
 	private boolean binaryConnector(Token t) {
-		if ((t.getType() == LogicTokenTypes.CONNECTOR)
+		if ((t.getType() == LogicTokenTypes.CONNECTIVE)
 				&& (!(t.getText().equals("NOT")))) {
 			return true;
 		} else {
@@ -257,7 +270,7 @@ public class FOLParser {
 	}
 
 	private boolean notToken(Token t) {
-		if ((t.getType() == LogicTokenTypes.CONNECTOR)
+		if ((t.getType() == LogicTokenTypes.CONNECTIVE)
 				&& (t.getText().equals("NOT"))) {
 			return true;
 		} else {

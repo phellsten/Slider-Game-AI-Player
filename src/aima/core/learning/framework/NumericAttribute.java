@@ -9,17 +9,15 @@ public class NumericAttribute implements Attribute {
 
 	private NumericAttributeSpecification spec;
 
-	public NumericAttribute(double rawvalue, NumericAttributeSpecification spec) {
-		this.value = rawvalue;
+	public NumericAttribute(double rawValue, NumericAttributeSpecification spec) {
+		this.value = rawValue;
 		this.spec = spec;
 	}
 
-	@Override
 	public String valueAsString() {
 		return Double.toString(value);
 	}
 
-	@Override
 	public String name() {
 		return spec.getAttributeName().trim();
 	}

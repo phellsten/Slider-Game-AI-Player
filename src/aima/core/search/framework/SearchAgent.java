@@ -4,6 +4,12 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Properties;
 
+import aima.core.agent.Action;
+import aima.core.agent.Percept;
+import aima.core.agent.impl.AbstractAgent;
+import aima.core.agent.impl.NoOpAction;
+import aima.core.search.framework.problem.Problem;
+
 /**
  * @author Ravi Mohan
  * 
@@ -15,8 +21,8 @@ public class SearchAgent extends AbstractAgent {
 
 	private Metrics searchMetrics;
 
-	public SearchAgent(Problem p, Search search) throws Exception {
-		actionList = search.search(p);
+	public SearchAgent(Problem p, SearchForActions search) throws Exception {
+		actionList = search.findActions(p);
 		actionIterator = actionList.iterator();
 		searchMetrics = search.getMetrics();
 	}
@@ -28,6 +34,10 @@ public class SearchAgent extends AbstractAgent {
 		} else {
 			return NoOpAction.NO_OP;
 		}
+	}
+
+	public boolean isDone() {
+		return !actionIterator.hasNext();
 	}
 
 	public List<Action> getActions() {

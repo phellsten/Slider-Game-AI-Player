@@ -12,17 +12,17 @@ public class ProofPrinter {
 	 * Utility method for outputting proofs in a formatted textual
 	 * representation.
 	 * 
-	 * @param aProof
+	 * @param proof
 	 * @return a String representation of the Proof.
 	 */
-	public static String printProof(Proof aProof) {
+	public static String printProof(Proof proof) {
 		StringBuilder sb = new StringBuilder();
 
 		sb.append("Proof, Answer Bindings: ");
-		sb.append(aProof.getAnswerBindings());
+		sb.append(proof.getAnswerBindings());
 		sb.append("\n");
 
-		List<ProofStep> steps = aProof.getSteps();
+		List<ProofStep> steps = proof.getSteps();
 
 		int maxStepWidth = "Step".length();
 		int maxProofWidth = "Proof".length();
@@ -61,8 +61,8 @@ public class ProofPrinter {
 		sb.append(String.format(f, "Step", "Proof", "Justification"));
 		sb.append(bar);
 		for (ProofStep step : steps) {
-			sb.append(String.format(f, "" + step.getStepNumber(), step
-					.getProof(), step.getJustification()));
+			sb.append(String.format(f, "" + step.getStepNumber(),
+					step.getProof(), step.getJustification()));
 		}
 		sb.append(bar);
 

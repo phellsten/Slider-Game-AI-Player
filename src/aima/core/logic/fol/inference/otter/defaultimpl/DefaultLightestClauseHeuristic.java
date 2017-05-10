@@ -5,6 +5,9 @@ import java.util.Set;
 import java.util.SortedSet;
 import java.util.TreeSet;
 
+import aima.core.logic.fol.inference.otter.LightestClauseHeuristic;
+import aima.core.logic.fol.kb.data.Clause;
+
 /**
  * @author Ciaran O'Reilly
  * 

@@ -3,6 +3,15 @@ package aima.core.learning.knowledge;
 import java.util.ArrayList;
 import java.util.List;
 
+import aima.core.learning.framework.Example;
+import aima.core.logic.fol.Connectors;
+import aima.core.logic.fol.parsing.ast.ConnectedSentence;
+import aima.core.logic.fol.parsing.ast.Constant;
+import aima.core.logic.fol.parsing.ast.NotSentence;
+import aima.core.logic.fol.parsing.ast.Predicate;
+import aima.core.logic.fol.parsing.ast.Sentence;
+import aima.core.logic.fol.parsing.ast.Term;
+
 /**
  * @author Ciaran O'Reilly
  * 
@@ -90,8 +99,8 @@ public class FOLExample {
 		if (descParts.size() == 1) {
 			description = descParts.get(0);
 		} else if (descParts.size() > 1) {
-			description = new ConnectedSentence(Connectors.AND, descParts
-					.get(0), descParts.get(1));
+			description = new ConnectedSentence(Connectors.AND,
+					descParts.get(0), descParts.get(1));
 			for (int i = 2; i < descParts.size(); i++) {
 				description = new ConnectedSentence(Connectors.AND,
 						description, descParts.get(i));

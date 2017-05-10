@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.Hashtable;
 import java.util.List;
 
+import aima.core.learning.framework.Example;
+
 /**
  * @author Ravi Mohan
  * 

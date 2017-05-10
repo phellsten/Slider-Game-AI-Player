@@ -2,9 +2,20 @@ package aima.core.agent.impl.aprog;
 
 import java.util.Set;
 
+import aima.core.agent.Action;
+import aima.core.agent.AgentProgram;
+import aima.core.agent.Percept;
+import aima.core.agent.impl.DynamicPercept;
+import aima.core.agent.impl.NoOpAction;
+import aima.core.agent.impl.ObjectWithDynamicAttributes;
+import aima.core.agent.impl.aprog.simplerule.Rule;
+
 /**
- * Artificial Intelligence A Modern Approach (3rd Edition): Figure 2.10, page 49.
- * <code>
+ * Artificial Intelligence A Modern Approach (3rd Edition): Figure 2.10, page
+ * 49.<br>
+ * <br>
+ * 
+ * <pre>
  * function SIMPLE-RELEX-AGENT(percept) returns an action
  *   persistent: rules, a set of condition-action rules
  *   
@@ -12,13 +23,13 @@ import java.util.Set;
  *   rule   <- RULE-MATCH(state, rules);
  *   action <- rule.ACTION;
  *   return action
- * </code>
- * Figure 2.10 A simple reflex agent. It acts according to a rule whose condition matches
- * the current state, as defined by the percept.
- */
-
-/**
+ * </pre>
+ * 
+ * Figure 2.10 A simple reflex agent. It acts according to a rule whose
+ * condition matches the current state, as defined by the percept.
+ * 
  * @author Ciaran O'Reilly
+ * @author Mike Stampone
  * 
  */
 public class SimpleReflexAgentProgram implements AgentProgram {
@@ -26,8 +37,15 @@ public class SimpleReflexAgentProgram implements AgentProgram {
 	// persistent: rules, a set of condition-action rules
 	private Set<Rule> rules;
 
-	public SimpleReflexAgentProgram(Set<Rule> aRuleSet) {
-		rules = aRuleSet;
+	/**
+	 * Constructs a SimpleReflexAgentProgram with a set of condition-action
+	 * rules.
+	 * 
+	 * @param ruleSet
+	 *            a set of condition-action rules
+	 */
+	public SimpleReflexAgentProgram(Set<Rule> ruleSet) {
+		rules = ruleSet;
 	}
 
 	//

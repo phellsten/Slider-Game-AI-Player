@@ -1,49 +1,0 @@
-10
-
-dir
-588
-http://aima-java.googlecode.com/svn/trunk/aima-core/src/main/java/aima/core/search
-http://aima-java.googlecode.com/svn
-
-
-
-2010-01-07T07:16:41.614804Z
-398
-Ruediger.Lunde
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-69387497-ef19-0410-9dc2-eda6d4ab8473
-
-informed
-dir
-
-online
-dir
-
-csp
-dir
-
-uninformed
-dir
-
-local
-dir
-
-framework
-dir
-
-adversarial
-dir
-

@@ -5,13 +5,19 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Set;
 
-/**
- * @see http://logic.stanford.edu/classes/cs157/2008/lectures/lecture13.pdf
- * 
- * A Chain is a sequence of literals (while a clause is a set) - order is important for a chain.
- */
+import aima.core.logic.fol.inference.proof.ProofStep;
+import aima.core.logic.fol.inference.proof.ProofStepChainContrapositive;
+import aima.core.logic.fol.inference.proof.ProofStepPremise;
 
 /**
+ * 
+ * A Chain is a sequence of literals (while a clause is a set) - order is
+ * important for a chain.
+ * 
+ * @see <a
+ *      href="http://logic.stanford.edu/classes/cs157/2008/lectures/lecture13.pdf"
+ *      >Chain</a>
+ * 
  * @author Ciaran O'Reilly
  * 
  */
@@ -65,8 +71,8 @@ public class Chain {
 		if (0 == literals.size()) {
 			return _emptyLiteralsList;
 		}
-		return Collections.unmodifiableList(literals
-				.subList(1, literals.size()));
+		return Collections
+				.unmodifiableList(literals.subList(1, literals.size()));
 	}
 
 	public int getNumberLiterals() {

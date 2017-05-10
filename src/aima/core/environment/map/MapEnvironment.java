@@ -1,20 +1,24 @@
 package aima.core.environment.map;
 
-/**
- * Represents the environment a MapAgent can navigate.
- */
+import aima.core.agent.Action;
+import aima.core.agent.Agent;
+import aima.core.agent.Percept;
+import aima.core.agent.impl.AbstractEnvironment;
+import aima.core.agent.impl.DynamicPercept;
 
 /**
+ * Represents the environment a SimpleMapAgent can navigate.
+ * 
  * @author Ciaran O'Reilly
  * 
  */
 public class MapEnvironment extends AbstractEnvironment {
 
-	private Map aMap = null;
+	private Map map = null;
 	private MapEnvironmentState state = new MapEnvironmentState();
 
-	public MapEnvironment(Map aMap) {
-		this.aMap = aMap;
+	public MapEnvironment(Map map) {
+		this.map = map;
 	}
 
 	public void addAgent(Agent a, String startLocation) {
@@ -34,26 +38,19 @@ public class MapEnvironment extends AbstractEnvironment {
 	}
 
 	@Override
-	public EnvironmentState getCurrentState() {
-		return state;
-	}
-
-	@Override
-	public EnvironmentState executeAction(Agent agent, Action a) {
+	public void executeAction(Agent agent, Action a) {
 
 		if (!a.isNoOp()) {
 			MoveToAction act = (MoveToAction) a;
 
 			String currLoc = getAgentLocation(agent);
-			Double distance = aMap.getDistance(currLoc, act.getToLocation());
+			Double distance = map.getDistance(currLoc, act.getToLocation());
 			if (distance != null) {
 				double currTD = getAgentTravelDistance(agent);
-				state.setAgentLocationAndTravelDistance(agent, act
-						.getToLocation(), currTD + distance);
+				state.setAgentLocationAndTravelDistance(agent,
+						act.getToLocation(), currTD + distance);
 			}
 		}
-
-		return state;
 	}
 
 	@Override
@@ -63,6 +60,6 @@ public class MapEnvironment extends AbstractEnvironment {
 	}
 
 	public Map getMap() {
-		return aMap;
+		return map;
 	}
 }

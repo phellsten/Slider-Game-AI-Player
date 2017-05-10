@@ -1,5 +1,8 @@
 package aima.core.learning.learners;
 
+import aima.core.learning.framework.DataSet;
+import aima.core.learning.inductive.DecisionTree;
+
 /**
  * @author Ravi Mohan
  * 

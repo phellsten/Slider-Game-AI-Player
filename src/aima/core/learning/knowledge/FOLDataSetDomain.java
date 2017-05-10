@@ -6,6 +6,9 @@ import java.util.List;
 import java.util.Map;
 import java.util.regex.Pattern;
 
+import aima.core.learning.framework.DataSetSpecification;
+import aima.core.logic.fol.domain.FOLDomain;
+
 /**
  * @author Ciaran O'Reilly
  * 

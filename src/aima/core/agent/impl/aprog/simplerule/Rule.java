@@ -1,31 +1,44 @@
 package aima.core.agent.impl.aprog.simplerule;
 
-/**
- *  A simple implementation of a "condition-action rule".
- *
- */
+import aima.core.agent.Action;
+import aima.core.agent.impl.ObjectWithDynamicAttributes;
 
 /**
- * @author Ciaran O'Reilly
+ * A simple implementation of a "condition-action rule".
  * 
+ * @author Ciaran O'Reilly
+ * @author Mike Stampone
  */
 public class Rule {
 	private Condition con;
 
 	private Action action;
 
-	public Rule(Condition aCon, Action anAction) {
-		assert (null != aCon);
-		assert (null != anAction);
+	/**
+	 * Constructs a condition-action rule.
+	 * 
+	 * @param con
+	 *            a condition
+	 * @param action
+	 *            an action
+	 */
+	public Rule(Condition con, Action action) {
+		assert (null != con);
+		assert (null != action);
 
-		con = aCon;
-		action = anAction;
+		this.con = con;
+		this.action = action;
 	}
 
 	public boolean evaluate(ObjectWithDynamicAttributes p) {
 		return (con.evaluate(p));
 	}
 
+	/**
+	 * Returns the action of this condition-action rule.
+	 * 
+	 * @return the action of this condition-action rule.
+	 */
 	public Action getAction() {
 		return action;
 	}

@@ -7,24 +7,36 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-/**
- * Artificial Intelligence A Modern Approach (3rd Edition): page 347.
- * 
- * The algorithmic approach is identical to the propositional case, described
- * in Figure 7.12. 
- * 
- * However, this implementation will use the T)wo F)inger M)ethod 
- * for looking for resolvents between clauses, which is very inefficient.
- *  
- * see: 
- * http://logic.stanford.edu/classes/cs157/2008/lectures/lecture04.pdf,
- * slide 21 for the propositional case.  
- * In addition, an Answer literal will be used so that queries with Variables 
- * may be answered (see pg. 350 of AIMA3e).
- * 
- */
+import aima.core.logic.fol.Connectors;
+import aima.core.logic.fol.inference.proof.Proof;
+import aima.core.logic.fol.inference.proof.ProofFinal;
+import aima.core.logic.fol.inference.proof.ProofStepGoal;
+import aima.core.logic.fol.inference.trace.FOLTFMResolutionTracer;
+import aima.core.logic.fol.kb.FOLKnowledgeBase;
+import aima.core.logic.fol.kb.data.Clause;
+import aima.core.logic.fol.kb.data.Literal;
+import aima.core.logic.fol.parsing.ast.ConnectedSentence;
+import aima.core.logic.fol.parsing.ast.NotSentence;
+import aima.core.logic.fol.parsing.ast.Sentence;
+import aima.core.logic.fol.parsing.ast.Term;
+import aima.core.logic.fol.parsing.ast.Variable;
 
 /**
+ * Artificial Intelligence A Modern Approach (3rd Edition): page 347.<br>
+ * <br>
+ * The algorithmic approach is identical to the propositional case, described in
+ * Figure 7.12.<br>
+ * <br>
+ * However, this implementation will use the T)wo F)inger M)ethod for looking
+ * for resolvents between clauses, which is very inefficient.<br>
+ * <br>
+ * see:<br>
+ * <a
+ * href="http://logic.stanford.edu/classes/cs157/2008/lectures/lecture04.pdf">
+ * http://logic.stanford.edu/classes/cs157/2008/lectures/lecture04.pdf</a>,
+ * slide 21 for the propositional case. In addition, an Answer literal will be
+ * used so that queries with Variables may be answered (see pg. 350 of AIMA3e).
+ * 
  * @author Ciaran O'Reilly
  * 
  */
@@ -111,8 +123,8 @@ public class FOLTFMResolution implements InferenceProcedure {
 		int noOfPrevClauses = clauses.size();
 		do {
 			if (null != tracer) {
-				tracer.stepStartWhile(clauses, clauses.size(), newClauses
-						.size());
+				tracer.stepStartWhile(clauses, clauses.size(),
+						newClauses.size());
 			}
 
 			newClauses.clear();
@@ -188,7 +200,7 @@ public class FOLTFMResolution implements InferenceProcedure {
 	}
 
 	// END-InferenceProcedure
-	// 
+	//
 
 	//
 	// PRIVATE METHODS
@@ -214,27 +226,22 @@ public class FOLTFMResolution implements InferenceProcedure {
 
 		//
 		// START-InferenceResult
-		@Override
 		public boolean isPossiblyFalse() {
 			return !timedOut && proofs.size() == 0;
 		}
 
-		@Override
 		public boolean isTrue() {
 			return proofs.size() > 0;
 		}
 
-		@Override
 		public boolean isUnknownDueToTimeout() {
 			return timedOut && proofs.size() == 0;
 		}
 
-		@Override
 		public boolean isPartialResultDueToTimeout() {
 			return timedOut && proofs.size() > 0;
 		}
 
-		@Override
 		public List<Proof> getProofs() {
 			return proofs;
 		}
@@ -268,11 +275,13 @@ public class FOLTFMResolution implements InferenceProcedure {
 
 					if (aClause.isUnitClause()
 							&& aClause.isDefiniteClause()
-							&& aClause.getPositiveLiterals().get(0)
-									.getAtomicSentence().getSymbolicName()
-									.equals(
-											answerLiteral.getAtomicSentence()
-													.getSymbolicName())) {
+							&& aClause
+									.getPositiveLiterals()
+									.get(0)
+									.getAtomicSentence()
+									.getSymbolicName()
+									.equals(answerLiteral.getAtomicSentence()
+											.getSymbolicName())) {
 						Map<Variable, Term> answerBindings = new HashMap<Variable, Term>();
 						List<Term> answerTerms = aClause.getPositiveLiterals()
 								.get(0).getAtomicSentence().getArgs();

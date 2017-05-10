@@ -3,34 +3,43 @@ package aima.core.search.framework;
 import java.util.ArrayList;
 import java.util.List;
 
+import aima.core.agent.Action;
+import aima.core.agent.Percept;
+import aima.core.agent.State;
+import aima.core.agent.impl.AbstractAgent;
+import aima.core.agent.impl.NoOpAction;
+import aima.core.search.framework.problem.Problem;
+import aima.core.util.Util;
+
 /**
- * Artificial Intelligence A Modern Approach (3rd Edition): Figure 3.1, page 67.
- * <code>
+ * Artificial Intelligence A Modern Approach (3rd Edition): Figure 3.1, page 67.<br>
+ * <br>
+ * 
+ * <pre>
  * function SIMPLE-PROBLEM-SOLVING-AGENT(percept) returns an action
  *   persistent: seq, an action sequence, initially empty
  *               state, some description of the current world state
  *               goal, a goal, initially null
  *               problem, a problem formulation
  *           
- *   state <- UPDATE-STATE(state, percept)
+ *   state &lt;- UPDATE-STATE(state, percept)
  *   if seq is empty then
- *     goal    <- FORMULATE-GOAL(state)
- *     problem <- FORMULATE-PROBLEM(state, goal)
- *     seq     <- SEARCH(problem)
+ *     goal    &lt;- FORMULATE-GOAL(state)
+ *     problem &lt;- FORMULATE-PROBLEM(state, goal)
+ *     seq     &lt;- SEARCH(problem)
  *     if seq = failure then return a null action
- *   action <- FIRST(seq)
- *   seq <- REST(seq)
+ *   action &lt;- FIRST(seq)
+ *   seq &lt;- REST(seq)
  *   return action
- * </code>
- * Figure 3.1 A simple problem-solving agent. It first formulates a goal and a problem,
- * searches for a sequence of actions that would solve the problem, and then executes the actions
- * one at a time. When this is complete, it formulates another goal and starts over.<br>
+ * </pre>
  * 
- */
-
-/**
+ * Figure 3.1 A simple problem-solving agent. It first formulates a goal and a
+ * problem, searches for a sequence of actions that would solve the problem, and
+ * then executes the actions one at a time. When this is complete, it formulates
+ * another goal and starts over.<br>
+ * 
  * @author Ciaran O'Reilly
- * 
+ * @author Mike Stampone
  */
 public abstract class SimpleProblemSolvingAgent extends AbstractAgent {
 
@@ -44,10 +53,21 @@ public abstract class SimpleProblemSolvingAgent extends AbstractAgent {
 
 	private int goalsFormulated = 0;
 
+	/**
+	 * Constructs a simple problem solving agent which will formulate goals
+	 * indefinitely.
+	 */
 	public SimpleProblemSolvingAgent() {
 		formulateGoalsIndefinitely = true;
 	}
 
+	/**
+	 * Constructs a simple problem solving agent which will formulate, at
+	 * maximum, the specified number of goals.
+	 * 
+	 * @param maxGoalsToFormulate
+	 *            the maximum number of goals this agent is to formulate.
+	 */
 	public SimpleProblemSolvingAgent(int maxGoalsToFormulate) {
 		formulateGoalsIndefinitely = false;
 		this.maxGoalsToFormulate = maxGoalsToFormulate;

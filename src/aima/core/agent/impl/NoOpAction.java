@@ -1,12 +1,14 @@
 package aima.core.agent.impl;
 
+/**
+ * @author Ciaran O'Reilly
+ */
 public class NoOpAction extends DynamicAction {
 
 	public static final NoOpAction NO_OP = new NoOpAction();
 
 	//
 	// START-Action
-	@Override
 	public boolean isNoOp() {
 		return true;
 	}

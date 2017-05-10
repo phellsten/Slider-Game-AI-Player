@@ -3,6 +3,17 @@ package aima.core.learning.learners;
 import java.util.ArrayList;
 import java.util.List;
 
+import aima.core.learning.framework.DataSet;
+import aima.core.learning.framework.Example;
+import aima.core.learning.framework.Learner;
+import aima.core.learning.knowledge.CurrentBestLearning;
+import aima.core.learning.knowledge.FOLDataSetDomain;
+import aima.core.learning.knowledge.FOLExample;
+import aima.core.learning.knowledge.Hypothesis;
+import aima.core.logic.fol.inference.FOLOTTERLikeTheoremProver;
+import aima.core.logic.fol.inference.InferenceResult;
+import aima.core.logic.fol.kb.FOLKnowledgeBase;
+
 /**
  * @author Ciaran O'Reilly
  * 

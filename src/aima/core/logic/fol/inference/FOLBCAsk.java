@@ -5,8 +5,21 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import aima.core.logic.fol.inference.proof.Proof;
+import aima.core.logic.fol.inference.proof.ProofFinal;
+import aima.core.logic.fol.inference.proof.ProofStepBwChGoal;
+import aima.core.logic.fol.kb.FOLKnowledgeBase;
+import aima.core.logic.fol.kb.data.Clause;
+import aima.core.logic.fol.kb.data.Literal;
+import aima.core.logic.fol.parsing.ast.AtomicSentence;
+import aima.core.logic.fol.parsing.ast.Sentence;
+import aima.core.logic.fol.parsing.ast.Term;
+import aima.core.logic.fol.parsing.ast.Variable;
+
 /**
- * Artificial Intelligence A Modern Approach (2nd Edition): Figure 9.6, page 288.
+ * Artificial Intelligence A Modern Approach (2nd Edition): Figure 9.6, page
+ * 288.<br>
+ * <br>
  * 
  * <pre>
  * function FOL-BC-ASK(KB, goals, theta) returns a set of substitutions
@@ -16,20 +29,18 @@ import java.util.Map;
  *   local variables: answers, a set of substitutions, initially empty
  *   
  *   if goals is empty then return {theta}
- *   qDelta <- SUBST(theta, FIRST(goals))
- *   for each sentence r in KB where STANDARDIZE-APART(r) = (p1 ^ ... ^ pn => q)
- *          and thetaDelta <- UNIFY(q, qDelta) succeeds
- *       new_goals <- [p1,...,pn|REST(goals)]
- *       answers <- FOL-BC-ASK(KB, new_goals, COMPOSE(thetaDelta, theta)) U answers
+ *   qDelta &lt;- SUBST(theta, FIRST(goals))
+ *   for each sentence r in KB where STANDARDIZE-APART(r) = (p1 &circ; ... &circ; pn =&gt; q)
+ *          and thetaDelta &lt;- UNIFY(q, qDelta) succeeds
+ *       new_goals &lt;- [p1,...,pn|REST(goals)]
+ *       answers &lt;- FOL-BC-ASK(KB, new_goals, COMPOSE(thetaDelta, theta)) U answers
  *   return answers
  * </pre>
  * 
  * Figure 9.6 A simple backward-chaining algorithm.
- */
-
-/**
- * @author Ciaran O'Reilly
  * 
+ * @author Ciaran O'Reilly
+ * @author Mike Stampone
  */
 public class FOLBCAsk implements InferenceProcedure {
 
@@ -39,6 +50,16 @@ public class FOLBCAsk implements InferenceProcedure {
 
 	//
 	// START-InferenceProcedure
+	/**
+	 * Returns a set of substitutions
+	 * 
+	 * @param KB
+	 *            a knowledge base
+	 * @param query
+	 *            goals, a list of conjuncts forming a query
+	 * 
+	 * @return a set of substitutions
+	 */
 	public InferenceResult ask(FOLKnowledgeBase KB, Sentence query) {
 		// Assertions on the type queries this Inference procedure
 		// supports
@@ -99,8 +120,8 @@ public class FOLBCAsk implements InferenceProcedure {
 					.get(0).getAtomicSentence(), qDelta.getAtomicSentence());
 			if (null != thetaDelta) {
 				// new_goals <- [p1,...,pn|REST(goals)]
-				List<Literal> newGoals = new ArrayList<Literal>(r
-						.getNegativeLiterals());
+				List<Literal> newGoals = new ArrayList<Literal>(
+						r.getNegativeLiterals());
 				newGoals.addAll(goals.subList(1, goals.size()));
 				// answers <- FOL-BC-ASK(KB, new_goals, COMPOSE(thetaDelta,
 				// theta)) U answers
@@ -172,27 +193,22 @@ public class FOLBCAsk implements InferenceProcedure {
 
 		//
 		// START-InferenceResult
-		@Override
 		public boolean isPossiblyFalse() {
 			return proofs.size() == 0;
 		}
 
-		@Override
 		public boolean isTrue() {
 			return proofs.size() > 0;
 		}
 
-		@Override
 		public boolean isUnknownDueToTimeout() {
 			return false;
 		}
 
-		@Override
 		public boolean isPartialResultDueToTimeout() {
 			return false;
 		}
 
-		@Override
 		public List<Proof> getProofs() {
 			return proofs;
 		}

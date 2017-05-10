@@ -2,9 +2,20 @@ package aima.core.agent.impl.aprog;
 
 import java.util.Set;
 
+import aima.core.agent.Action;
+import aima.core.agent.AgentProgram;
+import aima.core.agent.Model;
+import aima.core.agent.Percept;
+import aima.core.agent.impl.DynamicState;
+import aima.core.agent.impl.NoOpAction;
+import aima.core.agent.impl.aprog.simplerule.Rule;
+
 /**
- * Artificial Intelligence A Modern Approach (3rd Edition): Figure 2.12, page 51.
- * <code>
+ * Artificial Intelligence A Modern Approach (3rd Edition): Figure 2.12, page
+ * 51.<br>
+ * <br>
+ * 
+ * <pre>
  * function MODEL-BASED-REFLEX-AGENT(percept) returns an action
  *   persistent: state, the agent's current conception of the world state
  *               model, a description of how the next state depends on current state and action
@@ -15,13 +26,14 @@ import java.util.Set;
  *   rule   <- RULE-MATCH(state, rules)
  *   action <- rule.ACTION
  *   return action
- * </code>
- * Figure 2.12 A model-based reflex agent. It keeps track of the current state of the world
- * using an internal model. It then chooses an action in the same way as the reflex agent.
- */
-
-/**
+ * </pre>
+ * 
+ * Figure 2.12 A model-based reflex agent. It keeps track of the current state
+ * of the world using an internal model. It then chooses an action in the same
+ * way as the reflex agent.
+ * 
  * @author Ciaran O'Reilly
+ * @author Mike Stampone
  * 
  */
 public abstract class ModelBasedReflexAgentProgram implements AgentProgram {
@@ -43,16 +55,36 @@ public abstract class ModelBasedReflexAgentProgram implements AgentProgram {
 		init();
 	}
 
-	public void setState(DynamicState aState) {
-		state = aState;
+	/**
+	 * Set the agent's current conception of the world state.
+	 * 
+	 * @param state
+	 *            the agent's current conception of the world state.
+	 */
+	public void setState(DynamicState state) {
+		this.state = state;
 	}
 
-	public void setModel(Model aModel) {
-		model = aModel;
+	/**
+	 * Set the program's description of how the next state depends on the state
+	 * and action.
+	 * 
+	 * @param model
+	 *            a description of how the next state depends on the current
+	 *            state and action.
+	 */
+	public void setModel(Model model) {
+		this.model = model;
 	}
 
-	public void setRules(Set<Rule> aRuleSet) {
-		rules = aRuleSet;
+	/**
+	 * Set the program's condition-action rules
+	 * 
+	 * @param ruleSet
+	 *            a set of condition-action rules
+	 */
+	public void setRules(Set<Rule> ruleSet) {
+		rules = ruleSet;
 	}
 
 	//

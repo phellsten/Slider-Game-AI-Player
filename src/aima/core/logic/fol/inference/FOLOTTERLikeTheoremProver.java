@@ -8,8 +8,31 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import aima.core.logic.fol.Connectors;
+import aima.core.logic.fol.SubsumptionElimination;
+import aima.core.logic.fol.inference.otter.ClauseFilter;
+import aima.core.logic.fol.inference.otter.ClauseSimplifier;
+import aima.core.logic.fol.inference.otter.LightestClauseHeuristic;
+import aima.core.logic.fol.inference.otter.defaultimpl.DefaultClauseFilter;
+import aima.core.logic.fol.inference.otter.defaultimpl.DefaultClauseSimplifier;
+import aima.core.logic.fol.inference.otter.defaultimpl.DefaultLightestClauseHeuristic;
+import aima.core.logic.fol.inference.proof.Proof;
+import aima.core.logic.fol.inference.proof.ProofFinal;
+import aima.core.logic.fol.inference.proof.ProofStepGoal;
+import aima.core.logic.fol.kb.FOLKnowledgeBase;
+import aima.core.logic.fol.kb.data.Clause;
+import aima.core.logic.fol.kb.data.Literal;
+import aima.core.logic.fol.parsing.ast.ConnectedSentence;
+import aima.core.logic.fol.parsing.ast.NotSentence;
+import aima.core.logic.fol.parsing.ast.Sentence;
+import aima.core.logic.fol.parsing.ast.Term;
+import aima.core.logic.fol.parsing.ast.TermEquality;
+import aima.core.logic.fol.parsing.ast.Variable;
+
 /**
- * Artificial Intelligence A Modern Approach (2nd Edition): Figure 9.14, page 307.
+ * Artificial Intelligence A Modern Approach (2nd Edition): Figure 9.14, page
+ * 307.<br>
+ * <br>
  * 
  * <pre>
  * procedure OTTER(sos, usable)
@@ -42,21 +65,22 @@ import java.util.Set;
  *       if clause has one literal then look for unit refutation
  * </pre>
  * 
- * Figure 9.14 Sketch of the OTTER theorem prover. Heuristic control is applied in the
- * selection of the "lightest" clause and in the FILTER function that eliminates uninteresting
- * clauses from consideration.
- */
-
-// Note: The original implementation of OTTER has been retired 
-// but its successor, Prover9, can be found at:
-// http://www.prover9.org/
-// or
-// http://www.cs.unm.edu/~mccune/mace4/
-// Should you wish to play with a mature implementation of a theorem prover :-)
-// For lots of interesting problems to play with, see
-// 'The TPTP Problem Library for Automated Theorem Proving':
-// http://www.cs.miami.edu/~tptp/
-/**
+ * Figure 9.14 Sketch of the OTTER theorem prover. Heuristic control is applied
+ * in the selection of the "lightest" clause and in the FILTER function that
+ * eliminates uninteresting clauses from consideration.<br>
+ * <br>
+ * <b>Note:</b> The original implementation of OTTER has been retired but its
+ * successor, <b>Prover9</b>, can be found at:<br>
+ * <a href="http://www.prover9.org/">http://www.prover9.org/</a><br>
+ * or<br>
+ * <a href="http://www.cs.unm.edu/~mccune/mace4/">http://www.cs.unm.edu/~mccune/
+ * mace4/</a><br>
+ * Should you wish to play with a mature implementation of a theorem prover :-)<br>
+ * <br>
+ * For lots of interesting problems to play with, see <b>The TPTP Problem
+ * Library for Automated Theorem Proving</b>:<br>
+ * <a href="http://www.cs.miami.edu/~tptp/">http://www.cs.miami.edu/~tptp/</a><br>
+ * 
  * @author Ciaran O'Reilly
  * 
  */
@@ -466,27 +490,22 @@ public class FOLOTTERLikeTheoremProver implements InferenceProcedure {
 
 		//
 		// START-InferenceResult
-		@Override
 		public boolean isPossiblyFalse() {
 			return !timedOut && proofs.size() == 0;
 		}
 
-		@Override
 		public boolean isTrue() {
 			return proofs.size() > 0;
 		}
 
-		@Override
 		public boolean isUnknownDueToTimeout() {
 			return timedOut && proofs.size() == 0;
 		}
 
-		@Override
 		public boolean isPartialResultDueToTimeout() {
 			return timedOut && proofs.size() > 0;
 		}
 
-		@Override
 		public List<Proof> getProofs() {
 			return proofs;
 		}
@@ -507,8 +526,9 @@ public class FOLOTTERLikeTheoremProver implements InferenceProcedure {
 			if (isLookingForAnswerLiteral()) {
 				if (2 == clause.getNumberLiterals()) {
 					for (Literal t : clause.getLiterals()) {
-						if (t.getAtomicSentence().getSymbolicName().equals(
-								answerLiteral.getAtomicSentence()
+						if (t.getAtomicSentence()
+								.getSymbolicName()
+								.equals(answerLiteral.getAtomicSentence()
 										.getSymbolicName())) {
 							return true;
 						}
@@ -521,18 +541,18 @@ public class FOLOTTERLikeTheoremProver implements InferenceProcedure {
 			return false;
 		}
 
-		public boolean isAnswer(Clause aClause) {
+		public boolean isAnswer(Clause clause) {
 			boolean isAns = false;
 
 			if (answerClause.isEmpty()) {
-				if (aClause.isEmpty()) {
-					proofs.add(new ProofFinal(aClause.getProofStep(),
+				if (clause.isEmpty()) {
+					proofs.add(new ProofFinal(clause.getProofStep(),
 							new HashMap<Variable, Term>()));
 					complete = true;
 					isAns = true;
 				}
 			} else {
-				if (aClause.isEmpty()) {
+				if (clause.isEmpty()) {
 					// This should not happen
 					// as added an answer literal to sos, which
 					// implies the database (i.e. premises) are
@@ -541,15 +561,18 @@ public class FOLOTTERLikeTheoremProver implements InferenceProcedure {
 							"Generated an empty clause while looking for an answer, implies original KB or usable is unsatisfiable");
 				}
 
-				if (aClause.isUnitClause()
-						&& aClause.isDefiniteClause()
-						&& aClause.getPositiveLiterals().get(0)
-								.getAtomicSentence().getSymbolicName().equals(
-										answerLiteral.getAtomicSentence()
-												.getSymbolicName())) {
+				if (clause.isUnitClause()
+						&& clause.isDefiniteClause()
+						&& clause
+								.getPositiveLiterals()
+								.get(0)
+								.getAtomicSentence()
+								.getSymbolicName()
+								.equals(answerLiteral.getAtomicSentence()
+										.getSymbolicName())) {
 					Map<Variable, Term> answerBindings = new HashMap<Variable, Term>();
-					List<Term> answerTerms = aClause.getPositiveLiterals().get(
-							0).getAtomicSentence().getArgs();
+					List<Term> answerTerms = clause.getPositiveLiterals()
+							.get(0).getAtomicSentence().getArgs();
 					int idx = 0;
 					for (Variable v : answerLiteralVariables) {
 						answerBindings.put(v, answerTerms.get(idx));
@@ -563,7 +586,7 @@ public class FOLOTTERLikeTheoremProver implements InferenceProcedure {
 						}
 					}
 					if (addNewAnswer) {
-						proofs.add(new ProofFinal(aClause.getProofStep(),
+						proofs.add(new ProofFinal(clause.getProofStep(),
 								answerBindings));
 					}
 					isAns = true;

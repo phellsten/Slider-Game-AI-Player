@@ -6,14 +6,13 @@ package aima.core.learning.framework;
  */
 public class NumericAttributeSpecification implements AttributeSpecification {
 
-	// a simple attribute representing a number reprsented as a double .
+	// a simple attribute representing a number represented as a double .
 	private String name;
 
 	public NumericAttributeSpecification(String name) {
 		this.name = name;
 	}
 
-	@Override
 	public boolean isValid(String string) {
 		try {
 			Double.parseDouble(string);
@@ -23,12 +22,10 @@ public class NumericAttributeSpecification implements AttributeSpecification {
 		}
 	}
 
-	@Override
 	public String getAttributeName() {
 		return name;
 	}
 
-	@Override
 	public Attribute createAttribute(String rawValue) {
 		return new NumericAttribute(Double.parseDouble(rawValue), this);
 	}

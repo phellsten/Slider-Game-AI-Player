@@ -8,13 +8,37 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-/**
- * Based on lecture notes from:
- * http://logic.stanford.edu/classes/cs157/2008/lectures/lecture13.pdf
- * 
- */
+import aima.core.logic.fol.Connectors;
+import aima.core.logic.fol.StandardizeApartInPlace;
+import aima.core.logic.fol.SubstVisitor;
+import aima.core.logic.fol.SubsumptionElimination;
+import aima.core.logic.fol.Unifier;
+import aima.core.logic.fol.inference.proof.Proof;
+import aima.core.logic.fol.inference.proof.ProofFinal;
+import aima.core.logic.fol.inference.proof.ProofStepChainCancellation;
+import aima.core.logic.fol.inference.proof.ProofStepChainDropped;
+import aima.core.logic.fol.inference.proof.ProofStepChainFromClause;
+import aima.core.logic.fol.inference.proof.ProofStepChainReduction;
+import aima.core.logic.fol.inference.proof.ProofStepGoal;
+import aima.core.logic.fol.inference.trace.FOLModelEliminationTracer;
+import aima.core.logic.fol.kb.FOLKnowledgeBase;
+import aima.core.logic.fol.kb.data.Chain;
+import aima.core.logic.fol.kb.data.Clause;
+import aima.core.logic.fol.kb.data.Literal;
+import aima.core.logic.fol.kb.data.ReducedLiteral;
+import aima.core.logic.fol.parsing.ast.AtomicSentence;
+import aima.core.logic.fol.parsing.ast.ConnectedSentence;
+import aima.core.logic.fol.parsing.ast.NotSentence;
+import aima.core.logic.fol.parsing.ast.Sentence;
+import aima.core.logic.fol.parsing.ast.Term;
+import aima.core.logic.fol.parsing.ast.Variable;
 
 /**
+ * Based on lecture notes from:<br>
+ * <a
+ * href="http://logic.stanford.edu/classes/cs157/2008/lectures/lecture13.pdf">
+ * http://logic.stanford.edu/classes/cs157/2008/lectures/lecture13.pdf</a>
+ * 
  * @author Ciaran O'Reilly
  * 
  */
@@ -57,7 +81,7 @@ public class FOLModelElimination implements InferenceProcedure {
 	//
 	// START-InferenceProcedure
 
-	public InferenceResult ask(FOLKnowledgeBase kb, Sentence aQuery) {
+	public InferenceResult ask(FOLKnowledgeBase kb, Sentence query) {
 		//
 		// Get the background knowledge - are assuming this is satisfiable
 		// as using Set of Support strategy.
@@ -68,10 +92,10 @@ public class FOLModelElimination implements InferenceProcedure {
 
 		// Collect the information necessary for constructing
 		// an answer (supports use of answer literals).
-		AnswerHandler ansHandler = new AnswerHandler(kb, aQuery, maxQueryTime);
+		AnswerHandler ansHandler = new AnswerHandler(kb, query, maxQueryTime);
 
-		IndexedFarParents ifps = new IndexedFarParents(ansHandler
-				.getSetOfSupport(), background);
+		IndexedFarParents ifps = new IndexedFarParents(
+				ansHandler.getSetOfSupport(), background);
 
 		// Iterative deepening to be used
 		for (int maxDepth = 1; maxDepth < Integer.MAX_VALUE; maxDepth++) {
@@ -199,8 +223,9 @@ public class FOLModelElimination implements InferenceProcedure {
 				if (l instanceof ReducedLiteral) {
 					// if they can be resolved
 					if (head.isNegativeLiteral() != l.isNegativeLiteral()) {
-						Map<Variable, Term> subst = unifier.unify(head
-								.getAtomicSentence(), l.getAtomicSentence());
+						Map<Variable, Term> subst = unifier
+								.unify(head.getAtomicSentence(),
+										l.getAtomicSentence());
 						if (null != subst) {
 							// I have a cancellation
 							// Need to apply subst to all of the
@@ -246,12 +271,12 @@ public class FOLModelElimination implements InferenceProcedure {
 		private List<Proof> proofs = new ArrayList<Proof>();
 		private boolean timedOut = false;
 
-		public AnswerHandler(FOLKnowledgeBase kb, Sentence aQuery,
+		public AnswerHandler(FOLKnowledgeBase kb, Sentence query,
 				long maxQueryTime) {
 
 			finishTime = System.currentTimeMillis() + maxQueryTime;
 
-			Sentence refutationQuery = new NotSentence(aQuery);
+			Sentence refutationQuery = new NotSentence(query);
 
 			// Want to use an answer literal to pull
 			// query variables where necessary
@@ -281,27 +306,22 @@ public class FOLModelElimination implements InferenceProcedure {
 
 		//
 		// START-InferenceResult
-		@Override
 		public boolean isPossiblyFalse() {
 			return !timedOut && proofs.size() == 0;
 		}
 
-		@Override
 		public boolean isTrue() {
 			return proofs.size() > 0;
 		}
 
-		@Override
 		public boolean isUnknownDueToTimeout() {
 			return timedOut && proofs.size() == 0;
 		}
 
-		@Override
 		public boolean isPartialResultDueToTimeout() {
 			return timedOut && proofs.size() > 0;
 		}
 
-		@Override
 		public List<Proof> getProofs() {
 			return proofs;
 		}
@@ -350,11 +370,12 @@ public class FOLModelElimination implements InferenceProcedure {
 							"Generated an empty chain while looking for an answer, implies original KB is unsatisfiable");
 				}
 				if (1 == nearParent.getNumberLiterals()
-						&& nearParent.getHead().getAtomicSentence()
-								.getSymbolicName().equals(
-										answerChain.getHead()
-												.getAtomicSentence()
-												.getSymbolicName())) {
+						&& nearParent
+								.getHead()
+								.getAtomicSentence()
+								.getSymbolicName()
+								.equals(answerChain.getHead()
+										.getAtomicSentence().getSymbolicName())) {
 					Map<Variable, Term> answerBindings = new HashMap<Variable, Term>();
 					List<Term> answerTerms = nearParent.getHead()
 							.getAtomicSentence().getArgs();
@@ -572,7 +593,7 @@ class IndexedFarParents {
 		return sb.toString();
 	}
 
-	// 
+	//
 	// PRIVATE METHODS
 	//
 	private void constructInternalDataStructures(List<Chain> sos,

@@ -1,52 +1,102 @@
 package aima.core.search.csp;
 
 import java.util.ArrayList;
-import java.util.Hashtable;
 import java.util.Iterator;
 import java.util.List;
 
+import aima.core.util.ArrayIterator;
+
 /**
- * @author Ravi Mohan
+ * A domain Di consists of a set of allowable values {v1, ... , vk} for the
+ * corresponding variable Xi and defines a default order on those values. This
+ * implementation guarantees, that domains are never changed after they have
+ * been created. Domain reduction is implemented by replacement instead of
+ * modification. So previous states can easily and safely be restored.
  * 
+ * @author Ruediger Lunde
  */
-public class Domain {
-	private Hashtable<String, List<Object>> variablesToValues;
+public class Domain implements Iterable<Object> {
 
-	// a hash Of Lists { variable: ListOfDomainValues}
-	public Domain(List<String> variables) {
-		this.variablesToValues = new Hashtable<String, List<Object>>();
-		Iterator<String> varIter = variables.iterator();
-		while (varIter.hasNext()) {
-			variablesToValues.put(varIter.next(), new ArrayList<Object>());
+	private Object[] values;
+
+	public Domain(List<?> values) {
+		this.values = new Object[values.size()];
+		for (int i = 0; i < values.size(); i++)
+			this.values[i] = values.get(i);
+	}
+
+	public Domain(Object[] values) {
+		this.values = new Object[values.length];
+		for (int i = 0; i < values.length; i++)
+			this.values[i] = values[i];
+	}
+
+	public int size() {
+		return values.length;
+	}
+
+	public Object get(int index) {
+		return values[index];
+	}
+
+	public boolean isEmpty() {
+		return values.length == 0;
+	}
+
+	public boolean contains(Object value) {
+		for (Object v : values)
+			if (v.equals(value))
+				return true;
+		return false;
+	}
+
+	@Override
+	public Iterator<Object> iterator() {
+		return new ArrayIterator<Object>(values);
+	}
+
+	/** Not very efficient... */
+	public List<Object> asList() {
+		List<Object> result = new ArrayList<Object>();
+		for (Object value : values)
+			result.add(value);
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (obj instanceof Domain) {
+			Domain d = (Domain) obj;
+			if (d.size() != values.length)
+				return false;
+			else
+				for (int i = 0; i < values.length; i++)
+					if (!values[i].equals(d.values[i]))
+						return false;
 		}
+		return true;
 	}
 
-	public List<Object> getDomainOf(String variable) {
-		return variablesToValues.get(variable);
-	}
-
-	public void add(String variable, Object value) {
-		List<Object> varDomains = variablesToValues.get(variable);
-
-		if (!(varDomains.contains(value))) {
-			varDomains.add(value);
-		}
-	}
-
-	public void addToDomain(String variable, List values) {
-		for (int i = 0; i < values.size(); i++) {
-			add(variable, values.get(i));
-		}
-
-	}
-
-	public void remove(String variable, Object value) {
-		List varDomains = variablesToValues.get(variable);
-		varDomains.remove(value);
+	@Override
+	public int hashCode() {
+		int hash = 9; // arbitrary seed value
+		int multiplier = 13; // arbitrary multiplier value
+		for (int i = 0; i < values.length; i++)
+			hash = hash * multiplier + values[i].hashCode();
+		return hash;
 	}
 
 	@Override
 	public String toString() {
-		return variablesToValues.toString();
+		StringBuffer result = new StringBuffer("{");
+		boolean comma = false;
+		for (Object value : values) {
+			if (comma)
+				result.append(", ");
+			result.append(value.toString());
+			comma = true;
+		}
+		result.append("}");
+		return result.toString();
 	}
 }

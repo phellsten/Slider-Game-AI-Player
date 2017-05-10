@@ -1,11 +1,10 @@
 package aima.core.agent.impl.aprog.simplerule;
 
-/**
- * Implementation of an EQUALity condition.
- *
- */
+import aima.core.agent.impl.ObjectWithDynamicAttributes;
 
 /**
+ * Implementation of an EQUALity condition.
+ * 
  * @author Ciaran O'Reilly
  * 
  */
@@ -14,12 +13,12 @@ public class EQUALCondition extends Condition {
 
 	private Object value;
 
-	public EQUALCondition(Object aKey, Object aValue) {
-		assert (null != aKey);
-		assert (null != aValue);
+	public EQUALCondition(Object key, Object value) {
+		assert (null != key);
+		assert (null != value);
 
-		key = aKey;
-		value = aValue;
+		this.key = key;
+		this.value = value;
 	}
 
 	@Override

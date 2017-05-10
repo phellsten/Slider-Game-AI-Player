@@ -1,0 +1,33 @@
+// Patrick Hudgell phudgell
+// Paul Hellsten phellsten
+
+Firstly this algorithm loads the board from stdin. The character outputs are then loaded into an array. Rather than processing an Array of strings, this program goes through each character, and uses the number of rows at the top of the input file, to separate each line. An improvement to make it easier would be to use an ArrayList of strings.
+
+The time complexity of the algorithm is O(n^2), where n = the size of the board. The algorithm must check every square on the board once, a total of n^2 squares.
+
+An improvement to this algorithm could be to check where it is possible for each piece to go, from its respective position; rather than checking each square on the board. 
+
+Pseudocode:
+For each tile on the board:
+	If tile is 'H':
+		If 'H' can move right:
+			numLegalH++;
+		If 'H' can move up:
+			numLegalH++;
+		If 'H' can move down:
+			numLegalH++;
+	If tile is 'V':
+		If 'V' can move left:
+			numLegalV++;
+		If 'V' can move right:
+			numLegalV++;
+		If 'V' can move up:
+			numLegalV++;
+
+In order to check that it is possible to move, the boundaries need to be checked, to ensure that the player doesn't go off the board, and moves to a valid free tile. Additionally moves off the board by H and V need to be considered by this algorithm as well.
+
+Can move function():
+If tile is free OR piece is allowed to move off the board:
+	Return true;
+Else:
+	Return false;

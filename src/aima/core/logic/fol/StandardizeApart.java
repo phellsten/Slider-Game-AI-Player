@@ -7,6 +7,15 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import aima.core.logic.fol.inference.proof.ProofStepRenaming;
+import aima.core.logic.fol.kb.data.Chain;
+import aima.core.logic.fol.kb.data.Clause;
+import aima.core.logic.fol.kb.data.Literal;
+import aima.core.logic.fol.parsing.ast.AtomicSentence;
+import aima.core.logic.fol.parsing.ast.Sentence;
+import aima.core.logic.fol.parsing.ast.Term;
+import aima.core.logic.fol.parsing.ast.Variable;
+
 /**
  * @author Ciaran O'Reilly
  * 
@@ -27,10 +36,10 @@ public class StandardizeApart {
 	}
 
 	// Note: see page 327.
-	public StandardizeApartResult standardizeApart(Sentence aSentence,
+	public StandardizeApartResult standardizeApart(Sentence sentence,
 			StandardizeApartIndexical standardizeApartIndexical) {
 		Set<Variable> toRename = variableCollector
-				.collectAllVariables(aSentence);
+				.collectAllVariables(sentence);
 		Map<Variable, Term> renameSubstitution = new HashMap<Variable, Term>();
 		Map<Variable, Term> reverseSubstitution = new HashMap<Variable, Term>();
 
@@ -48,9 +57,9 @@ public class StandardizeApart {
 		}
 
 		Sentence standardized = substVisitor.subst(renameSubstitution,
-				aSentence);
+				sentence);
 
-		return new StandardizeApartResult(aSentence, standardized,
+		return new StandardizeApartResult(sentence, standardized,
 				renameSubstitution, reverseSubstitution);
 	}
 

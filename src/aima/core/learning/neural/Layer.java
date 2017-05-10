@@ -1,8 +1,18 @@
 package aima.core.learning.neural;
 
+import aima.core.util.Util;
+import aima.core.util.math.Matrix;
+import aima.core.util.math.Vector;
+
 /**
- * @author Ravi Mohan
+ * Artificial Intelligence A Modern Approach (3rd Edition): page 729<br>
+ * <br>
  * 
+ * Feed-forward networks are usually arranged in layers, such that each unit
+ * receives input only from units in the immediately preceding layer.
+ * 
+ * @author Ravi Mohan
+ * @author Mike Stampone
  */
 public class Layer {
 	// vectors are represented by n * 1 matrices;
@@ -28,8 +38,9 @@ public class Layer {
 		this.weightMatrix = weightMatrix;
 		lastWeightUpdateMatrix = new Matrix(weightMatrix.getRowDimension(),
 				weightMatrix.getColumnDimension());
-		penultimateWeightUpdateMatrix = new Matrix(weightMatrix
-				.getRowDimension(), weightMatrix.getColumnDimension());
+		penultimateWeightUpdateMatrix = new Matrix(
+				weightMatrix.getRowDimension(),
+				weightMatrix.getColumnDimension());
 
 		this.biasVector = biasVector;
 		lastBiasUpdateVector = new Vector(biasVector.getRowDimension());
@@ -44,8 +55,9 @@ public class Layer {
 		this.weightMatrix = new Matrix(numberOfNeurons, numberOfInputs);
 		lastWeightUpdateMatrix = new Matrix(weightMatrix.getRowDimension(),
 				weightMatrix.getColumnDimension());
-		penultimateWeightUpdateMatrix = new Matrix(weightMatrix
-				.getRowDimension(), weightMatrix.getColumnDimension());
+		penultimateWeightUpdateMatrix = new Matrix(
+				weightMatrix.getRowDimension(),
+				weightMatrix.getColumnDimension());
 
 		this.biasVector = new Vector(numberOfNeurons);
 		lastBiasUpdateVector = new Vector(biasVector.getRowDimension());
@@ -99,7 +111,7 @@ public class Layer {
 	public Vector getLastInducedField() {
 		return lastInducedField;
 	}
-	
+
 	public Matrix getLastWeightUpdateMatrix() {
 		return lastWeightUpdateMatrix;
 	}

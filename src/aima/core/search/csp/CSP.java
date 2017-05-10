@@ -1,102 +1,139 @@
 package aima.core.search.csp;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Hashtable;
 import java.util.List;
 
 /**
- * @author Ravi Mohan
+ * Artificial Intelligence A Modern Approach (3rd Ed.): Section 6.1, Page 202.<br>
+ * <br>
+ * A constraint satisfaction problem or CSP consists of three components, X, D,
+ * and C:
+ * <ul>
+ * <li>X is a set of variables, {X1, ... ,Xn}.</li>
+ * <li>D is a set of domains, {D1, ... ,Dn}, one for each variable.</li>
+ * <li>C is a set of constraints that specify allowable combinations of values.</li>
+ * </ul>
  * 
+ * @author Ruediger Lunde
  */
 public class CSP {
 
-	private Domain domains;
+	private List<Variable> variables;
+	private List<Domain> domains;
+	private List<Constraint> constraints;
 
-	private Constraint constraints;
+	/** Lookup, which maps a variable to its index in the list of variables. */
+	private Hashtable<Variable, Integer> varIndexHash;
+	/**
+	 * Constraint network. Maps variables to those constraints in which they
+	 * participate.
+	 */
+	private Hashtable<Variable, List<Constraint>> cnet;
 
-	private List<String> variables;
-
-	public CSP(List<String> variables, Constraint constraints) {
-		this.variables = variables;
-		// this.assignment = new Assignment(variables);
-		this.domains = new Domain(variables);
-		this.constraints = constraints;
+	/** Creates a new CSP. */
+	public CSP() {
+		variables = new ArrayList<Variable>();
+		domains = new ArrayList<Domain>();
+		constraints = new ArrayList<Constraint>();
+		varIndexHash = new Hashtable<Variable, Integer>();
+		cnet = new Hashtable<Variable, List<Constraint>>();
+	}
+	
+	/** Creates a new CSP. */
+	public CSP(List<Variable> vars) {
+		this();
+		for (Variable v : vars)
+			addVariable(v);
 	}
 
-	public CSP(List<String> variables, Constraint constraints, Domain domains) {
-		this.variables = variables;
-		// this.assignment = new Assignment(variables);
-		this.domains = domains;
-		this.constraints = constraints;
+	protected void addVariable(Variable var) {
+		if (!varIndexHash.containsKey(var)) {
+			Domain emptyDomain = new Domain(Collections.emptyList());
+			variables.add(var);
+			domains.add(emptyDomain);
+			varIndexHash.put(var, variables.size()-1);
+			cnet.put(var, new ArrayList<Constraint>());
+		} else {
+			throw new IllegalArgumentException("Variable with same name already exists.");
+		}
+	}
+	
+	public List<Variable> getVariables() {
+		return Collections.unmodifiableList(variables);
 	}
 
-	public List<Object> defaultOrderDomainOf(String variable) {
-		return domains.getDomainOf(variable);
+	public int indexOf(Variable var) {
+		return varIndexHash.get(var);
 	}
 
-	public Assignment backTrackingSearch() {
-		return recursiveBackTrackingSearch(new Assignment(variables));
+	public Domain getDomain(Variable var) {
+		return domains.get(varIndexHash.get(var));
 	}
 
-	public Assignment mcSearch(int maxSteps) {
-		Assignment randomAssignment = generateRandomAssignment();
+	public void setDomain(Variable var, Domain domain) {
+		domains.set(indexOf(var), domain);
+	}
 
-		for (int i = 0; i < maxSteps; i++) {
+	/**
+	 * Replaces the domain of the specified variable by new domain, which
+	 * contains all values of the old domain except the specified value.
+	 */
+	public void removeValueFromDomain(Variable var, Object value) {
+		Domain currDomain = getDomain(var);
+		List<Object> values = new ArrayList<Object>(currDomain.size());
+		for (Object v : currDomain)
+			if (!v.equals(value))
+				values.add(v);
+		setDomain(var, new Domain(values));
+	}
 
-			if (randomAssignment.satisfies(constraints)) {
-				return randomAssignment;
-			} else {
-				String conflictedVariable = Util
-						.selectRandomlyFromList(randomAssignment
-								.getConflictedVariables(constraints));
-				Object minConflictValue = randomAssignment
-						.getMinimumConflictingValueFor(conflictedVariable,
-								domains.getDomainOf(conflictedVariable),
-								constraints);
-				randomAssignment.setAssignment(conflictedVariable,
-						minConflictValue);
-			}
+	public void addConstraint(Constraint constraint) {
+		constraints.add(constraint);
+		for (Variable var : constraint.getScope())
+			cnet.get(var).add(constraint);
+	}
+	
+	public List<Constraint> getConstraints() {
+		return constraints;
+	}
+
+	/**
+	 * Returns all constraints in which the specified variable participates.
+	 */
+	public List<Constraint> getConstraints(Variable var) {
+		return cnet.get(var);
+	}
+
+	/**
+	 * Returns for binary constraints the other variable from the scope.
+	 * 
+	 * @return a variable or null for non-binary constraints.
+	 */
+	public Variable getNeighbor(Variable var, Constraint constraint) {
+		List<Variable> scope = constraint.getScope();
+		if (scope.size() == 2) {
+			if (var.equals(scope.get(0)))
+				return scope.get(1);
+			else if (var.equals(scope.get(1)))
+				return scope.get(0);
 		}
 		return null;
-
 	}
 
-	//
-	// PRIVATE METHODS
-	//
-	private Assignment recursiveBackTrackingSearch(Assignment anAssignment) {
-		if (anAssignment.isComplete()) {
-			return anAssignment;
-		}
-		String variable = anAssignment.selectFirstUnassignedVariable();
-		List<Object> domainValues = defaultOrderDomainOf(variable);
-		for (int i = 0; i < domainValues.size(); i++) {
-			Object value = domainValues.get(i);
-
-			if (constraints.isSatisfiedWith(anAssignment, variable, value)) {
-				anAssignment.setAssignment(variable, value);
-				Assignment result = recursiveBackTrackingSearch(anAssignment);
-				if (result != null) {
-					return result;
-				}
-				anAssignment.remove(variable);
-			}
-		}
-		return null;// failure
-	}
-
-	private Assignment generateRandomAssignment() {
-		List<String> vars = new ArrayList<String>();
-		for (int i = 0; i < variables.size(); i++) {
-			vars.add(variables.get(i));
-		}
-		Assignment assignment = new Assignment(vars);
-		for (int i = 0; i < variables.size(); i++) {
-			String variable = variables.get(i);
-			Object randomValue = Util.selectRandomlyFromList(domains
-					.getDomainOf(variable));
-			// System.out.println("in generate Assignment setting");
-			assignment.setAssignment(variable, randomValue);
-		}
-		return assignment;
+	/**
+	 * Returns a copy which contains a copy of the domains list and is in all
+	 * other aspects a flat copy of this.
+	 */
+	public CSP copyDomains() {
+		CSP result = new CSP();
+		result.variables = variables;
+		result.domains = new ArrayList<Domain>(domains.size());
+		result.domains.addAll(domains);
+		result.constraints = constraints;
+		result.varIndexHash = varIndexHash;
+		result.cnet = cnet;
+		return result;
 	}
 }

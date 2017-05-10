@@ -15,23 +15,18 @@ public abstract class AbstractProofStep implements ProofStep {
 
 	//
 	// START-ProofStep
-	@Override
 	public int getStepNumber() {
 		return step;
 	}
 
-	@Override
 	public void setStepNumber(int step) {
 		this.step = step;
 	}
 
-	@Override
 	public abstract List<ProofStep> getPredecessorSteps();
 
-	@Override
 	public abstract String getProof();
 
-	@Override
 	public abstract String getJustification();
 
 	// END-ProofStep

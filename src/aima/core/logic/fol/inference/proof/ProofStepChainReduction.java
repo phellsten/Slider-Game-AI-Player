@@ -5,6 +5,10 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 
+import aima.core.logic.fol.kb.data.Chain;
+import aima.core.logic.fol.parsing.ast.Term;
+import aima.core.logic.fol.parsing.ast.Variable;
+
 /**
  * @author Ciaran O'Reilly
  * 

@@ -2,10 +2,12 @@ package aima.core.environment.map;
 
 import java.util.List;
 
+import aima.core.util.math.geom.shapes.Point2D;
+
 /**
  * Provides a general interface for maps.
  * 
- * @author R. Lunde
+ * @author Ruediger Lunde
  */
 public interface Map {
 
@@ -16,7 +18,13 @@ public interface Map {
 	 * Answers to the question: Where can I get, following one of the
 	 * connections starting at the specified location?
 	 */
-	public List<String> getLocationsLinkedTo(String fromLocation);
+	public List<String> getPossibleNextLocations(String location);
+
+	/**
+	 * Answers to the question: From where can I reach a specified location,
+	 * following one of the map connections?
+	 */
+	public List<String> getPossiblePrevLocations(String location);
 
 	/**
 	 * Returns the travel distance between the two specified locations if they

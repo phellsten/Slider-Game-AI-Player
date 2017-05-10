@@ -1,5 +1,8 @@
 package aima.core.environment.eightpuzzle;
 
+import aima.core.search.framework.evalfunc.HeuristicFunction;
+import aima.core.util.datastructure.XYLocation;
+
 /**
  * @author Ravi Mohan
  * 

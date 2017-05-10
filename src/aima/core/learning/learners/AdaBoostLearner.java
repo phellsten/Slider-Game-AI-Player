@@ -3,6 +3,12 @@ package aima.core.learning.learners;
 import java.util.Hashtable;
 import java.util.List;
 
+import aima.core.learning.framework.DataSet;
+import aima.core.learning.framework.Example;
+import aima.core.learning.framework.Learner;
+import aima.core.util.Util;
+import aima.core.util.datastructure.Table;
+
 /**
  * @author Ravi Mohan
  * 
@@ -47,7 +53,7 @@ public class AdaBoostLearner implements Learner {
 	public String predict(Example e) {
 		return weightedMajority(e);
 	}
-	
+
 	public int[] test(DataSet ds) {
 		int[] results = new int[] { 0, 0 };
 
@@ -60,7 +66,7 @@ public class AdaBoostLearner implements Learner {
 		}
 		return results;
 	}
-	
+
 	//
 	// PRIVATE METHODS
 	//

@@ -11,13 +11,35 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import aima.core.logic.fol.StandardizeApart;
+import aima.core.logic.fol.StandardizeApartIndexical;
+import aima.core.logic.fol.StandardizeApartIndexicalFactory;
+import aima.core.logic.fol.SubstVisitor;
+import aima.core.logic.fol.Unifier;
+import aima.core.logic.fol.VariableCollector;
+import aima.core.logic.fol.inference.proof.ProofStep;
+import aima.core.logic.fol.inference.proof.ProofStepClauseBinaryResolvent;
+import aima.core.logic.fol.inference.proof.ProofStepClauseFactor;
+import aima.core.logic.fol.inference.proof.ProofStepPremise;
+import aima.core.logic.fol.parsing.FOLVisitor;
+import aima.core.logic.fol.parsing.ast.AtomicSentence;
+import aima.core.logic.fol.parsing.ast.ConnectedSentence;
+import aima.core.logic.fol.parsing.ast.Constant;
+import aima.core.logic.fol.parsing.ast.Function;
+import aima.core.logic.fol.parsing.ast.NotSentence;
+import aima.core.logic.fol.parsing.ast.Predicate;
+import aima.core.logic.fol.parsing.ast.QuantifiedSentence;
+import aima.core.logic.fol.parsing.ast.Term;
+import aima.core.logic.fol.parsing.ast.TermEquality;
+import aima.core.logic.fol.parsing.ast.Variable;
+import aima.core.util.math.MixedRadixNumber;
+
 /**
  * A Clause: A disjunction of literals.
  * 
- */
-
-/**
+ * 
  * @author Ciaran O'Reilly
+ * @author Tobias Barth
  * 
  */
 public class Clause {
@@ -247,7 +269,7 @@ public class Clause {
 		return subsumes;
 	}
 
-	// Note: Applies binary resolution rule and factoring
+	// Note: Applies binary resolution rule
 	// Note: returns a set with an empty clause if both clauses
 	// are empty, otherwise returns a set of binary resolvents.
 	public Set<Clause> binaryResolvents(Clause othC) {
@@ -296,8 +318,8 @@ public class Clause {
 			for (Literal pl : trPosLits) {
 				for (Literal nl : trNegLits) {
 					copyRBindings.clear();
-					if (null != _unifier.unify(pl.getAtomicSentence(), nl
-							.getAtomicSentence(), copyRBindings)) {
+					if (null != _unifier.unify(pl.getAtomicSentence(),
+							nl.getAtomicSentence(), copyRBindings)) {
 						copyRPosLits.clear();
 						copyRNegLits.clear();
 						boolean found = false;
@@ -324,7 +346,8 @@ public class Clause {
 										_saIndexical);
 						Clause c = new Clause(copyRPosLits, copyRNegLits);
 						c.setProofStep(new ProofStepClauseBinaryResolvent(c,
-								this, othC, copyRBindings, renameSubstitituon));
+								pl, nl, this, othC, copyRBindings,
+								renameSubstitituon));
 						if (isImmutable()) {
 							c.setImmutable();
 						}
@@ -380,7 +403,7 @@ public class Clause {
 	// PRIVATE METHODS
 	//
 	private void recalculateIdentity() {
-		synchronized (equalityIdentity) {
+		synchronized (this) {
 
 			// Sort the literals first based on negation, atomic sentence,
 			// constant, function and variable.
@@ -428,20 +451,16 @@ public class Clause {
 					Literal litY = lits.get(y);
 
 					theta.clear();
-					Map<Variable, Term> substitution = _unifier.unify(litX
-							.getAtomicSentence(), litY.getAtomicSentence(),
+					Map<Variable, Term> substitution = _unifier.unify(
+							litX.getAtomicSentence(), litY.getAtomicSentence(),
 							theta);
 					if (null != substitution) {
 						List<Literal> posLits = new ArrayList<Literal>();
 						List<Literal> negLits = new ArrayList<Literal>();
 						if (i == 0) {
-							posLits
-									.add(_substVisitor
-											.subst(substitution, litX));
+							posLits.add(_substVisitor.subst(substitution, litX));
 						} else {
-							negLits
-									.add(_substVisitor
-											.subst(substitution, litX));
+							negLits.add(_substVisitor.subst(substitution, litX));
 						}
 						for (Literal pl : positiveLiterals) {
 							if (pl == litX || pl == litY) {
@@ -456,10 +475,12 @@ public class Clause {
 							negLits.add(_substVisitor.subst(substitution, nl));
 						}
 						// Ensure the non trivial factor is standardized apart
-						_standardizeApart.standardizeApart(posLits, negLits,
-								_saIndexical);
+						Map<Variable, Term> renameSubst = _standardizeApart
+								.standardizeApart(posLits, negLits,
+										_saIndexical);
 						Clause c = new Clause(posLits, negLits);
-						c.setProofStep(new ProofStepClauseFactor(c, this));
+						c.setProofStep(new ProofStepClauseFactor(c, this, litX,
+								litY, substitution, renameSubst));
 						if (isImmutable()) {
 							c.setImmutable();
 						}
@@ -541,7 +562,7 @@ public class Clause {
 		List<Term> othCTerms = new ArrayList<Term>();
 
 		// Want to track possible number of permuations
-		List<Integer> radixs = new ArrayList<Integer>();
+		List<Integer> radices = new ArrayList<Integer>();
 		for (String literalName : thisToTry.keySet()) {
 			int sizeT = thisToTry.get(literalName).size();
 			int sizeO = othCToTry.get(literalName).size();
@@ -557,7 +578,7 @@ public class Clause {
 				for (int i = 0; i < sizeT; i++) {
 					int r = sizeO - i;
 					if (r > 1) {
-						radixs.add(r);
+						radices.add(r);
 					}
 				}
 			}
@@ -569,8 +590,8 @@ public class Clause {
 
 		MixedRadixNumber permutation = null;
 		long numPermutations = 1L;
-		if (radixs.size() > 0) {
-			permutation = new MixedRadixNumber(0, radixs);
+		if (radices.size() > 0) {
+			permutation = new MixedRadixNumber(0, radices);
 			numPermutations = permutation.getMaxAllowedValue() + 1;
 		}
 		// Want to ensure none of the othCVariables are
@@ -650,7 +671,6 @@ public class Clause {
 }
 
 class LiteralsSorter implements Comparator<Literal> {
-	@Override
 	public int compare(Literal o1, Literal o2) {
 		int rVal = 0;
 		// If literals are not negated the same
@@ -665,8 +685,8 @@ class LiteralsSorter implements Comparator<Literal> {
 		}
 
 		// Check their symbolic names for order first
-		rVal = o1.getAtomicSentence().getSymbolicName().compareTo(
-				o2.getAtomicSentence().getSymbolicName());
+		rVal = o1.getAtomicSentence().getSymbolicName()
+				.compareTo(o2.getAtomicSentence().getSymbolicName());
 
 		// If have same symbolic names
 		// then need to compare individual arguments
@@ -709,8 +729,8 @@ class LiteralsSorter implements Comparator<Literal> {
 				// then compare the ordering of the
 				// remaining arguments
 				if (0 == rVal) {
-					rVal = compareArgs(args1.subList(1, args1.size()), args2
-							.subList(1, args2.size()));
+					rVal = compareArgs(args1.subList(1, args1.size()),
+							args2.subList(1, args2.size()));
 				}
 			} else {
 				// Order for different Terms is:
@@ -826,7 +846,6 @@ class ClauseEqualityIdentityConstructor implements FOLVisitor {
 			noVarPositions = noVarPositions / 10;
 			maxWidth++;
 		}
-		String format = "%0" + maxWidth + "d";
 
 		// Sort the individual position lists
 		// And then add their string representations
@@ -837,7 +856,13 @@ class ClauseEqualityIdentityConstructor implements FOLVisitor {
 			Collections.sort(positions);
 			StringBuilder sb = new StringBuilder();
 			for (int pos : positions) {
-				sb.append(String.format(format, pos));
+				String posStr = Integer.toString(pos);
+				int posStrLen = posStr.length();
+				int padLen = maxWidth-posStrLen;
+				for (int i=0;i<padLen;i++) {
+					sb.append('0');
+				}
+				sb.append(posStr);
 			}
 			varOffsets.add(sb.toString());
 		}

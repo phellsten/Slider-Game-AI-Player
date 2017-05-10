@@ -1,5 +1,8 @@
 package aima.core.learning.inductive;
 
+import aima.core.learning.framework.Example;
+import aima.core.util.Util;
+
 /**
  * @author Ravi Mohan
  * 

@@ -2,10 +2,13 @@ package aima.core.search.framework;
 
 import java.util.Hashtable;
 import java.util.Set;
+import java.util.TreeMap;
 
 /**
- * @author Ravi Mohan
+ * Stores key-value pairs for efficiency analysis.
  * 
+ * @author Ravi Mohan
+ * @author Ruediger Lunde
  */
 public class Metrics {
 	private Hashtable<String, String> hash;
@@ -22,12 +25,27 @@ public class Metrics {
 		hash.put(name, Double.toString(d));
 	}
 
+	public void incrementInt(String name) {
+		set(name, getInt(name) + 1);
+	}
+
+	public void set(String name, long l) {
+		hash.put(name, Long.toString(l));
+	}
+
 	public int getInt(String name) {
-		return new Integer(hash.get(name)).intValue();
+		String value = hash.get(name);
+		return value != null ? Integer.parseInt(value) : 0;
 	}
 
 	public double getDouble(String name) {
-		return new Double(hash.get(name)).doubleValue();
+		String value = hash.get(name);
+		return value != null ? Double.parseDouble(value) : Double.NaN;
+	}
+
+	public long getLong(String name) {
+		String value = hash.get(name);
+		return value != null ? Long.parseLong(value) : 0l;
 	}
 
 	public String get(String name) {
@@ -36,5 +54,11 @@ public class Metrics {
 
 	public Set<String> keySet() {
 		return hash.keySet();
+	}
+
+	/** Sorts the key-value pairs by key names and formats them as equations. */
+	public String toString() {
+		TreeMap<String, String> map = new TreeMap<String, String>(hash);
+		return map.toString();
 	}
 }

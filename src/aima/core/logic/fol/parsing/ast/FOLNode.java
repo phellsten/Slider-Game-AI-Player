@@ -2,6 +2,9 @@ package aima.core.logic.fol.parsing.ast;
 
 import java.util.List;
 
+import aima.core.logic.common.ParseTreeNode;
+import aima.core.logic.fol.parsing.FOLVisitor;
+
 /**
  * @author Ravi Mohan
  * @author Ciaran O'Reilly

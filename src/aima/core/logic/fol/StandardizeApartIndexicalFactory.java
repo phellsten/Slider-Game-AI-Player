@@ -4,10 +4,8 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * This class ensures unique standardize apart indexicals are created. 
- */
-
-/**
+ * This class ensures unique standardize apart indexicals are created.
+ * 
  * @author Ciaran O'Reilly
  * 
  */
@@ -58,12 +56,10 @@ class StandardizeApartIndexicalImpl implements StandardizeApartIndexical {
 
 	//
 	// START-StandardizeApartIndexical
-	@Override
 	public String getPrefix() {
 		return prefix;
 	}
 
-	@Override
 	public int getNextIndex() {
 		return index++;
 	}

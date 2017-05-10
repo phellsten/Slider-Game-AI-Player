@@ -1,8 +1,0 @@
-/NQueensBoard.class
-/NQueensFitnessFunction.class
-/NQueensFunctionFactory$NQActionsFunction.class
-/NQueensFunctionFactory$NQResultFunction.class
-/NQueensFunctionFactory.class
-/NQueensGoalTest.class
-/PlaceQueenAction.class
-/QueensToBePlacedHeuristic.class

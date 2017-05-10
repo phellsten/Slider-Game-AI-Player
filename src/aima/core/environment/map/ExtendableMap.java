@@ -4,6 +4,10 @@ import java.util.Collections;
 import java.util.Hashtable;
 import java.util.List;
 
+import aima.core.util.Util;
+import aima.core.util.datastructure.LabeledGraph;
+import aima.core.util.math.geom.shapes.Point2D;
+
 /**
  * Implements a map with locations, distance labeled links between the
  * locations, straight line distances, and 2d-placement positions of locations.
@@ -12,7 +16,7 @@ import java.util.List;
  * enables to read maps from file or to modify them with respect to newly
  * obtained knowledge.
  * 
- * @author R. Lunde
+ * @author Ruediger Lunde
  */
 public class ExtendableMap implements Map {
 
@@ -43,7 +47,6 @@ public class ExtendableMap implements Map {
 	}
 
 	/** Returns a list of all locations. */
-	@Override
 	public List<String> getLocations() {
 		return links.getVertexLabels();
 	}
@@ -57,25 +60,32 @@ public class ExtendableMap implements Map {
 	 * Answers to the question: Where can I get, following one of the
 	 * connections starting at the specified location?
 	 */
-	@Override
-	public List<String> getLocationsLinkedTo(String fromLocation) {
-		List<String> result = links.getSuccessors(fromLocation);
+	public List<String> getPossibleNextLocations(String location) {
+		List<String> result = links.getSuccessors(location);
 		Collections.sort(result);
 		return result;
+	}
+
+	/**
+	 * Answers to the question: From where can I reach a specified location,
+	 * following one of the map connections? This implementation just calls
+	 * {@link #getPossibleNextLocations(String)} as the underlying graph structure
+	 * cannot be traversed efficiently in reverse order.
+	 */
+	public List<String> getPossiblePrevLocations(String location) {
+		return getPossibleNextLocations(location);
 	}
 
 	/**
 	 * Returns the travel distance between the two specified locations if they
 	 * are linked by a connection and null otherwise.
 	 */
-	@Override
 	public Double getDistance(String fromLocation, String toLocation) {
 		return links.get(fromLocation, toLocation);
 	}
 
 	/** Adds a one-way connection to the map. */
-	public void addUnidirectionalLink(String fromLocation, String toLocation,
-			Double distance) {
+	public void addUnidirectionalLink(String fromLocation, String toLocation, Double distance) {
 		links.set(fromLocation, toLocation, distance);
 	}
 
@@ -83,8 +93,7 @@ public class ExtendableMap implements Map {
 	 * Adds a connection which can be traveled in both direction. Internally,
 	 * such a connection is represented as two one-way connections.
 	 */
-	public void addBidirectionalLink(String fromLocation, String toLocation,
-			Double distance) {
+	public void addBidirectionalLink(String fromLocation, String toLocation, Double distance) {
 		links.set(fromLocation, toLocation, distance);
 		links.set(toLocation, fromLocation, distance);
 	}
@@ -92,7 +101,6 @@ public class ExtendableMap implements Map {
 	/**
 	 * Returns a location which is selected by random.
 	 */
-	@Override
 	public String randomlyGenerateDestination() {
 		return Util.selectRandomlyFromList(getLocations());
 	}
@@ -131,8 +139,7 @@ public class ExtendableMap implements Map {
 	 *            the reference position
 	 */
 	public void setDistAndDirToRefLocation(String loc, double dist, int dir) {
-		Point2D coords = new Point2D(-Math.sin(dir * Math.PI / 180.0) * dist,
-				Math.cos(dir * Math.PI / 180.0) * dist);
+		Point2D coords = new Point2D(-Math.sin(dir * Math.PI / 180.0) * dist, Math.cos(dir * Math.PI / 180.0) * dist);
 		links.addVertex(loc);
 		locationPositions.put(loc, coords);
 	}
@@ -141,7 +148,6 @@ public class ExtendableMap implements Map {
 	 * Returns the position of the specified location as with respect to an
 	 * orthogonal coordinate system.
 	 */
-	@Override
 	public Point2D getPosition(String loc) {
 		return locationPositions.get(loc);
 	}

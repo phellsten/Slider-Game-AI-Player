@@ -4,6 +4,9 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+import aima.core.logic.fol.Connectors;
+import aima.core.logic.fol.parsing.FOLVisitor;
+
 /**
  * @author Ravi Mohan
  * @author Ciaran O'Reilly
@@ -25,17 +28,14 @@ public class NotSentence implements Sentence {
 
 	//
 	// START-Sentence
-	@Override
 	public String getSymbolicName() {
 		return Connectors.NOT;
 	}
 
-	@Override
 	public boolean isCompound() {
 		return true;
 	}
 
-	@Override
 	public List<Sentence> getArgs() {
 		return Collections.unmodifiableList(args);
 	}
@@ -44,7 +44,6 @@ public class NotSentence implements Sentence {
 		return v.visitNotSentence(this, arg);
 	}
 
-	@Override
 	public NotSentence copy() {
 		return new NotSentence(negated.copy());
 	}

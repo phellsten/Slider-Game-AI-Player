@@ -1,12 +1,13 @@
 package aima.core.environment.map;
 
-/**
- * Implementation of StepCostFunction interface that uses the distance between locations
- * to calculate the cost in addition to a constant cost, so that it may be used
- * in conjunction with a Uniform-cost search.
- */
+import aima.core.agent.Action;
+import aima.core.search.framework.problem.StepCostFunction;
 
 /**
+ * Implementation of StepCostFunction interface that uses the distance between
+ * locations to calculate the cost in addition to a constant cost, so that it
+ * may be used in conjunction with a Uniform-cost search.
+ * 
  * @author Ciaran O'Reilly
  * 
  */
@@ -18,8 +19,8 @@ public class MapStepCostFunction implements StepCostFunction {
 	// to some small positive constant
 	private static double constantCost = 1.0;
 
-	public MapStepCostFunction(Map aMap) {
-		this.map = aMap;
+	public MapStepCostFunction(Map map) {
+		this.map = map;
 	}
 
 	//
@@ -35,7 +36,7 @@ public class MapStepCostFunction implements StepCostFunction {
 			return constantCost;
 		}
 
-		return new Double(distance);
+		return distance;
 	}
 
 	// END-StepCostFunction

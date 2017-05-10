@@ -1,11 +1,10 @@
 package aima.core.agent.impl.aprog.simplerule;
 
-/**
- * Base abstract class for describing conditions.
- *
- */
+import aima.core.agent.impl.ObjectWithDynamicAttributes;
 
 /**
+ * Base abstract class for describing conditions.
+ * 
  * @author Ciaran O'Reilly
  * 
  */

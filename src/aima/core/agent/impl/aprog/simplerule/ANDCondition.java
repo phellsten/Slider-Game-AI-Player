@@ -1,11 +1,10 @@
 package aima.core.agent.impl.aprog.simplerule;
 
-/**
- * Implementation of an AND condition.
- *
- */
+import aima.core.agent.impl.ObjectWithDynamicAttributes;
 
 /**
+ * Implementation of an AND condition.
+ * 
  * @author Ciaran O'Reilly
  * 
  */
@@ -14,12 +13,12 @@ public class ANDCondition extends Condition {
 
 	private Condition right;
 
-	public ANDCondition(Condition aLeftCon, Condition aRightCon) {
-		assert (null != aLeftCon);
-		assert (null != aRightCon);
+	public ANDCondition(Condition leftCon, Condition rightCon) {
+		assert (null != leftCon);
+		assert (null != rightCon);
 
-		left = aLeftCon;
-		right = aRightCon;
+		left = leftCon;
+		right = rightCon;
 	}
 
 	@Override
@@ -31,7 +30,7 @@ public class ANDCondition extends Condition {
 	public String toString() {
 		StringBuilder sb = new StringBuilder();
 
-		return sb.append("[").append(left).append(" && ").append(right).append(
-				"]").toString();
+		return sb.append("[").append(left).append(" && ").append(right)
+				.append("]").toString();
 	}
 }

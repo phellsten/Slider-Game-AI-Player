@@ -1,21 +1,20 @@
 package aima.core.agent.impl.aprog.simplerule;
 
-/**
- * Implementation of a NOT condition.
- *
- */
+import aima.core.agent.impl.ObjectWithDynamicAttributes;
 
 /**
+ * Implementation of a NOT condition.
+ * 
  * @author Ciaran O'Reilly
  * 
  */
 public class NOTCondition extends Condition {
 	private Condition con;
 
-	public NOTCondition(Condition aCon) {
-		assert (null != aCon);
+	public NOTCondition(Condition con) {
+		assert (null != con);
 
-		con = aCon;
+		this.con = con;
 	}
 
 	@Override

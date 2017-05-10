@@ -4,6 +4,9 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import aima.core.learning.framework.Example;
+import aima.core.util.datastructure.Pair;
+
 /**
  * @author Ravi Mohan
  * 
@@ -35,7 +38,6 @@ public class IrisDataSetNumerizer implements Numerizer {
 		return io;
 	}
 
-	@Override
 	public String denumerize(List<Double> outputValue) {
 		List<Double> rounded = new ArrayList<Double>();
 		for (Double d : outputValue) {

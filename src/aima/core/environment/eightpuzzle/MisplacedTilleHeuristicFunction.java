@@ -1,5 +1,8 @@
 package aima.core.environment.eightpuzzle;
 
+import aima.core.search.framework.evalfunc.HeuristicFunction;
+import aima.core.util.datastructure.XYLocation;
+
 /**
  * @author Ravi Mohan
  * 
@@ -39,6 +42,11 @@ public class MisplacedTilleHeuristicFunction implements HeuristicFunction {
 		}
 		if (!(board.getLocationOf(8).equals(new XYLocation(2, 2)))) {
 			numberOfMisplacedTiles++;
+		}
+		// Subtract the gap position from the # of misplaced tiles
+		// as its not actually a tile (see issue 73).
+		if (numberOfMisplacedTiles > 0) {
+			numberOfMisplacedTiles--;
 		}
 		return numberOfMisplacedTiles;
 	}

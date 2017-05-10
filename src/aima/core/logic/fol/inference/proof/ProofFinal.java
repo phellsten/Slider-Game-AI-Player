@@ -5,6 +5,9 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
+import aima.core.logic.fol.parsing.ast.Term;
+import aima.core.logic.fol.parsing.ast.Variable;
+
 /**
  * @author Ciaran O'Reilly
  * 
@@ -21,7 +24,6 @@ public class ProofFinal implements Proof {
 
 	//
 	// START-Proof
-	@Override
 	public List<ProofStep> getSteps() {
 		// Only calculate if the proof steps are actually requested.
 		if (null == proofSteps) {
@@ -30,7 +32,6 @@ public class ProofFinal implements Proof {
 		return proofSteps;
 	}
 
-	@Override
 	public Map<Variable, Term> getAnswerBindings() {
 		return answerBindings;
 	}
