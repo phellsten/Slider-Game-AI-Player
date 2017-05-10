@@ -8,6 +8,8 @@ import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
 
+import aiproj.slider.Move.Direction;
+
 public class Board {
 	String blocks[][];
 	int size;
@@ -18,7 +20,6 @@ public class Board {
 
 		// Convert args to mutable LinkedList
 		
-		
 		String[] line = args.split("\n");
 		// line = {"H + + +", "H + B +", ...
 		
@@ -26,8 +27,6 @@ public class Board {
 		List<String> list = Arrays.asList(line);
 		Collections.reverse(list);
 		line = (String[]) list.toArray();
-		
-		
 		
 		for(int i=0; i < size; i++) {
 			for(String j : line[i].split(" ")) {
@@ -49,15 +48,27 @@ public class Board {
 				board[j][i] = vars.pop();
 			}
 		}
-		
 		this.blocks = board;
-		
 		this.size = size;
-		
-		
-		
 
-
+	}
+	
+	public void movePiece(int x, int y, Direction d) {
+		String piece = blocks[x][y];
+		blocks[x][y] = "+";
+		if(d == Direction.UP) {
+			y++;
+		}
+		else if(d == Direction.RIGHT) {
+			x++;
+		}
+		else if(d == Direction.DOWN) {
+			y--;
+		}
+		else if(d == Direction.LEFT) {
+			x--;
+		}
+		blocks[x][y] = piece;
 		
 	}
 	

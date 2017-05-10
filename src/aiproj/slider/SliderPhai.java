@@ -1,6 +1,7 @@
 package aiproj.slider;
 
 import aiproj.slider.SliderPlayer;
+import aima.core.learning.inductive.DecisionTree;
 import aiproj.slider.Move;
 
 
@@ -22,6 +23,7 @@ public class SliderPhai implements SliderPlayer {
 		System.out.println("0, 0: " + this.board.blocks[0][0]);
 		System.out.println("1, 2: " + this.board.blocks[1][2]);
 		System.out.println("3, 1: " + this.board.blocks[3][1]);
+
 	}
 
 	@Override
@@ -34,23 +36,8 @@ public class SliderPhai implements SliderPlayer {
 			return;
 		}
 		
-		int x = move.i;
-		int y = move.j;
-		String piece = board.blocks[x][y];
-		board.blocks[x][y] = " ";
-		if(move.d == Move.Direction.UP) {
-			y++;
-		}
-		else if(move.d == Move.Direction.RIGHT) {
-			x++;
-		}
-		else if(move.d == Move.Direction.DOWN) {
-			y--;
-		}
-		else if(move.d == Move.Direction.LEFT) {
-			x--;
-		}
-		board.blocks[x][y] = piece;
+		board.movePiece(move.i, move.j, move.d);
+		
 	}
 
 	@Override
