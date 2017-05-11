@@ -132,6 +132,7 @@ public class DecisionTree {
 					{
 						// Create the null move to represent a skip
 						nde = newNode(null, node);
+						return;
 					}
 				}
 			}
