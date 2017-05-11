@@ -53,7 +53,7 @@ public class Board {
 
 	}
 
-	Board(Board anotherBoard) {
+	public Board(Board anotherBoard) {
 		this.blocks = anotherBoard.blocks;
 		this.size = anotherBoard.size;
 	}
