@@ -87,27 +87,27 @@ public class DecisionTree {
 					if (board.isFree(i + 1, j, player)) {
 						// H can move right
 						// V can move right
-						addMoveToTree(new Move(i + 1, j, Direction.RIGHT), player, node);
+						addNodeToTree(new Move(i + 1, j, Direction.RIGHT), player, node);
 						// Recurse through next move
 						
 					}
 					if (board.isFree(i, j + 1, player)) {
 						// H can move up
 						// V can move up
-						addMoveToTree(new Move(i, j + 1, Direction.UP), player, node);
+						addNodeToTree(new Move(i, j + 1, Direction.UP), player, node);
 
 					}
 					if (board.isFree(i, j - 1, player)) {
 						// only H can move down
 						if (player == "H") {
-							addMoveToTree(new Move(i, j - 1, Direction.DOWN), player, node);
+							addNodeToTree(new Move(i, j - 1, Direction.DOWN), player, node);
 						}
 
 					}
 					if (board.isFree(i - 1, j, player)) {
 						// only V can move left
 						if (player == "V") {
-							addMoveToTree(new Move(i - 1, j, Direction.LEFT), player, node);
+							addNodeToTree(new Move(i - 1, j, Direction.LEFT), player, node);
 						}
 					}
 				}
@@ -127,5 +127,10 @@ public class DecisionTree {
 	 */
 	public void move(Move move) {
 
+	}
+	
+	private int getUtility(Board board, String player) {
+		
+		return 0;
 	}
 }
