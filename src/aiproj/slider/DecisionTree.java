@@ -45,6 +45,12 @@ public class DecisionTree {
 		public void setMove(Move move) {
 			this.move = move;
 		}
+		
+		/** Adds in a new child node */
+		public void addChildNode()
+		{
+			
+		}
 	}
 
 	// We can afford 3 ply toilet paper, unlike the University
@@ -68,8 +74,9 @@ public class DecisionTree {
 		// Start calculation of possible moves.
 	}
 
-	public void addMoveToTree(Move move, String Player, decisionNode node) {
-
+	/** Calculates all possible moves from the inital board config */
+	public void calculatePossibleMoves(String player) {
+		calculateMoves(board, rootNode, player);
 	}
 
 	/**
