@@ -127,6 +127,12 @@ public class DecisionTree {
 
 	/** Adds a node to the decision Tree */
 	private void addNodeToTree(Move move, String player, DecisionNode parentNode) {
+		DecisionNode newNode = new DecisionNode(parentNode);
+		// Check to see if we have exceeded the maximum Ply size
+		if (newNode.getMoves().size() == PLY_LENGTH)
+		{
+			// Ply limit reached
+		}
 	}
 
 	/**
