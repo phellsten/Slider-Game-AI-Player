@@ -146,6 +146,8 @@ public class DecisionTree {
 	 */
 	private DecisionNode newNode(Move move, DecisionNode parentNode) {
 		DecisionNode newNode = new DecisionNode(parentNode);
+		// Add the move in
+		newNode.addMove(move);
 		return newNode;
 	}
 

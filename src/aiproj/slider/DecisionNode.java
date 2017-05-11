@@ -31,9 +31,6 @@ public class DecisionNode {
 
 			// The children of the node
 			ArrayList<DecisionNode> childNodes;
-
-			// The move that results in this value
-			private Move move;
 			
 			/** Returns an unvisited child node */
 			public DecisionNode getNotVisitedChild()
@@ -60,8 +57,8 @@ public class DecisionNode {
 				return moves;
 			}
 
-			public void setMove(Move move) {
-				this.move = move;
+			public void addMove(Move move) {
+				this.moves.add(move);
 			}
 
 			/** Adds in a new child node */
