@@ -8,7 +8,9 @@ public class DecisionTree {
 	private class decisionNode {
 		// Value calculated by MiniMax
 		private int value;
+
 		private decisionNode parentNode;
+
 		/** Constructor for the root node */
 		decisionNode() {
 			this.parentNode = null;
@@ -17,10 +19,10 @@ public class DecisionTree {
 		/**
 		 * Constructor for a child node, with parent node taken as an argumenet
 		 */
-		decisionNode(decisionNode parentNode)
-		{
+		decisionNode(decisionNode parentNode) {
 			this.parentNode = parentNode;
 		}
+
 		// The children of the node
 		ArrayList<decisionNode> childNodes;
 
@@ -64,14 +66,13 @@ public class DecisionTree {
 		rootNode = new decisionNode();
 		// Start calculation of possible moves.
 	}
-	
-	public void addMoveToTree(Move move, String Player, decisionNode node)
-	{
-		
+
+	public void addMoveToTree(Move move, String Player, decisionNode node) {
+
 	}
-	
+
 	public Board constructBoard(ArrayList<Move> moves) {
-		return new Board("",0);
+		return new Board("", 0);
 	}
 
 	/** Creates a new simulated move */
@@ -84,8 +85,8 @@ public class DecisionTree {
 
 		int i;
 		int j;
-		//int numLegalH = 0;
-		//int numLegalV = 0;
+		// int numLegalH = 0;
+		// int numLegalV = 0;
 
 		// For each piece on the board
 		for (j = 0; j < board.size; j++) {
@@ -94,7 +95,7 @@ public class DecisionTree {
 					if (board.isFree(i + 1, j, player)) {
 						// H can move right
 						// V can move right
-						addMoveToTree(new Move(i+1, j, Direction.RIGHT), player, node);
+						addMoveToTree(new Move(i + 1, j, Direction.RIGHT), player, node);
 					}
 					if (board.isFree(i, j + 1, player)) {
 						// H can move up
@@ -104,24 +105,21 @@ public class DecisionTree {
 					}
 					if (board.isFree(i, j - 1, player)) {
 						// only H can move down
-						if(player == "H") {
+						if (player == "H") {
 							addMoveToTree(new Move(i, j - 1, Direction.DOWN), player, node);
 						}
-						
+
 					}
 					if (board.isFree(i - 1, j, player)) {
 						// only V can move left
-						if(player == "V") {
+						if (player == "V") {
 							addMoveToTree(new Move(i - 1, j, Direction.LEFT), player, node);
 						}
 					}
 				}
 			}
 		}
-		
-		
-		
-		
+
 	}
 
 	/**
