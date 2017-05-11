@@ -2,6 +2,8 @@ package aiproj.slider;
 
 import java.util.ArrayList;
 
+import aiproj.slider.Move.Direction;
+
 public class DecisionTree {
 	private class decisionNode {
 		// Value calculated by MiniMax
@@ -50,9 +52,13 @@ public class DecisionTree {
 		calculateMoves(board, rootNode, this.playerString);
 	}
 	
-	void addMoveToTree(Move move, String Player, decisionNode node)
+	public void addMoveToTree(Move move, String Player, decisionNode node)
 	{
 		
+	}
+	
+	public Board constructBoard(ArrayList<Move> moves) {
+		return new Board("",0);
 	}
 
 	/** Creates a new simulated move */
@@ -65,29 +71,44 @@ public class DecisionTree {
 
 		int i;
 		int j;
-		int numLegalH = 0;
-		int numLegalV = 0;
+		//int numLegalH = 0;
+		//int numLegalV = 0;
 
 		// For each piece on the board
 		for (j = 0; j < board.size; j++) {
 			for (i = 0; i < board.size; i++) {
 				if (board.blocks[i][j].equals(player)) {
 					if (board.isFree(i + 1, j, player)) {
-						// Create a new node with the move
 						// H can move right
-						numLegalH++;
-					}
-					if (board.isFree(i, j - 1, player)) {
-						// H can move up
-						numLegalH++;
+						// V can move right
+						addMoveToTree(new Move(i+1, j, Direction.RIGHT), player, node);
 					}
 					if (board.isFree(i, j + 1, player)) {
-						// H can move down
-						numLegalH++;
+						// H can move up
+						// V can move up
+						addMoveToTree(new Move(i, j + 1, Direction.UP), player, node);
+
+					}
+					if (board.isFree(i, j - 1, player)) {
+						// only H can move down
+						if(player == "H") {
+							addMoveToTree(new Move(i, j - 1, Direction.DOWN), player, node);
+						}
+						
+					}
+					if (board.isFree(i - 1, j, player)) {
+						// only V can move left
+						if(player == "V") {
+							addMoveToTree(new Move(i - 1, j, Direction.LEFT), player, node);
+						}
 					}
 				}
 			}
 		}
+		
+		
+		
+		
 	}
 
 	/**
