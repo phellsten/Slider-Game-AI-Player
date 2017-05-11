@@ -8,6 +8,8 @@ import aiproj.slider.Move.Direction;
 public class DecisionTree {
 	// We can afford 3 ply toilet paper, unlike the University
 	public static final int PLY_LENGTH = 3;
+	public final String HOR_PLAYER = "H";
+	public final String VER_PLAYER = "V";
 
 	// Board the game is to be played on
 	private Board board;
@@ -67,7 +69,14 @@ public class DecisionTree {
 		return newBoard;
 	}
 
-	/** Creates a new simulated move */
+	/** Swaps the player strings around from H to V and vice versa */
+	private String swapPlayer(String player) {
+		if (player.equals(VER_PLAYER)) {
+			return HOR_PLAYER;
+		} else {
+			return VER_PLAYER;
+		}
+	}
 
 	/**
 	 * Calculates the moves for the board, and places them in the speicified
@@ -89,7 +98,7 @@ public class DecisionTree {
 						// V can move right
 						addNodeToTree(new Move(i + 1, j, Direction.RIGHT), player, node);
 						// Recurse through next move
-						
+
 					}
 					if (board.isFree(i, j + 1, player)) {
 						// H can move up
@@ -116,9 +125,9 @@ public class DecisionTree {
 
 	}
 
-
+	/** Adds a node to the decision Tree */
 	private void addNodeToTree(Move move, String player, DecisionNode node) {
-		
+
 	}
 
 	/**
