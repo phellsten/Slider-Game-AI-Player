@@ -28,10 +28,10 @@ public class DecisionTree {
 		rootNode = new DecisionNode();
 		// Start calculation of possible moves.
 	}
-	
+
 	/** Calculates all possible moves from the inital board config */
 	public void calculatePossibleMoves(String player) {
-		
+
 	}
 
 	/**
@@ -83,53 +83,54 @@ public class DecisionTree {
 	 * node
 	 */
 	private void calculateMoves(Board board, DecisionNode node, String player) {
-
 		int i;
 		int j;
-		// int numLegalH = 0;
-		// int numLegalV = 0;
 
+		// Check to see if the ply limit has been reached. If so don't process
+		// the node
+		if (node.getMoves().size() <= PLY_LENGTH) {
+			System.out.println("Ply limit reached");
+			return;
+		}
+		DecisionNode nde;
 		// For each piece on the board
 		for (j = 0; j < board.size; j++) {
 			for (i = 0; i < board.size; i++) {
 				if (board.blocks[i][j].equals(player)) {
 					if (board.isFree(i + 1, j, player)) {
-						// H can move right
-						// V can move right
-						addNodeToTree(new Move(i + 1, j, Direction.RIGHT), player, node);
+						nde = newNode(new Move(i + 1, j, Direction.RIGHT), node);
 					}
 					if (board.isFree(i, j + 1, player)) {
 						// H can move up
 						// V can move up
-						addNodeToTree(new Move(i, j + 1, Direction.UP), player, node);
-
+						nde = newNode(new Move(i, j + 1, Direction.UP), node);
 					}
 					if (board.isFree(i, j - 1, player)) {
 						// only H can move down
 						if (player == "H") {
-							addNodeToTree(new Move(i, j - 1, Direction.DOWN), player, node);
+							nde = newNode(new Move(i, j - 1, Direction.DOWN), node);
 						}
 
 					}
 					if (board.isFree(i - 1, j, player)) {
 						// only V can move left
 						if (player == "V") {
-							addNodeToTree(new Move(i - 1, j, Direction.LEFT), player, node);
+							nde = newNode(new Move(i - 1, j, Direction.LEFT), node);
 						}
 					}
 				}
 			}
 		}
+		// Finish visiting node, peform cleanup
 	}
 
-	/** Adds a node to the decision Tree */
-	private void addNodeToTree(Move move, String player, DecisionNode parentNode) {
+	/**
+	 * Adds a node to the decision Tree, making the new node a child of the
+	 * defined parent node
+	 */
+	private DecisionNode newNode(Move move, DecisionNode parentNode) {
 		DecisionNode newNode = new DecisionNode(parentNode);
-		// Check to see if we have exceeded the maximum Ply size
-		if (newNode.getMoves().size() <= PLY_LENGTH)
-		{
-			// Ply limit reached
-		}
+		return newNode;
 	}
 
 	/**
@@ -139,29 +140,26 @@ public class DecisionTree {
 	public void move(Move move) {
 
 	}
-	
+
 	private int getUtility(Board board, String player) {
-		
+
 		int value = 0;
 		// check if accessing correct
-		int i,j;
-		for(i=0; i < board.size; i++) {
-			for(j=0; j < board.size; j++) {
-				if(board.blocks[i][j] == "H" && player == "H") {
+		int i, j;
+		for (i = 0; i < board.size; i++) {
+			for (j = 0; j < board.size; j++) {
+				if (board.blocks[i][j] == "H" && player == "H") {
 					value += i;
-				}
-				else if (board.blocks[i][j] == "V" && player == "V") {
+				} else if (board.blocks[i][j] == "V" && player == "V") {
 					value += j;
-				}
-				else if (board.blocks[i][j] == "H" && player == "V") {
+				} else if (board.blocks[i][j] == "H" && player == "V") {
 					value -= i;
-				}
-				else if (board.blocks[i][j] == "V" && player == "H") {
+				} else if (board.blocks[i][j] == "V" && player == "H") {
 					value -= j;
 				}
 			}
 		}
-		
+
 		return value;
 	}
 }
