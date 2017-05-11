@@ -10,6 +10,8 @@ public class DecisionNode {
 
 			// Arraylist of Moves which have got us to the current position
 			private LinkedList<Move> moves;
+			
+			boolean visited;
 
 			DecisionNode parentNode;
 			
@@ -34,6 +36,19 @@ public class DecisionNode {
 
 			// The move that results in this value
 			private Move move;
+			
+			/** Returns an unvisited child node */
+			public DecisionNode getNotVisitedChild()
+			{
+				for (DecisionNode decNde : childNodes)
+				{
+					if (decNde.visited == true)
+					{
+						return decNde;
+					}
+				}
+				return null;
+			}
 
 			public int getValue() {
 				return value;
