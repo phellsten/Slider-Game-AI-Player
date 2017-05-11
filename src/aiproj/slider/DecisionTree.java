@@ -126,7 +126,7 @@ public class DecisionTree {
 							calculateMoves(constructBoard(node.getMoves()), nde, swapPlayer(player));
 						}
 					}
-					
+
 					// If we can't move insert a null move, to indicate a skip
 					if (!moved) {
 						// Create the null move to represent a skip
