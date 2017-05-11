@@ -126,8 +126,7 @@ public class DecisionTree {
 	}
 
 	/** Adds a node to the decision Tree */
-	private void addNodeToTree(Move move, String player, DecisionNode node) {
-
+	private void addNodeToTree(Move move, String player, DecisionNode parentNode) {
 	}
 
 	/**
