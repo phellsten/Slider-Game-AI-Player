@@ -8,7 +8,19 @@ public class DecisionTree {
 	private class decisionNode {
 		// Value calculated by MiniMax
 		private int value;
-		
+		private decisionNode parentNode;
+		/** Constructor for the root node */
+		decisionNode() {
+			this.parentNode = null;
+		}
+
+		/**
+		 * Constructor for a child node, with parent node taken as an argumenet
+		 */
+		decisionNode(decisionNode parentNode)
+		{
+			this.parentNode = parentNode;
+		}
 		// The children of the node
 		ArrayList<decisionNode> childNodes;
 
@@ -40,7 +52,7 @@ public class DecisionTree {
 
 	// The root node of the decision tree
 	private decisionNode rootNode;
-	
+
 	// The string of the player
 	String playerString;
 
@@ -48,13 +60,21 @@ public class DecisionTree {
 		// Start construction of DecisionTree, and its root nodes
 		this.board = board;
 		this.playerString = playerString;
+		// Create a new root node
+		rootNode = new decisionNode();
 		// Start calculation of possible moves.
-		calculateMoves(board, rootNode, this.playerString);
+		calculateMoves(board)
 	}
+<<<<<<< HEAD
 	
 	public void addMoveToTree(Move move, String Player, decisionNode node)
 	{
 		
+=======
+
+	void addMoveToTree(Move move, String Player, decisionNode node) {
+
+>>>>>>> fa87fdea4e10f1405bf892527b684ad597efdb6d
 	}
 	
 	public Board constructBoard(ArrayList<Move> moves) {
