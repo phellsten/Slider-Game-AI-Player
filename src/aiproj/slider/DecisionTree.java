@@ -28,10 +28,10 @@ public class DecisionTree {
 		rootNode = new DecisionNode();
 		// Start calculation of possible moves.
 	}
-
+	
 	/** Calculates all possible moves from the inital board config */
 	public void calculatePossibleMoves(String player) {
-		calculateMoves(board, rootNode, player);
+		
 	}
 
 	/**

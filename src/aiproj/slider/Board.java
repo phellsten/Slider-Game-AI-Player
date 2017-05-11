@@ -57,6 +57,7 @@ public class Board {
 		this.blocks = anotherBoard.blocks;
 		this.size = anotherBoard.size;
 	}
+
 	public void movePiece(int x, int y, Direction d) {
 		String piece = blocks[x][y];
 		blocks[x][y] = "+";
