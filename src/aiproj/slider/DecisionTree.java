@@ -10,7 +10,9 @@ public class DecisionTree {
 		// Value calculated by MiniMax
 		private int value;
 
-		private decisionNode parentNode;
+		// Arraylist of Moves which have got us to the current position
+		private LinkedList<Move> moves;
+		decisionNode parentNode;
 
 		/** Constructor for the root node */
 		decisionNode() {
@@ -22,6 +24,7 @@ public class DecisionTree {
 		 */
 		decisionNode(decisionNode parentNode) {
 			this.parentNode = parentNode;
+			moves.addAll(parentNode.moves);
 		}
 
 		// The children of the node
@@ -45,11 +48,10 @@ public class DecisionTree {
 		public void setMove(Move move) {
 			this.move = move;
 		}
-		
+
 		/** Adds in a new child node */
-		public void addChildNode()
-		{
-			
+		public void addChildNode() {
+
 		}
 	}
 
