@@ -70,9 +70,13 @@ public class DecisionTree {
 	public void addMoveToTree(Move move, String Player, decisionNode node) {
 
 	}
+	
+	public Board constructBoard(Board currentboard, ArrayList<Move> moves) {
+		
+		while(!moves.isEmpty()) {
+			Move nextMove
+		}
 
-	public Board constructBoard(ArrayList<Move> moves) {
-		return new Board("", 0);
 	}
 
 	/** Creates a new simulated move */
