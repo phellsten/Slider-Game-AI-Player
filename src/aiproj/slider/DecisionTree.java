@@ -71,39 +71,39 @@ public class DecisionTree {
 	public void addMoveToTree(Move move, String Player, decisionNode node) {
 
 	}
-	
+
+	/**
+	 * Returns a reconstructed board from a list of moves and the original board
+	 */
 	public Board constructBoard(Board currentboard, LinkedList<Move> moves) {
 		Board newBoard = new Board(currentboard);
 
 		LinkedList<Move> newMoves = new LinkedList<>(moves);
-		while(!moves.isEmpty()) {
+		while (!moves.isEmpty()) {
 			Move nextMove = newMoves.pop();
-			
+
 			if (nextMove == null) {
 				continue;
 			}
-			
+
 			int x = nextMove.i;
 			int y = nextMove.j;
 			Direction d = nextMove.d;
-			
+
 			String piece = newBoard.blocks[x][y];
 			newBoard.blocks[x][y] = "+";
-			if(d == Direction.UP) {
-				newBoard.blocks[x][y+1] = piece;
+			if (d == Direction.UP) {
+				newBoard.blocks[x][y + 1] = piece;
+			} else if (d == Direction.RIGHT) {
+				newBoard.blocks[x + 1][y] = piece;
+			} else if (d == Direction.DOWN) {
+				newBoard.blocks[x][y - 1] = piece;
+			} else if (d == Direction.LEFT) {
+				newBoard.blocks[x - 1][y] = piece;
 			}
-			else if (d == Direction.RIGHT) {
-				newBoard.blocks[x+1][y] = piece;
-			}
-			else if (d == Direction.DOWN) {
-				newBoard.blocks[x][y-1] = piece;
-			}
-			else if (d == Direction.LEFT) {
-				newBoard.blocks[x-1][y] = piece;
-			}
-			
+
 		}
-		
+
 		return newBoard;
 	}
 
