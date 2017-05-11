@@ -29,16 +29,16 @@ public class DecisionTree {
 		// Start calculation of possible moves.
 	}
 
-	/** Calculates all possible moves from the inital board config */
+	/** Calculates all possible moves from the initial board config */
 	public void calculatePossibleMoves(String player) {
-
+		calculateMoves(board, rootNode, playerString);
 	}
 
 	/**
 	 * Returns a reconstructed board from a list of moves and the original board
 	 */
 	public Board constructBoard(LinkedList<Move> moves) {
-		Board newBoard = new Board(currentboard);
+		Board newBoard = new Board(board);
 
 		LinkedList<Move> newMoves = new LinkedList<>(moves);
 		while (!moves.isEmpty()) {
@@ -97,21 +97,22 @@ public class DecisionTree {
 		for (j = 0; j < board.size; j++) {
 			for (i = 0; i < board.size; i++) {
 				if (board.blocks[i][j].equals(player)) {
+					boolean moved = false;
 					if (board.isFree(i + 1, j, player)) {
 						nde = newNode(new Move(i + 1, j, Direction.RIGHT), node);
-						
 						// Perform recursion on the new node
+						moved = true;
 						calculateMoves(constructBoard(node.getMoves()), nde, swapPlayer(player));
 					}
 					if (board.isFree(i, j + 1, player)) {
-						// H can move up
-						// V can move up
+						moved = true;
 						nde = newNode(new Move(i, j + 1, Direction.UP), node);
 						calculateMoves(constructBoard(node.getMoves()), nde, swapPlayer(player));
 					}
 					if (board.isFree(i, j - 1, player)) {
 						// only H can move down
 						if (player == "H") {
+							moved = true;
 							nde = newNode(new Move(i, j - 1, Direction.DOWN), node);
 							calculateMoves(constructBoard(node.getMoves()), nde, swapPlayer(player));
 						}
@@ -120,14 +121,23 @@ public class DecisionTree {
 					if (board.isFree(i - 1, j, player)) {
 						// only V can move left
 						if (player == "V") {
+							moved = true;
 							nde = newNode(new Move(i - 1, j, Direction.LEFT), node);
 							calculateMoves(constructBoard(node.getMoves()), nde, swapPlayer(player));
 						}
 					}
+					
+					// If we can't move, skip
+					if (!moved)
+					{
+						// Create the null move to represent a skip
+						nde = newNode(null, node);
+					}
 				}
 			}
 		}
-		// Finish visiting node, peform cleanup
+		// Finished with node, possibly perform clean up
+		System.out.println("Finished visiting");
 	}
 
 	/**

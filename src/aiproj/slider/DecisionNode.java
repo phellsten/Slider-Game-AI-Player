@@ -15,8 +15,6 @@ public class DecisionNode {
 
 			DecisionNode parentNode;
 			
-			private Board playBoard;
-
 			/** Constructor for the root node */
 			DecisionNode() {
 				this.parentNode = null;
