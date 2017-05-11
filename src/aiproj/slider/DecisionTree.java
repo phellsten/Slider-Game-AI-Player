@@ -49,6 +49,11 @@ public class DecisionTree {
 		// Start calculation of possible moves.
 		calculateMoves(board, rootNode, this.playerString);
 	}
+	
+	void addMoveToTree(Move move, String Player, decisionNode node)
+	{
+		
+	}
 
 	/** Creates a new simulated move */
 
@@ -66,12 +71,9 @@ public class DecisionTree {
 		// For each piece on the board
 		for (j = 0; j < board.size; j++) {
 			for (i = 0; i < board.size; i++) {
-				// If piece is 'H'
 				if (board.blocks[i][j].equals(player)) {
-					if (board.isFree(i + 1, j, "H")) {
+					if (board.isFree(i + 1, j, player)) {
 						// Create a new node with the move
-						
-						
 						// H can move right
 						numLegalH++;
 					}
