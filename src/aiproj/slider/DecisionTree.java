@@ -1,6 +1,7 @@
 package aiproj.slider;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
 
 import aiproj.slider.Move.Direction;
 
@@ -70,12 +71,34 @@ public class DecisionTree {
 		
 	}
 	
-	public Board constructBoard(Board currentboard, ArrayList<Move> moves) {
-		
-		while(!moves.isEmpty()) {
-			Move nextMove
-		}
+	public Board constructBoard(Board currentboard, LinkedList<Move> moves) {
+		Board newBoard = new Board(currentboard);
 
+		LinkedList<Move> newMoves = new LinkedList<>(moves);
+		while(!moves.isEmpty()) {
+			Move nextMove = newMoves.pop();
+			int x = nextMove.i;
+			int y = nextMove.j;
+			Direction d = nextMove.d;
+			
+			String piece = newBoard.blocks[x][y];
+			newBoard.blocks[x][y] = "+";
+			if(d == Direction.UP) {
+				newBoard.blocks[x][y+1] = piece;
+			}
+			else if (d == Direction.RIGHT) {
+				newBoard.blocks[x+1][y] = piece;
+			}
+			else if (d == Direction.DOWN) {
+				newBoard.blocks[x][y-1] = piece;
+			}
+			else if (d == Direction.LEFT) {
+				newBoard.blocks[x-1][y] = piece;
+			}
+			
+		}
+		
+		return newBoard;
 	}
 
 	/** Creates a new simulated move */
