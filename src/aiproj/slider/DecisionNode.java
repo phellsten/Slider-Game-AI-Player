@@ -12,6 +12,8 @@ public class DecisionNode {
 			private LinkedList<Move> moves;
 
 			DecisionNode parentNode;
+			
+			private Board playBoard;
 
 			/** Constructor for the root node */
 			DecisionNode() {
