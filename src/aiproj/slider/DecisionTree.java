@@ -63,18 +63,11 @@ public class DecisionTree {
 		// Create a new root node
 		rootNode = new decisionNode();
 		// Start calculation of possible moves.
-		calculateMoves(board)
 	}
-<<<<<<< HEAD
 	
 	public void addMoveToTree(Move move, String Player, decisionNode node)
 	{
 		
-=======
-
-	void addMoveToTree(Move move, String Player, decisionNode node) {
-
->>>>>>> fa87fdea4e10f1405bf892527b684ad597efdb6d
 	}
 	
 	public Board constructBoard(ArrayList<Move> moves) {
