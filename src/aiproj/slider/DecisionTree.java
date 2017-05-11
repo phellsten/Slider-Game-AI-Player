@@ -140,6 +140,26 @@ public class DecisionTree {
 	
 	private int getUtility(Board board, String player) {
 		
-		return 0;
+		int value = 0;
+		// check if accessing correct
+		int i,j;
+		for(i=0; i < board.size; i++) {
+			for(j=0; j < board.size; j++) {
+				if(board.blocks[i][j] == "H" && player == "H") {
+					value += i;
+				}
+				else if (board.blocks[i][j] == "V" && player == "V") {
+					value += j;
+				}
+				else if (board.blocks[i][j] == "H" && player == "V") {
+					value -= i;
+				}
+				else if (board.blocks[i][j] == "V" && player == "H") {
+					value -= j;
+				}
+			}
+		}
+		
+		return value;
 	}
 }
