@@ -21,13 +21,13 @@ public class DecisionNode {
 			/**
 			 * Constructor for a child node, with parent node taken as an argumenet
 			 */
-			decisionNode(decisionNode parentNode) {
+			DecisionNode(DecisionNode parentNode) {
 				this.parentNode = parentNode;
 				moves.addAll(parentNode.moves);
 			}
 
 			// The children of the node
-			ArrayList<decisionNode> childNodes;
+			ArrayList<DecisionNode> childNodes;
 
 			// The move that results in this value
 			private Move move;

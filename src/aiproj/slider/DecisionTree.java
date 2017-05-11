@@ -6,55 +6,6 @@ import java.util.LinkedList;
 import aiproj.slider.Move.Direction;
 
 public class DecisionTree {
-	private class decisionNode {
-		// Value calculated by MiniMax
-		private int value;
-
-		// Arraylist of Moves which have got us to the current position
-		private LinkedList<Move> moves;
-		decisionNode parentNode;
-
-		/** Constructor for the root node */
-		decisionNode() {
-			this.parentNode = null;
-		}
-
-		/**
-		 * Constructor for a child node, with parent node taken as an argumenet
-		 */
-		decisionNode(decisionNode parentNode) {
-			this.parentNode = parentNode;
-			moves.addAll(parentNode.moves);
-		}
-
-		// The children of the node
-		ArrayList<decisionNode> childNodes;
-
-		// The move that results in this value
-		private Move move;
-
-		public int getValue() {
-			return value;
-		}
-
-		public void setValue(int value) {
-			this.value = value;
-		}
-
-		public Move getMove() {
-			return move;
-		}
-
-		public void setMove(Move move) {
-			this.move = move;
-		}
-
-		/** Adds in a new child node */
-		public void addChildNode() {
-
-		}
-	}
-
 	// We can afford 3 ply toilet paper, unlike the University
 	public static final int PLY_LENGTH = 3;
 
@@ -62,7 +13,7 @@ public class DecisionTree {
 	private Board board;
 
 	// The root node of the decision tree
-	private decisionNode rootNode;
+	private DecisionNode rootNode;
 
 	// The string of the player
 	String playerString;
@@ -72,7 +23,7 @@ public class DecisionTree {
 		this.board = board;
 		this.playerString = playerString;
 		// Create a new root node
-		rootNode = new decisionNode();
+		rootNode = new DecisionNode();
 		// Start calculation of possible moves.
 	}
 
@@ -122,7 +73,7 @@ public class DecisionTree {
 	 * Calculates the moves for the board, and places them in the speicified
 	 * node
 	 */
-	private void calculateMoves(Board board, decisionNode node, String player) {
+	private void calculateMoves(Board board, DecisionNode node, String player) {
 
 		int i;
 		int j;
@@ -137,6 +88,8 @@ public class DecisionTree {
 						// H can move right
 						// V can move right
 						addMoveToTree(new Move(i + 1, j, Direction.RIGHT), player, node);
+						// Recurse through next move
+						
 					}
 					if (board.isFree(i, j + 1, player)) {
 						// H can move up
@@ -161,6 +114,11 @@ public class DecisionTree {
 			}
 		}
 
+	}
+
+
+	private void addNodeToTree(Move move, String player, DecisionNode node) {
+		
 	}
 
 	/**
