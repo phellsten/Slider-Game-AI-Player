@@ -132,6 +132,7 @@ public class DecisionTree {
 		if (newNode.getMoves().size() == PLY_LENGTH)
 		{
 			// Ply limit reached
+			// Remove boards from the nodes
 		}
 	}
 
