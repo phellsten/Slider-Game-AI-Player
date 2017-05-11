@@ -19,10 +19,11 @@ public class DecisionNode {
 			}
 
 			/**
-			 * Constructor for a child node, with parent node taken as an argumenet
+			 * Constructor for a child node, with the parent node taken as an arguement
 			 */
 			DecisionNode(DecisionNode parentNode) {
 				this.parentNode = parentNode;
+				parentNode.addChildNode(this);
 				moves.addAll(parentNode.moves);
 			}
 
@@ -40,8 +41,8 @@ public class DecisionNode {
 				this.value = value;
 			}
 
-			public Move getMove() {
-				return move;
+			public LinkedList<Move> getMoves() {
+				return moves;
 			}
 
 			public void setMove(Move move) {
@@ -49,7 +50,7 @@ public class DecisionNode {
 			}
 
 			/** Adds in a new child node */
-			public void addChildNode() {
-
+			public void addChildNode(DecisionNode nde) {
+				childNodes.add(nde);
 			}
 }
