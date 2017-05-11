@@ -37,7 +37,7 @@ public class DecisionTree {
 	/**
 	 * Returns a reconstructed board from a list of moves and the original board
 	 */
-	public Board constructBoard(Board currentboard, LinkedList<Move> moves) {
+	public Board constructBoard(LinkedList<Move> moves) {
 		Board newBoard = new Board(currentboard);
 
 		LinkedList<Move> newMoves = new LinkedList<>(moves);
@@ -99,16 +99,21 @@ public class DecisionTree {
 				if (board.blocks[i][j].equals(player)) {
 					if (board.isFree(i + 1, j, player)) {
 						nde = newNode(new Move(i + 1, j, Direction.RIGHT), node);
+						
+						// Perform recursion on the new node
+						calculateMoves(constructBoard(node.getMoves()), nde, swapPlayer(player));
 					}
 					if (board.isFree(i, j + 1, player)) {
 						// H can move up
 						// V can move up
 						nde = newNode(new Move(i, j + 1, Direction.UP), node);
+						calculateMoves(constructBoard(node.getMoves()), nde, swapPlayer(player));
 					}
 					if (board.isFree(i, j - 1, player)) {
 						// only H can move down
 						if (player == "H") {
 							nde = newNode(new Move(i, j - 1, Direction.DOWN), node);
+							calculateMoves(constructBoard(node.getMoves()), nde, swapPlayer(player));
 						}
 
 					}
@@ -116,6 +121,7 @@ public class DecisionTree {
 						// only V can move left
 						if (player == "V") {
 							nde = newNode(new Move(i - 1, j, Direction.LEFT), node);
+							calculateMoves(constructBoard(node.getMoves()), nde, swapPlayer(player));
 						}
 					}
 				}
