@@ -78,6 +78,11 @@ public class DecisionTree {
 		LinkedList<Move> newMoves = new LinkedList<>(moves);
 		while(!moves.isEmpty()) {
 			Move nextMove = newMoves.pop();
+			
+			if (nextMove == null) {
+				continue;
+			}
+			
 			int x = nextMove.i;
 			int y = nextMove.j;
 			Direction d = nextMove.d;
