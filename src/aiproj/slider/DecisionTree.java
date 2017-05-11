@@ -70,14 +70,10 @@ public class DecisionTree {
 	}
 
 	/** Swaps the player strings around from H to V and vice versa */
-	private String swapPlayer(String player)
-	{
-		if (player.equals(VER_PLAYER))
-		{
+	private String swapPlayer(String player) {
+		if (player.equals(VER_PLAYER)) {
 			return HOR_PLAYER;
-		}
-		else
-		{
+		} else {
 			return VER_PLAYER;
 		}
 	}
@@ -102,7 +98,7 @@ public class DecisionTree {
 						// V can move right
 						addMoveToTree(new Move(i + 1, j, Direction.RIGHT), player, node);
 						// Recurse through next move
-						
+
 					}
 					if (board.isFree(i, j + 1, player)) {
 						// H can move up
@@ -131,7 +127,7 @@ public class DecisionTree {
 
 	/** Adds a node to the decision Tree */
 	private void addNodeToTree(Move move, String player, DecisionNode node) {
-		
+
 	}
 
 	/**
