@@ -16,7 +16,7 @@ public class DecisionTree {
 	}
 
 	// We can afford 3 ply toilet paper, unlike the University
-	public static final int PLY_LENGTH = 3;
+	public static final int PLY_LENGTH = 8;
 	public final String HOR_PLAYER = "H";
 	public final String VER_PLAYER = "V";
 
@@ -65,7 +65,7 @@ public class DecisionTree {
 			} else if (d == Direction.LEFT) {
 				x-=1;
 			}
-			if(x <= newBoard.size || y <= newBoard.size) {
+			if(x < newBoard.size && y < newBoard.size) {
 				newBoard.blocks[x][y] = piece;
 			}
 			System.out.println("*"+i+": ");
