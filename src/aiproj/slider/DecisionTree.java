@@ -99,10 +99,6 @@ public class DecisionTree {
 		}
 		DecisionNode nde;
 		
-		System.out.println("ORIGINAL BOARD");
-		System.out.println("ID " + this.rootBoard.boardID);
-		this.rootBoard.printDebug();
-		
 		// Now calculate the new board
 		Board newBoard = constructBoard(node.getMoves());
 		
@@ -117,9 +113,10 @@ public class DecisionTree {
 						System.out.println("Position " + i + " " + j + " Can Move Right");
 						Move mve = new Move(i, j, Direction.RIGHT);
 						nde = newNode(mve, node);
+						// Print the new board
+						newBoard.printDebug();
 						// Perform recursion on the new node
 						moved = true;
-						System.out.println("RECURSING");
 						calculateMoves(nde, swapPlayer(player));
 					}
 					if (newBoard.isFree(i, j + 1, player)) {
@@ -127,6 +124,7 @@ public class DecisionTree {
 						Move mve = new Move(i, j, Direction.UP);
 						nde = newNode(mve, node);
 						System.out.println("Position " + i + " " + j + " Can Move Up");
+						newBoard.printDebug();
 						calculateMoves(nde, swapPlayer(player));
 					}
 					if (newBoard.isFree(i, j - 1, player)) {
@@ -135,7 +133,7 @@ public class DecisionTree {
 							moved = true;
 							System.out.println("Position " + i + " " + j + " Can Move Down");
 							nde = newNode(new Move(i, j, Direction.DOWN), node);
-							System.out.println("RECURSING");
+							newBoard.printDebug();
 							calculateMoves(nde, swapPlayer(player));
 						} 
 					}
@@ -145,8 +143,7 @@ public class DecisionTree {
 							moved = true;
 							System.out.println("Position " + i + " " + j + " Can Move Left");
 							nde = newNode(new Move(i, j, Direction.LEFT), node);
-							System.out.println("NEW NODE NO MOVES " + nde.getMoves().size());
-							System.out.println("RECURSING");
+							newBoard.printDebug();
 							calculateMoves(nde, swapPlayer(player));
 						}
 					}
@@ -157,16 +154,13 @@ public class DecisionTree {
 						nde = newNode(null, node);
 						return;
 					}
-					System.out.println("Finished Move\n");
 				}
 			}
 		}
 		// Finished with node, possibly perform clean up
-		System.out.println("Finished visiting");
 	}
 
 	/**
-	 * Adds a node to the decision Tree, making the new node a child of the
 	 * defined parent node
 	 */
 	private DecisionNode newNode(Move move, DecisionNode parentNode) {
