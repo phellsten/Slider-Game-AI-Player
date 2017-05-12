@@ -106,8 +106,6 @@ public class DecisionTree {
 		for (j = 0; j < newBoard.size; j++) {
 			for (i = 0; i < newBoard.size; i++) {
 				if (newBoard.blocks[i][j].equals(player)) {
-					System.out.println("BEFORE MOVE NEW BOARD ID " + newBoard.boardID);
-					newBoard.printDebug();
 					boolean moved = false;
 					if (newBoard.isFree(i + 1, j, player)) {
 						System.out.println("Position " + i + " " + j + " Can Move Right");
@@ -117,6 +115,11 @@ public class DecisionTree {
 						newBoard.printDebug();
 						// Perform recursion on the new node
 						moved = true;
+						if (nde.getMoves().size() == PLY_LENGTH)
+						{
+							System.out.println("*&^& MOVE RET");
+							return;
+						}
 						calculateMoves(nde, swapPlayer(player));
 					}
 					if (newBoard.isFree(i, j + 1, player)) {
@@ -125,6 +128,10 @@ public class DecisionTree {
 						nde = newNode(mve, node);
 						System.out.println("Position " + i + " " + j + " Can Move Up");
 						newBoard.printDebug();
+						if (nde.getMoves().size() == PLY_LENGTH)
+						{
+							return;
+						}
 						calculateMoves(nde, swapPlayer(player));
 					}
 					if (newBoard.isFree(i, j - 1, player)) {
@@ -134,6 +141,10 @@ public class DecisionTree {
 							System.out.println("Position " + i + " " + j + " Can Move Down");
 							nde = newNode(new Move(i, j, Direction.DOWN), node);
 							newBoard.printDebug();
+							if (nde.getMoves().size() == PLY_LENGTH)
+							{
+								return;
+							}
 							calculateMoves(nde, swapPlayer(player));
 						} 
 					}
@@ -144,6 +155,10 @@ public class DecisionTree {
 							System.out.println("Position " + i + " " + j + " Can Move Left");
 							nde = newNode(new Move(i, j, Direction.LEFT), node);
 							newBoard.printDebug();
+							if (nde.getMoves().size() == PLY_LENGTH)
+							{
+								return;
+							}
 							calculateMoves(nde, swapPlayer(player));
 						}
 					}
