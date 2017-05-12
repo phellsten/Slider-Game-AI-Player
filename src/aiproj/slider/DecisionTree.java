@@ -117,7 +117,6 @@ public class DecisionTree {
 						moved = true;
 						if (nde.getMoves().size() == PLY_LENGTH)
 						{
-							System.out.println("*&^& MOVE RET");
 							return;
 						}
 						calculateMoves(nde, swapPlayer(player));
