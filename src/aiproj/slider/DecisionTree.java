@@ -100,8 +100,6 @@ public class DecisionTree {
 		// For each piece on the board
 		for (j = 0; j < board.size; j++) {
 			for (i = 0; i < board.size; i++) {
-				System.out.println("POSITION " + j + " "+ i );
-				System.out.println(board.blocks[i][j]);
 				if (board.blocks[i][j].equals(player)) {
 					boolean moved = false;
 					if (board.isFree(i + 1, j, player)) {

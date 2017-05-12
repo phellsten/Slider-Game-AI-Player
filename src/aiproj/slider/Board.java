@@ -13,38 +13,43 @@ import aiproj.slider.Move.Direction;
 public class Board {
 	String blocks[][];
 	int size;
-	
+
+	Board(Board anotherBoard) {
+		this.blocks = anotherBoard.blocks;
+		this.size = anotherBoard.size;
+	}
+
 	public Board(String args, int size) {
+
 		LinkedList<String> vars = new LinkedList<String>();
 		ArrayList<String> ar = new ArrayList<String>();
 
 		// Convert args to mutable LinkedList
-		
+
 		String[] line = args.split("\n");
 		// line = {"H + + +", "H + B +", ...
-		
-		
+
 		List<String> list = Arrays.asList(line);
 		Collections.reverse(list);
 		line = (String[]) list.toArray();
-		
-		for(int i=0; i < size; i++) {
-			for(String j : line[i].split(" ")) {
+
+		for (int i = 0; i < size; i++) {
+			for (String j : line[i].split(" ")) {
 				ar.add(j);
 			}
 		}
 
-		for(String i : ar) {
+		for (String i : ar) {
 			vars.add(i);
 		}
-				
+
 		// Read pieces of board into 2D Array
 		String board[][] = new String[size][size];
 		int i;
 		int j;
-		
-		for(i=0; i < size; i++) {
-			for(j=0; j < size; j++) {
+
+		for (i = 0; i < size; i++) {
+			for (j = 0; j < size; j++) {
 				board[j][i] = vars.pop();
 			}
 		}
@@ -53,67 +58,56 @@ public class Board {
 
 	}
 
-	Board(Board anotherBoard) {
-		this.blocks = anotherBoard.blocks;
-		this.size = anotherBoard.size;
-	}
-
 	public void movePiece(int x, int y, Direction d) {
 		String piece = blocks[x][y];
 		blocks[x][y] = "+";
-		if(d == Direction.UP) {
+		if (d == Direction.UP) {
 			y++;
-		}
-		else if(d == Direction.RIGHT) {
+		} else if (d == Direction.RIGHT) {
 			x++;
-		}
-		else if(d == Direction.DOWN) {
+		} else if (d == Direction.DOWN) {
 			y--;
-		}
-		else if(d == Direction.LEFT) {
+		} else if (d == Direction.LEFT) {
 			x--;
 		}
 		blocks[x][y] = piece;
-		
+
 	}
-	
+
 	public boolean isFree(int x, int y, String piece) {
-		
+
 		// No piece can move off the left of the board
-		if(x < 0) {
+		if (x < 0) {
 			return false;
 		}
-		
+
 		// No piece can move off the bottom of the board
 		if (y >= size) {
 			return false;
 		}
-		
+
 		// Only 'V' can move off the top of the board
-		if(y < 0) {
+		if (y < 0) {
 			if (piece.equals("V")) {
 				return true;
-			}
-			else {
+			} else {
 				return false;
 			}
 		}
-		
+
 		// Only 'H' can move off the right of the board
-		if(x >= size) {
+		if (x >= size) {
 			if (piece.equals("H")) {
 				return true;
-			}
-			else {
+			} else {
 				return false;
 			}
 		}
-		
+
 		// If tile is on the board, check if it is a free tile
-		if(blocks[x][y].equals("+")) {
+		if (blocks[x][y].equals("+")) {
 			return true;
-		}
-		else {
+		} else {
 			return false;
 		}
 	}
