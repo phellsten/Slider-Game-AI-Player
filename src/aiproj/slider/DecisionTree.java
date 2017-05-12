@@ -6,6 +6,15 @@ import java.util.LinkedList;
 import aiproj.slider.Move.Direction;
 
 public class DecisionTree {
+	DecisionTree(Board board, String playerString) {
+		// Start construction of DecisionTree, and its root nodes
+		this.board = board;
+		this.playerString = playerString;
+		// Create a new root node
+		rootNode = new DecisionNode();
+		// Start calculation of possible moves.
+	}
+
 	// We can afford 3 ply toilet paper, unlike the University
 	public static final int PLY_LENGTH = 3;
 	public final String HOR_PLAYER = "H";
@@ -19,15 +28,6 @@ public class DecisionTree {
 
 	// The string of the player
 	String playerString;
-
-	DecisionTree(Board board, String playerString) {
-		// Start construction of DecisionTree, and its root nodes
-		this.board = board;
-		this.playerString = playerString;
-		// Create a new root node
-		rootNode = new DecisionNode();
-		// Start calculation of possible moves.
-	}
 
 	/** Calculates all possible moves from the initial board config */
 	public void calculatePossibleMoves(String player) {
@@ -138,6 +138,7 @@ public class DecisionTree {
 		}
 		// Finished with node, possibly perform clean up
 		System.out.println("Finished visiting");
+		board = null;
 	}
 
 	/**
