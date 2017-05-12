@@ -43,7 +43,7 @@ public class DecisionTree {
 			System.out.println("MOVE" + mve.i + " " + mve.j + " "+ mve.d);
 		}
 		Board newBoard = new Board(board);
-		
+		int i=1;
 		for (Move mve : moves)
 		{
 			if (mve == null) {
@@ -64,12 +64,15 @@ public class DecisionTree {
 			} else if (d == Direction.LEFT) {
 				x-=1;
 			}
-			if(x >= newBoard.size || y >= newBoard.size) {
+			if(x <= newBoard.size || y <= newBoard.size) {
 				newBoard.blocks[x][y] = piece;
 			}
+			System.out.println("*"+i+": ");
+			newBoard.printDebug();
+			i++;
 
 		}
-
+		newBoard.printDebug();
 		return newBoard;
 	}
 
