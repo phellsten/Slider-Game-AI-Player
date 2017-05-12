@@ -8,7 +8,7 @@ import aiproj.slider.Move.Direction;
 public class DecisionTree {
 	public DecisionTree(Board board, String playerString) {
 		// Start construction of DecisionTree, and its root nodes
-		this.board = board;
+		this.rootBoard = board;
 		this.playerString = playerString;
 		// Create a new root node
 		this.rootNode = new DecisionNode();
@@ -21,7 +21,7 @@ public class DecisionTree {
 	public final String VER_PLAYER = "V";
 
 	// Board the game is to be played on
-	private Board board;
+	private Board rootBoard;
 
 	// The root node of the decision tree
 	private DecisionNode rootNode;
@@ -31,18 +31,19 @@ public class DecisionTree {
 
 	/** Calculates all possible moves from the initial board config */
 	public void calculatePossibleMoves(String player) {
-		calculateMoves(board, rootNode, playerString);
+		calculateMoves(rootNode, playerString);
 	}
 
 	/**
 	 * Returns a reconstructed board from a list of moves and the original board
 	 */
 	public Board constructBoard(LinkedList<Move> moves) {
+		System.out.println("Reconstructing Board");
 		for (Move mve : moves)
 		{
-			System.out.println("MOVE" + mve.i + " " + mve.j + " "+ mve.d);
+			System.out.println("MOVE " + mve.i + " " + mve.j + " "+ mve.d);
 		}
-		Board newBoard = new Board(board);
+		Board newBoard = new Board(rootBoard);
 		int i=1;
 		for (Move mve : moves)
 		{
@@ -68,10 +69,8 @@ public class DecisionTree {
 				newBoard.blocks[x][y] = piece;
 			}
 			System.out.println("*"+i+": ");
-			newBoard.printDebug();
 			i++;
 		}
-		newBoard.printDebug();
 		return newBoard;
 	}
 
@@ -88,57 +87,67 @@ public class DecisionTree {
 	 * Calculates the moves for the board, and places them in the speicified
 	 * node
 	 */
-	private void calculateMoves(Board board, DecisionNode node, String player) {
+	private void calculateMoves(DecisionNode node, String player) {
 		int i;
 		int j;
-		System.out.println("Player " + player);
 		// Check to see if the ply limit has been reached. If so don't process
-		// the node
+		// the nodes		
+		
 		if (node.getMoves().size() >= PLY_LENGTH) {
 			System.out.println("Ply limit reached");
 			return;
 		}
-		board.printDebug();
 		DecisionNode nde;
+		
+		System.out.println("ORIGINAL BOARD");
+		System.out.println("ID " + this.rootBoard.boardID);
+		this.rootBoard.printDebug();
+		
+		// Now calculate the new board
+		Board newBoard = constructBoard(node.getMoves());
+		
 		// For each piece on the board
-		for (j = 0; j < board.size; j++) {
-			for (i = 0; i < board.size; i++) {
-				if (board.blocks[i][j].equals(player)) {
+		for (j = 0; j < newBoard.size; j++) {
+			for (i = 0; i < newBoard.size; i++) {
+				if (newBoard.blocks[i][j].equals(player)) {
+					System.out.println("BEFORE MOVE NEW BOARD ID " + newBoard.boardID);
+					newBoard.printDebug();
 					boolean moved = false;
-					if (board.isFree(i + 1, j, player)) {
+					if (newBoard.isFree(i + 1, j, player)) {
 						System.out.println("Position " + i + " " + j + " Can Move Right");
 						Move mve = new Move(i, j, Direction.RIGHT);
 						nde = newNode(mve, node);
 						// Perform recursion on the new node
 						moved = true;
 						System.out.println("RECURSING");
-						calculateMoves(board, nde, swapPlayer(player));
+						calculateMoves(nde, swapPlayer(player));
 					}
-					if (board.isFree(i, j + 1, player)) {
+					if (newBoard.isFree(i, j + 1, player)) {
 						moved = true;
 						Move mve = new Move(i, j, Direction.UP);
 						nde = newNode(mve, node);
 						System.out.println("Position " + i + " " + j + " Can Move Up");
-						calculateMoves(board, nde, swapPlayer(player));
+						calculateMoves(nde, swapPlayer(player));
 					}
-					if (board.isFree(i, j - 1, player)) {
+					if (newBoard.isFree(i, j - 1, player)) {
 						// only H can move down
 						if (player == "H") {
 							moved = true;
 							System.out.println("Position " + i + " " + j + " Can Move Down");
 							nde = newNode(new Move(i, j, Direction.DOWN), node);
 							System.out.println("RECURSING");
-							calculateMoves(board, nde, swapPlayer(player));
+							calculateMoves(nde, swapPlayer(player));
 						} 
 					}
-					if (board.isFree(i - 1, j, player)) {
+					if (newBoard.isFree(i - 1, j, player)) {
 						// only V can move left
 						if (player == "V") {
 							moved = true;
 							System.out.println("Position " + i + " " + j + " Can Move Left");
 							nde = newNode(new Move(i, j, Direction.LEFT), node);
+							System.out.println("NEW NODE NO MOVES " + nde.getMoves().size());
 							System.out.println("RECURSING");
-							calculateMoves(board, nde, swapPlayer(player));
+							calculateMoves(nde, swapPlayer(player));
 						}
 					}
 
@@ -154,7 +163,6 @@ public class DecisionTree {
 		}
 		// Finished with node, possibly perform clean up
 		System.out.println("Finished visiting");
-		board = null;
 	}
 
 	/**

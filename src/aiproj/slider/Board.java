@@ -13,10 +13,26 @@ import aiproj.slider.Move.Direction;
 public class Board {
 	String blocks[][];
 	int size;
+	
+	public int boardID;
+	
+	private String[][] copyBlocks(String blocks[][])
+	{
+		String[][] retStr = new String[this.size][this.size];
+		for (int i = 0; i<this.size; i++)
+		{
+			for (int j=0; j<this.size; j++)
+			{
+				retStr[i][j] = blocks[i][j];
+			}
+		}
+		return retStr;
+	}
 
 	Board(Board anotherBoard) {
-		this.blocks = anotherBoard.blocks;
+		this.boardID = anotherBoard.boardID + 1;
 		this.size = anotherBoard.size;
+		this.blocks = copyBlocks(anotherBoard.blocks);
 	}
 	/** Prints the board to assist with debugging */
 	public void printDebug()
@@ -35,7 +51,7 @@ public class Board {
 	}
 
 	public Board(String args, int size) {
-
+		boardID = 1;
 		LinkedList<String> vars = new LinkedList<String>();
 		ArrayList<String> ar = new ArrayList<String>();
 
@@ -74,6 +90,7 @@ public class Board {
 	}
 
 	public void movePiece(int x, int y, Direction d) {
+		System.out.println("***MOVE PIECE");
 		String piece = blocks[x][y];
 		blocks[x][y] = "+";
 		if (d == Direction.UP) {
