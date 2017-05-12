@@ -197,21 +197,33 @@ public class DecisionTree {
 
 		int value = 0;
 		// check if accessing correct
-		int i, j;
+		int i, j, numH=0, numV=0, bonus=0;
 		for (i = 0; i < board.size; i++) {
 			for (j = 0; j < board.size; j++) {
 				if (board.blocks[i][j] == "H" && player == "H") {
 					value += i;
+					numH++;
 				} else if (board.blocks[i][j] == "V" && player == "V") {
 					value += j;
+					numV++;
 				} else if (board.blocks[i][j] == "H" && player == "V") {
 					value -= i;
+					numH++;
 				} else if (board.blocks[i][j] == "V" && player == "H") {
 					value -= j;
+					numV++;
 				}
 			}
 		}
-
+		if(player == "V") {
+			bonus += (board.size - numV - 1) * board.size;
+			bonus -= (board.size - numH - 1) * board.size;
+		}
+		else if(player == "H") {
+			bonus += (board.size - numH - 1) * board.size;
+			bonus -= (board.size - numV - 1) * board.size;
+		}
+		value += bonus;
 		return value;
 	}
 }
