@@ -70,7 +70,6 @@ public class DecisionTree {
 			System.out.println("*"+i+": ");
 			newBoard.printDebug();
 			i++;
-
 		}
 		newBoard.printDebug();
 		return newBoard;
@@ -113,14 +112,14 @@ public class DecisionTree {
 						// Perform recursion on the new node
 						moved = true;
 						System.out.println("RECURSING");
-						calculateMoves(constructBoard(nde.getMoves()), nde, swapPlayer(player));
+						calculateMoves(board, nde, swapPlayer(player));
 					}
 					if (board.isFree(i, j + 1, player)) {
 						moved = true;
 						Move mve = new Move(i, j, Direction.UP);
 						nde = newNode(mve, node);
 						System.out.println("Position " + i + " " + j + " Can Move Up");
-						calculateMoves(constructBoard(nde.getMoves()), nde, swapPlayer(player));
+						calculateMoves(board, nde, swapPlayer(player));
 					}
 					if (board.isFree(i, j - 1, player)) {
 						// only H can move down
@@ -129,7 +128,7 @@ public class DecisionTree {
 							System.out.println("Position " + i + " " + j + " Can Move Down");
 							nde = newNode(new Move(i, j, Direction.DOWN), node);
 							System.out.println("RECURSING");
-							calculateMoves(constructBoard(nde.getMoves()), nde, swapPlayer(player));
+							calculateMoves(board, nde, swapPlayer(player));
 						} 
 					}
 					if (board.isFree(i - 1, j, player)) {
@@ -139,7 +138,7 @@ public class DecisionTree {
 							System.out.println("Position " + i + " " + j + " Can Move Left");
 							nde = newNode(new Move(i, j, Direction.LEFT), node);
 							System.out.println("RECURSING");
-							calculateMoves(constructBoard(nde.getMoves()), nde, swapPlayer(player));
+							calculateMoves(board, nde, swapPlayer(player));
 						}
 					}
 
