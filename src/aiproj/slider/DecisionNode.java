@@ -18,6 +18,7 @@ public class DecisionNode {
 			/** Constructor for the root node */
 			DecisionNode() {
 				this.parentNode = null;
+				moves = new LinkedList<Move>();
 			}
 
 			/**
@@ -26,6 +27,7 @@ public class DecisionNode {
 			DecisionNode(DecisionNode parentNode) {
 				this.parentNode = parentNode;
 				parentNode.addChildNode(this);
+				moves = new LinkedList<Move>();
 				moves.addAll(parentNode.moves);
 			}
 
