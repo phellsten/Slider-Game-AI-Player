@@ -6,7 +6,7 @@ import java.util.LinkedList;
 import aiproj.slider.Move.Direction;
 
 public class DecisionTree {
-	DecisionTree(Board board, String playerString) {
+	public DecisionTree(Board board, String playerString) {
 		// Start construction of DecisionTree, and its root nodes
 		this.board = board;
 		this.playerString = playerString;
@@ -92,30 +92,28 @@ public class DecisionTree {
 			System.out.println("Ply limit reached");
 			return;
 		}
+		board.printDebug();
 		DecisionNode nde;
-		System.out.println("SEARCHING FOR MOVES");
 		// For each piece on the board
 		for (j = 0; j < board.size; j++) {
 			for (i = 0; i < board.size; i++) {
 				if (board.blocks[i][j].equals(player)) {
-					board.printDebug();
 					boolean moved = false;
 					if (board.isFree(i + 1, j, player)) {
 						System.out.println("Position " + i + " " + j + " Can Move Right");
 						Move mve = new Move(i, j, Direction.RIGHT);
-						System.out.println("NEW POS ");
 						nde = newNode(mve, node);
-						node.addMove(mve);
 						// Perform recursion on the new node
 						moved = true;
 						System.out.println("RECURSING");
-						calculateMoves(constructBoard(node.getMoves()), nde, swapPlayer(player));
+						calculateMoves(constructBoard(nde.getMoves()), nde, swapPlayer(player));
 					}
 					if (board.isFree(i, j + 1, player)) {
 						moved = true;
-						nde = newNode(new Move(i, j, Direction.UP), node);
+						Move mve = new Move(i, j, Direction.UP);
+						nde = newNode(mve, node);
 						System.out.println("Position " + i + " " + j + " Can Move Up");
-						calculateMoves(constructBoard(node.getMoves()), nde, swapPlayer(player));
+						calculateMoves(constructBoard(nde.getMoves()), nde, swapPlayer(player));
 					}
 					if (board.isFree(i, j - 1, player)) {
 						// only H can move down
@@ -123,7 +121,8 @@ public class DecisionTree {
 							moved = true;
 							System.out.println("Position " + i + " " + j + " Can Move Down");
 							nde = newNode(new Move(i, j, Direction.DOWN), node);
-							calculateMoves(constructBoard(node.getMoves()), nde, swapPlayer(player));
+							System.out.println("RECURSING");
+							calculateMoves(constructBoard(nde.getMoves()), nde, swapPlayer(player));
 						} 
 					}
 					if (board.isFree(i - 1, j, player)) {
@@ -132,7 +131,8 @@ public class DecisionTree {
 							moved = true;
 							System.out.println("Position " + i + " " + j + " Can Move Left");
 							nde = newNode(new Move(i, j, Direction.LEFT), node);
-							calculateMoves(constructBoard(node.getMoves()), nde, swapPlayer(player));
+							System.out.println("RECURSING");
+							calculateMoves(constructBoard(nde.getMoves()), nde, swapPlayer(player));
 						}
 					}
 
@@ -156,7 +156,6 @@ public class DecisionTree {
 	 * defined parent node
 	 */
 	private DecisionNode newNode(Move move, DecisionNode parentNode) {
-		assert (parentNode) != null;
 		DecisionNode newNode = new DecisionNode(parentNode);
 		// Add the move in
 		newNode.addMove(move);
