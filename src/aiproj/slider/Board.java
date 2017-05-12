@@ -97,12 +97,12 @@ public class Board {
 		}
 
 		// No piece can move off the bottom of the board
-		if (y >= size) {
+		if (y < 0) {
 			return false;
 		}
 
 		// Only 'V' can move off the top of the board
-		if (y < 0) {
+		if (y >= size) {
 			if (piece.equals("V")) {
 				return true;
 			} else {
