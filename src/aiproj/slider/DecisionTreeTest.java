@@ -4,7 +4,7 @@ public class DecisionTreeTest {
 	public static void main(String[] args) {
 		System.out.println("TEST");
 		// Create a normal 3x3 board
-		Board testBoard = new Board("6\nH + + + \n" + "H + + + \n" + "H + + + \n" + "+ V V V \n", 4);
+		Board testBoard = new Board("4\nH + + + \n" + "H + + + \n" + "H + + + \n" + "+ V V V \n", 4);
 		// Make the Decision Tree Great Again
 		DecisionTree testTree = new DecisionTree(testBoard, "H");
 		
