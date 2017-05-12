@@ -56,14 +56,18 @@ public class DecisionTree {
 			String piece = newBoard.blocks[x][y];
 			newBoard.blocks[x][y] = "+";
 			if (d == Direction.UP) {
-				newBoard.blocks[x][y + 1] = piece;
+				y+=1;
 			} else if (d == Direction.RIGHT) {
-				newBoard.blocks[x + 1][y] = piece;
+				x+=1;
 			} else if (d == Direction.DOWN) {
-				newBoard.blocks[x][y - 1] = piece;
+				y-=1;
 			} else if (d == Direction.LEFT) {
-				newBoard.blocks[x - 1][y] = piece;
+				x-=1;
 			}
+			if(x >= newBoard.size || y >= newBoard.size) {
+				newBoard.blocks[x][y] = piece;
+			}
+
 		}
 
 		return newBoard;
