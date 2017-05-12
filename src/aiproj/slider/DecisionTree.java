@@ -45,7 +45,7 @@ public class DecisionTree {
 		Board newBoard = new Board(board);
 
 		LinkedList<Move> newMoves = new LinkedList<>(moves);
-		while (!moves.isEmpty()) {
+		while (!newMoves.isEmpty()) {
 			Move nextMove = newMoves.pop();
 
 			if (nextMove == null) {
