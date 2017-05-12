@@ -43,19 +43,16 @@ public class DecisionTree {
 			System.out.println("MOVE" + mve.i + " " + mve.j + " "+ mve.d);
 		}
 		Board newBoard = new Board(board);
-
-		LinkedList<Move> newMoves = new LinkedList<>(moves);
-		while (!newMoves.isEmpty()) {
-			Move nextMove = newMoves.pop();
-
-			if (nextMove == null) {
+		
+		for (Move mve : moves)
+		{
+			if (mve == null) {
 				continue;
 			}
-
-			int x = nextMove.i;
-			int y = nextMove.j;
-			Direction d = nextMove.d;
-
+			int x = mve.i;
+			int y = mve.j;
+			Direction d = mve.d;
+			
 			String piece = newBoard.blocks[x][y];
 			newBoard.blocks[x][y] = "+";
 			if (d == Direction.UP) {
@@ -67,7 +64,6 @@ public class DecisionTree {
 			} else if (d == Direction.LEFT) {
 				newBoard.blocks[x - 1][y] = piece;
 			}
-
 		}
 
 		return newBoard;
