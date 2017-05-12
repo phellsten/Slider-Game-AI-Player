@@ -26,6 +26,7 @@ public class DecisionNode {
 			 * Constructor for a child node, with the parent node taken as an arguement
 			 */
 			DecisionNode(DecisionNode parentNode) {
+				this.childNodes = new ArrayList<DecisionNode>();
 				this.parentNode = parentNode;
 				parentNode.addChildNode(this);
 				moves = new LinkedList<Move>();
