@@ -13,10 +13,11 @@ public class DecisionNode {
 			
 			boolean visited;
 
-			DecisionNode parentNode;
+			private DecisionNode parentNode;
 			
 			/** Constructor for the root node */
 			DecisionNode() {
+				this.childNodes = new ArrayList<DecisionNode>();
 				this.parentNode = null;
 				moves = new LinkedList<Move>();
 			}

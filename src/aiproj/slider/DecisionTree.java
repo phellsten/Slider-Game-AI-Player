@@ -11,7 +11,7 @@ public class DecisionTree {
 		this.board = board;
 		this.playerString = playerString;
 		// Create a new root node
-		rootNode = new DecisionNode();
+		this.rootNode = new DecisionNode();
 		// Start calculation of possible moves.
 	}
 
@@ -88,7 +88,7 @@ public class DecisionTree {
 
 		// Check to see if the ply limit has been reached. If so don't process
 		// the node
-		if (node.getMoves().size() <= PLY_LENGTH) {
+		if (node.getMoves().size() >= PLY_LENGTH) {
 			System.out.println("Ply limit reached");
 			return;
 		}
@@ -146,13 +146,14 @@ public class DecisionTree {
 	 * defined parent node
 	 */
 	private DecisionNode newNode(Move move, DecisionNode parentNode) {
+		assert (parentNode) != null;
 		DecisionNode newNode = new DecisionNode(parentNode);
 		// Add the move in
 		newNode.addMove(move);
 		return newNode;
 	}
 
-	/**
+	/**DecisionTree
 	 * Moves the DecisionTree to the appropriate node, and recalcuate bottom
 	 * values
 	 */
