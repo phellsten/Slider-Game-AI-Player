@@ -34,6 +34,7 @@ public class Board {
 		this.size = anotherBoard.size;
 		this.blocks = copyBlocks(anotherBoard.blocks);
 	}
+	
 	/** Prints the board to assist with debugging */
 	public void printDebug()
 	{
