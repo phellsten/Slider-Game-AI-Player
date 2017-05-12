@@ -82,7 +82,7 @@ public class DecisionTree {
 			return VER_PLAYER;
 		}
 	}
-
+	
 	/**
 	 * Calculates the moves for the board, and places them in the speicified
 	 * node
@@ -101,8 +101,7 @@ public class DecisionTree {
 		
 		// Now calculate the new board
 		Board newBoard = constructBoard(node.getMoves());
-		
-		// For each piece on the board
+
 		for (j = 0; j < newBoard.size; j++) {
 			for (i = 0; i < newBoard.size; i++) {
 				if (newBoard.blocks[i][j].equals(player)) {
@@ -119,7 +118,9 @@ public class DecisionTree {
 						{
 							return;
 						}
+						newBoard = null;
 						calculateMoves(nde, swapPlayer(player));
+						newBoard = constructBoard(node.getMoves());
 					}
 					if (newBoard.isFree(i, j + 1, player)) {
 						moved = true;
@@ -131,7 +132,9 @@ public class DecisionTree {
 						{
 							return;
 						}
+						newBoard = null;
 						calculateMoves(nde, swapPlayer(player));
+						newBoard = constructBoard(node.getMoves());
 					}
 					if (newBoard.isFree(i, j - 1, player)) {
 						// only H can move down
@@ -144,7 +147,9 @@ public class DecisionTree {
 							{
 								return;
 							}
+							newBoard = null;
 							calculateMoves(nde, swapPlayer(player));
+							newBoard = constructBoard(node.getMoves());
 						} 
 					}
 					if (newBoard.isFree(i - 1, j, player)) {
@@ -158,7 +163,9 @@ public class DecisionTree {
 							{
 								return;
 							}
+							newBoard = null;
 							calculateMoves(nde, swapPlayer(player));
+							newBoard = constructBoard(node.getMoves());
 						}
 					}
 
