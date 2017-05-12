@@ -21,6 +21,7 @@ public class Board {
 	/** Prints the board to assist with debugging */
 	public void printDebug()
 	{
+		System.out.println("START DEBUG");
 		// Process the board one by one to print it out
 		for (int y = this.size-1; y >= 0; y--)
 		{
@@ -30,6 +31,7 @@ public class Board {
 			}
 			System.out.print('\n');
 		}
+		System.out.println("FINISH DEBUG");
 	}
 
 	public Board(String args, int size) {
