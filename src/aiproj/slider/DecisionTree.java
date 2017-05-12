@@ -38,6 +38,10 @@ public class DecisionTree {
 	 * Returns a reconstructed board from a list of moves and the original board
 	 */
 	public Board constructBoard(LinkedList<Move> moves) {
+		for (Move mve : moves)
+		{
+			System.out.println(mve.toString());
+		}
 		Board newBoard = new Board(board);
 
 		LinkedList<Move> newMoves = new LinkedList<>(moves);
@@ -96,9 +100,12 @@ public class DecisionTree {
 		// For each piece on the board
 		for (j = 0; j < board.size; j++) {
 			for (i = 0; i < board.size; i++) {
+				System.out.println("POSITION " + j + " "+ i );
+				System.out.println(board.blocks[i][j]);
 				if (board.blocks[i][j].equals(player)) {
 					boolean moved = false;
 					if (board.isFree(i + 1, j, player)) {
+						System.out.println("Position " + i + " " + j + " Can Move Right");
 						nde = newNode(new Move(i + 1, j, Direction.RIGHT), node);
 						// Perform recursion on the new node
 						moved = true;
@@ -107,21 +114,23 @@ public class DecisionTree {
 					if (board.isFree(i, j + 1, player)) {
 						moved = true;
 						nde = newNode(new Move(i, j + 1, Direction.UP), node);
+						System.out.println("Position " + i + " " + j + " Can Move Up");
 						calculateMoves(constructBoard(node.getMoves()), nde, swapPlayer(player));
 					}
 					if (board.isFree(i, j - 1, player)) {
 						// only H can move down
 						if (player == "H") {
 							moved = true;
+							System.out.println("Position " + i + " " + j + " Can Move Down");
 							nde = newNode(new Move(i, j - 1, Direction.DOWN), node);
 							calculateMoves(constructBoard(node.getMoves()), nde, swapPlayer(player));
-						}
-
+						} 
 					}
 					if (board.isFree(i - 1, j, player)) {
 						// only V can move left
 						if (player == "V") {
 							moved = true;
+							System.out.println("Position " + i + " " + j + " Can Move Left");
 							nde = newNode(new Move(i - 1, j, Direction.LEFT), node);
 							calculateMoves(constructBoard(node.getMoves()), nde, swapPlayer(player));
 						}
@@ -133,6 +142,7 @@ public class DecisionTree {
 						nde = newNode(null, node);
 						return;
 					}
+					System.out.println("Finished Move\n");
 				}
 			}
 		}
