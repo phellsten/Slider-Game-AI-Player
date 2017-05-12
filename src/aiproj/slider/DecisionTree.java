@@ -40,8 +40,7 @@ public class DecisionTree {
 	public Board constructBoard(LinkedList<Move> moves) {
 		for (Move mve : moves)
 		{
-			System.out.println("MOVE");
-			System.out.println(mve.toString());
+			System.out.println("MOVE" + mve.i + " " + mve.j + " "+ mve.d);
 		}
 		Board newBoard = new Board(board);
 
@@ -98,15 +97,17 @@ public class DecisionTree {
 			return;
 		}
 		DecisionNode nde;
+		System.out.println("SEARCHING FOR MOVES");
 		// For each piece on the board
 		for (j = 0; j < board.size; j++) {
 			for (i = 0; i < board.size; i++) {
 				if (board.blocks[i][j].equals(player)) {
+					board.printDebug();
 					boolean moved = false;
 					if (board.isFree(i + 1, j, player)) {
 						System.out.println("Position " + i + " " + j + " Can Move Right");
-						board.printDebug();
-						Move mve = new Move(i + 1, j, Direction.RIGHT);
+						Move mve = new Move(i, j, Direction.RIGHT);
+						System.out.println("NEW POS ");
 						nde = newNode(mve, node);
 						node.addMove(mve);
 						// Perform recursion on the new node
@@ -116,7 +117,7 @@ public class DecisionTree {
 					}
 					if (board.isFree(i, j + 1, player)) {
 						moved = true;
-						nde = newNode(new Move(i, j + 1, Direction.UP), node);
+						nde = newNode(new Move(i, j, Direction.UP), node);
 						System.out.println("Position " + i + " " + j + " Can Move Up");
 						calculateMoves(constructBoard(node.getMoves()), nde, swapPlayer(player));
 					}
@@ -125,7 +126,7 @@ public class DecisionTree {
 						if (player == "H") {
 							moved = true;
 							System.out.println("Position " + i + " " + j + " Can Move Down");
-							nde = newNode(new Move(i, j - 1, Direction.DOWN), node);
+							nde = newNode(new Move(i, j, Direction.DOWN), node);
 							calculateMoves(constructBoard(node.getMoves()), nde, swapPlayer(player));
 						} 
 					}
@@ -134,7 +135,7 @@ public class DecisionTree {
 						if (player == "V") {
 							moved = true;
 							System.out.println("Position " + i + " " + j + " Can Move Left");
-							nde = newNode(new Move(i - 1, j, Direction.LEFT), node);
+							nde = newNode(new Move(i, j, Direction.LEFT), node);
 							calculateMoves(constructBoard(node.getMoves()), nde, swapPlayer(player));
 						}
 					}
