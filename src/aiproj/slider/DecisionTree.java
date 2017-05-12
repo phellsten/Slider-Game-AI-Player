@@ -16,7 +16,7 @@ public class DecisionTree {
 	}
 
 	// We can afford 3 ply toilet paper, unlike the University
-	public static final int PLY_LENGTH = 8;
+	public static final int PLY_LENGTH = 3;
 	public final String HOR_PLAYER = "H";
 	public final String VER_PLAYER = "V";
 
