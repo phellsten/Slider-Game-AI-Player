@@ -18,6 +18,19 @@ public class Board {
 		this.blocks = anotherBoard.blocks;
 		this.size = anotherBoard.size;
 	}
+	/** Prints the board to assist with debugging */
+	public void printDebug()
+	{
+		// Process the board one by one to print it out
+		for (int y = this.size-1; y >= 0; y--)
+		{
+			for (int x = 0; x < this.size; x++)
+			{
+				System.out.print(blocks[x][y]);
+			}
+			System.out.print('\n');
+		}
+	}
 
 	public Board(String args, int size) {
 

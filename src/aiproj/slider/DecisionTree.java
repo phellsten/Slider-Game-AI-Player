@@ -40,6 +40,7 @@ public class DecisionTree {
 	public Board constructBoard(LinkedList<Move> moves) {
 		for (Move mve : moves)
 		{
+			System.out.println("MOVE");
 			System.out.println(mve.toString());
 		}
 		Board newBoard = new Board(board);
@@ -89,7 +90,7 @@ public class DecisionTree {
 	private void calculateMoves(Board board, DecisionNode node, String player) {
 		int i;
 		int j;
-
+		System.out.println("Player " + player);
 		// Check to see if the ply limit has been reached. If so don't process
 		// the node
 		if (node.getMoves().size() >= PLY_LENGTH) {
@@ -104,9 +105,13 @@ public class DecisionTree {
 					boolean moved = false;
 					if (board.isFree(i + 1, j, player)) {
 						System.out.println("Position " + i + " " + j + " Can Move Right");
-						nde = newNode(new Move(i + 1, j, Direction.RIGHT), node);
+						board.printDebug();
+						Move mve = new Move(i + 1, j, Direction.RIGHT);
+						nde = newNode(mve, node);
+						node.addMove(mve);
 						// Perform recursion on the new node
 						moved = true;
+						System.out.println("RECURSING");
 						calculateMoves(constructBoard(node.getMoves()), nde, swapPlayer(player));
 					}
 					if (board.isFree(i, j + 1, player)) {
