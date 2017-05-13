@@ -39,38 +39,36 @@ public class DecisionTree {
 	 */
 	public Board constructBoard(LinkedList<Move> moves) {
 		System.out.println("Reconstructing Board");
-		for (Move mve : moves)
-		{
-			System.out.println("MOVE " + mve.i + " " + mve.j + " "+ mve.d);
+		for (Move mve : moves) {
+			System.out.println("MOVE " + mve.i + " " + mve.j + " " + mve.d);
 		}
 		Board newBoard = new Board(rootBoard);
-		int i=1;
-		for (Move mve : moves)
-		{
+		int i = 1;
+		for (Move mve : moves) {
 			if (mve == null) {
 				continue;
 			}
 			int x = mve.i;
 			int y = mve.j;
 			Direction d = mve.d;
-			
+
 			String piece = newBoard.blocks[x][y];
 			newBoard.blocks[x][y] = "+";
 			if (d == Direction.UP) {
-				y+=1;
+				y += 1;
 			} else if (d == Direction.RIGHT) {
 				System.out.println("RIGHT");
-				x+=1;
+				x += 1;
 				System.out.println(x);
 			} else if (d == Direction.DOWN) {
-				y-=1;
+				y -= 1;
 			} else if (d == Direction.LEFT) {
-				x-=1;
+				x -= 1;
 			}
-			if(x < newBoard.size && y < newBoard.size) {
+			if (x < newBoard.size && y < newBoard.size) {
 				newBoard.blocks[x][y] = piece;
 			}
-			System.out.println("*"+i+": ");
+			System.out.println("*" + i + ": ");
 			i++;
 		}
 		return newBoard;
@@ -84,7 +82,7 @@ public class DecisionTree {
 			return VER_PLAYER;
 		}
 	}
-	
+
 	/**
 	 * Calculates the moves for the board, and places them in the speicified
 	 * node
@@ -93,14 +91,14 @@ public class DecisionTree {
 		int i;
 		int j;
 		// Check to see if the ply limit has been reached. If so don't process
-		// the nodes		
-		
+		// the nodes
+
 		if (node.getMoves().size() >= PLY_LENGTH) {
 			System.out.println("Ply limit reached");
 			return;
 		}
 		DecisionNode nde;
-		
+
 		// Now calculate the new board
 		Board newBoard = constructBoard(node.getMoves());
 		newBoard.printDebug();
@@ -116,8 +114,7 @@ public class DecisionTree {
 						// Print the new board
 						// Perform recursion on the new node
 						moved = true;
-						if (nde.getMoves().size() == PLY_LENGTH)
-						{
+						if (nde.getMoves().size() == PLY_LENGTH) {
 							return;
 						}
 						newBoard = null;
@@ -129,8 +126,7 @@ public class DecisionTree {
 						Move mve = new Move(i, j, Direction.UP);
 						nde = newNode(mve, node);
 						System.out.println("Position " + i + " " + j + " Can Move Up");
-						if (nde.getMoves().size() == PLY_LENGTH)
-						{
+						if (nde.getMoves().size() == PLY_LENGTH) {
 							return;
 						}
 						newBoard = null;
@@ -143,14 +139,13 @@ public class DecisionTree {
 							moved = true;
 							System.out.println("Position " + i + " " + j + " Can Move Down");
 							nde = newNode(new Move(i, j, Direction.DOWN), node);
-							if (nde.getMoves().size() == PLY_LENGTH)
-							{
+							if (nde.getMoves().size() == PLY_LENGTH) {
 								return;
 							}
 							newBoard = null;
 							calculateMoves(nde, swapPlayer(player));
 							newBoard = constructBoard(node.getMoves());
-						} 
+						}
 					}
 					if (newBoard.isFree(i - 1, j, player)) {
 						// only V can move left
@@ -158,8 +153,7 @@ public class DecisionTree {
 							moved = true;
 							System.out.println("Position " + i + " " + j + " Can Move Left");
 							nde = newNode(new Move(i, j, Direction.LEFT), node);
-							if (nde.getMoves().size() == PLY_LENGTH)
-							{
+							if (nde.getMoves().size() == PLY_LENGTH) {
 								return;
 							}
 							newBoard = null;
@@ -190,23 +184,33 @@ public class DecisionTree {
 		return newNode;
 	}
 
-	/**DecisionTree
-	 * Moves the DecisionTree to the appropriate node, and recalcuate bottom
-	 * values
+	/**
+	 * DecisionTree Moves the DecisionTree to the appropriate node, and
+	 * recalcuate bottom values
 	 */
 	public void move(Move move) {
 		// Shift the parent node
-		for (DecisionNode nde : rootNode.getChildNodes())
-		{
-			System.out.println(nde.getMoves().get(1));
+		for (DecisionNode nde : rootNode.getChildNodes()) {
+			for (Move mve : nde.getMoves()) {
+				// Found the required move
+				if (mve.i == move.i && move.j == mve.j && move.d == mve.d) {
+					shiftBoard(nde);
+				}
+			}
 		}
+	}
+
+	/** Peforms a shift on the board */
+	private void shiftBoard(DecisionNode shiftNode) {
+		this.rootNode = shiftNode;
+		// Change the moves stored to remove original node
 	}
 
 	private int getUtility(Board board, String player) {
 
 		int value = 0;
 		// check if accessing correct
-		int i, j, numH=0, numV=0, bonus=0;
+		int i, j, numH = 0, numV = 0, bonus = 0;
 		for (i = 0; i < board.size; i++) {
 			for (j = 0; j < board.size; j++) {
 				if (board.blocks[i][j] == "H" && player == "H") {
@@ -224,11 +228,10 @@ public class DecisionTree {
 				}
 			}
 		}
-		if(player == "V") {
+		if (player == "V") {
 			bonus += (board.size - numV - 1) * board.size;
 			bonus -= (board.size - numH - 1) * board.size;
-		}
-		else if(player == "H") {
+		} else if (player == "H") {
 			bonus += (board.size - numH - 1) * board.size;
 			bonus -= (board.size - numV - 1) * board.size;
 		}
