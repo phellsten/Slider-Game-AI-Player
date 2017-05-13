@@ -10,11 +10,11 @@ public class DecisionTreeTest {
 		DecisionTree testTree = new DecisionTree(testBoard, "H");
 		// Test the moves
 		testTree.calculatePossibleMoves("H");
-		
+		testTree.debug();
 		System.out.println("________________BEFORE MOVE __________________");
-		testTree.move(new Move(0,1,Move.Direction.RIGHT));
+		//testTree.move(new Move(0,1,Move.Direction.RIGHT));
+		//testTree.debug();
 		// Print the new board
-		testTree.extendNodes();
-		// Test the child nodes in the tree
+		// testTree.extendNodes();
 	}
 }

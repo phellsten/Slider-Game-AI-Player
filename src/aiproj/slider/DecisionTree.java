@@ -23,6 +23,15 @@ public class DecisionTree {
 	// Board the game is to be played on
 	private Board rootBoard;
 
+	public void debug() {
+		System.out.println("Root Node");
+		System.out.println(rootNode.getMoves().size());
+		System.out.println("Second Level");
+		System.out.println(rootNode.getChildNodes().get(0).getMoves().size());
+		System.out.println("Third Level nodes");
+		System.out.println(rootNode.getChildNodes().get(0).getChildNodes().get(0).getChildNodes().get(0).getChildNodes().size());
+	}
+
 	// The root node of the decision tree
 	private DecisionNode rootNode;
 
@@ -33,26 +42,25 @@ public class DecisionTree {
 	public void calculatePossibleMoves(String player) {
 		calculateMoves(rootNode, playerString);
 	}
-	
-	/** Extends node out. Used after a board move to make the new nodes*/
-	public void extendNodes()
-	{
+
+	/** Extends node out. Used after a board move to make the new nodes */
+	public void extendNodes() {
 		// Find the bottom of each branch
 		recNodeExtension(this.rootNode);
 	}
-	
-	private void recNodeExtension(DecisionNode nde)
-	{
-		if (nde.getChildNodes().size() == 0)
-		{
+
+	private void recNodeExtension(DecisionNode nde) {
+		if (nde.getChildNodes().size() == 0) {
+			System.out.println("Node Moves " + nde.getMoves().size());
+			//System.out.println("Node Moves " + nde.getMoves().get(0) + " " + nde.getMoves().get(1));
+			System.out.println("CreateBoard");
+			rootBoard.printDebug();
 			// Have to create new nodes
-			System.out.println("HAVE TO CREATE NEW NODES");
 			calculateMoves(nde, this.playerString);
 			return;
 		}
 		// Recurse through each branch to find end
-		for (DecisionNode child : nde.getChildNodes())
-		{
+		for (DecisionNode child : nde.getChildNodes()) {
 			recNodeExtension(child);
 		}
 	}
@@ -61,7 +69,11 @@ public class DecisionTree {
 	 * Returns a reconstructed board from a list of moves and the original board
 	 */
 	public Board constructBoard(LinkedList<Move> moves) {
-		System.out.println("Reconstructing Board");
+		System.out.print("Reconstructing Board with Moves ");
+		for (Move mve : moves) {
+			System.out.print(mve + " ");
+		}
+		System.out.print("\n");
 		Board newBoard = new Board(rootBoard);
 		int i = 1;
 		for (Move mve : moves) {
@@ -112,7 +124,7 @@ public class DecisionTree {
 		// Check to see if the ply limit has been reached. If so don't process
 		// the nodes
 
-		if (node.getMoves().size() == PLY_LENGTH) {
+		if (node.getMoves().size() >= PLY_LENGTH) {
 			System.out.println("Ply limit reached");
 			return;
 		}
@@ -133,9 +145,7 @@ public class DecisionTree {
 						// Print the new board
 						// Perform recursion on the new node
 						moved = true;
-						if (nde.getMoves().size() == PLY_LENGTH) {
-							return;
-						}
+						System.out.println("NDE SIZE " + nde.getMoves().size());
 						newBoard = null;
 						calculateMoves(nde, swapPlayer(player));
 						newBoard = constructBoard(node.getMoves());
@@ -145,9 +155,6 @@ public class DecisionTree {
 						Move mve = new Move(i, j, Direction.UP);
 						nde = newNode(mve, node);
 						System.out.println("Position " + i + " " + j + " Can Move Up");
-						if (nde.getMoves().size() == PLY_LENGTH) {
-							return;
-						}
 						newBoard = null;
 						calculateMoves(nde, swapPlayer(player));
 						newBoard = constructBoard(node.getMoves());
@@ -158,9 +165,6 @@ public class DecisionTree {
 							moved = true;
 							System.out.println("Position " + i + " " + j + " Can Move Down");
 							nde = newNode(new Move(i, j, Direction.DOWN), node);
-							if (nde.getMoves().size() == PLY_LENGTH) {
-								return;
-							}
 							newBoard = null;
 							calculateMoves(nde, swapPlayer(player));
 							newBoard = constructBoard(node.getMoves());
@@ -172,9 +176,6 @@ public class DecisionTree {
 							moved = true;
 							System.out.println("Position " + i + " " + j + " Can Move Left");
 							nde = newNode(new Move(i, j, Direction.LEFT), node);
-							if (nde.getMoves().size() == PLY_LENGTH) {
-								return;
-							}
 							newBoard = null;
 							calculateMoves(nde, swapPlayer(player));
 							newBoard = constructBoard(node.getMoves());
