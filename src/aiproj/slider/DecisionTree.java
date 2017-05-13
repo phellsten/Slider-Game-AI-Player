@@ -69,11 +69,6 @@ public class DecisionTree {
 	 * Returns a reconstructed board from a list of moves and the original board
 	 */
 	public Board constructBoard(LinkedList<Move> moves) {
-		System.out.print("Reconstructing Board with Moves ");
-		for (Move mve : moves) {
-			System.out.print(mve + " ");
-		}
-		System.out.print("\n");
 		Board newBoard = new Board(rootBoard);
 		int i = 1;
 		for (Move mve : moves) {
@@ -123,7 +118,7 @@ public class DecisionTree {
 		int j;
 		// Check to see if the ply limit has been reached. If so don't process
 		// the nodes
-
+		
 		if (node.getMoves().size() >= PLY_LENGTH) {
 			System.out.println("Ply limit reached");
 			return;
@@ -145,19 +140,24 @@ public class DecisionTree {
 						// Print the new board
 						// Perform recursion on the new node
 						moved = true;
-						System.out.println("NDE SIZE " + nde.getMoves().size());
-						newBoard = null;
-						calculateMoves(nde, swapPlayer(player));
-						newBoard = constructBoard(node.getMoves());
+						if (node.getMoves().size() < PLY_LENGTH)
+						{
+							newBoard = null;
+							calculateMoves(nde, swapPlayer(player));
+							newBoard = constructBoard(node.getMoves());
+						}
 					}
 					if (newBoard.isFree(i, j + 1, player)) {
 						moved = true;
 						Move mve = new Move(i, j, Direction.UP);
 						nde = newNode(mve, node);
 						System.out.println("Position " + i + " " + j + " Can Move Up");
-						newBoard = null;
-						calculateMoves(nde, swapPlayer(player));
-						newBoard = constructBoard(node.getMoves());
+						if (node.getMoves().size() < PLY_LENGTH)
+						{
+							newBoard = null;
+							calculateMoves(nde, swapPlayer(player));
+							newBoard = constructBoard(node.getMoves());
+						}
 					}
 					if (newBoard.isFree(i, j - 1, player)) {
 						// only H can move down
@@ -165,9 +165,12 @@ public class DecisionTree {
 							moved = true;
 							System.out.println("Position " + i + " " + j + " Can Move Down");
 							nde = newNode(new Move(i, j, Direction.DOWN), node);
-							newBoard = null;
-							calculateMoves(nde, swapPlayer(player));
-							newBoard = constructBoard(node.getMoves());
+							if (node.getMoves().size() < PLY_LENGTH)
+							{
+								newBoard = null;
+								calculateMoves(nde, swapPlayer(player));
+								newBoard = constructBoard(node.getMoves());
+							}
 						}
 					}
 					if (newBoard.isFree(i - 1, j, player)) {
@@ -176,9 +179,12 @@ public class DecisionTree {
 							moved = true;
 							System.out.println("Position " + i + " " + j + " Can Move Left");
 							nde = newNode(new Move(i, j, Direction.LEFT), node);
-							newBoard = null;
-							calculateMoves(nde, swapPlayer(player));
-							newBoard = constructBoard(node.getMoves());
+							if (node.getMoves().size() < PLY_LENGTH)
+							{
+								newBoard = null;
+								calculateMoves(nde, swapPlayer(player));
+								newBoard = constructBoard(node.getMoves());
+							}
 						}
 					}
 
