@@ -33,6 +33,29 @@ public class DecisionTree {
 	public void calculatePossibleMoves(String player) {
 		calculateMoves(rootNode, playerString);
 	}
+	
+	/** Extends node out. Used after a board move to make the new nodes*/
+	public void extendNodes()
+	{
+		// Find the bottom of each branch
+		recNodeExtension(this.rootNode);
+	}
+	
+	private void recNodeExtension(DecisionNode nde)
+	{
+		if (nde.getChildNodes().size() == 0)
+		{
+			// Have to create new nodes
+			System.out.println("HAVE TO CREATE NEW NODES");
+			System.out.println("MOVES " + nde.getMoves().size());
+			return;
+		}
+		// Recurse through each branch to find end
+		for (DecisionNode child : nde.getChildNodes())
+		{
+			recNodeExtension(child);
+		}
+	}
 
 	/**
 	 * Returns a reconstructed board from a list of moves and the original board

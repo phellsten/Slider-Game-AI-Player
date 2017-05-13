@@ -12,6 +12,7 @@ public class DecisionTreeTest {
 		testTree.calculatePossibleMoves("H");
 		testTree.move(new Move(0,1,Move.Direction.RIGHT));
 		// Print the new board
+		testTree.extendNodes();
 		// Test the child nodes in the tree
 	}
 }
