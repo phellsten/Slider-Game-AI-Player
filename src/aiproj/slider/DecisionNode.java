@@ -12,12 +12,9 @@ public class DecisionNode {
 
 	boolean childGenerated;
 
-	private DecisionNode parentNode;
-
 	/** Constructor for the root node */
 	DecisionNode() {
 		this.childNodes = new ArrayList<DecisionNode>();
-		this.parentNode = null;
 		moves = new LinkedList<Move>();
 	}
 
@@ -26,7 +23,6 @@ public class DecisionNode {
 	 */
 	DecisionNode(DecisionNode parentNode) {
 		this.childNodes = new ArrayList<DecisionNode>();
-		this.parentNode = parentNode;
 		parentNode.addChildNode(this);
 		moves = new LinkedList<Move>();
 		moves.addAll(parentNode.moves);
