@@ -15,6 +15,19 @@ public class DecisionTree {
 		// Start calculation of possible moves.
 	}
 
+	public void debug() {
+		System.out.println("Printing root node moves");
+		for (Move mve : rootNode.getMoves()) {
+			System.out.println(mve);
+		}
+		System.out.println("Printing Child Node Moves");
+		for (DecisionNode nde : rootNode.getChildNodes()) {
+			for (Move mve : nde.getMoves()) {
+				System.out.println(mve);
+			}
+		}
+	}
+
 	// We can afford 3 ply toilet paper, unlike the University
 	public static final int PLY_LENGTH = 3;
 	public final String HOR_PLAYER = "H";
@@ -203,17 +216,16 @@ public class DecisionTree {
 					this.rootBoard = constructBoard(nde.getMoves());
 					System.out.println("NEW BOARD TEST");
 					rootBoard.printDebug();
+					rootNode.getMoves().remove(0);
 					removeRedundantMoves(rootNode);
 				}
 			}
 		}
 	}
-	
+
 	/** Recurses down the tree to remove uneeded moves */
-	private void removeRedundantMoves(DecisionNode nde)
-	{
-		for (DecisionNode childNode : nde.getChildNodes())
-		{
+	private void removeRedundantMoves(DecisionNode nde) {
+		for (DecisionNode childNode : nde.getChildNodes()) {
 			childNode.getMoves().remove(0);
 			removeRedundantMoves(childNode);
 		}

@@ -11,5 +11,7 @@ public class DecisionTreeTest {
 		// Test the moves
 		testTree.calculatePossibleMoves("H");
 		testTree.move(new Move(0,1,Move.Direction.RIGHT));
+		// Test the child nodes in the tree
+		testTree.debug();
 	}
 }

@@ -10,7 +10,7 @@ public class DecisionNode {
 	// Arraylist of Moves which have got us to the current position
 	private LinkedList<Move> moves;
 
-	boolean visited;
+	boolean childGenerated;
 
 	private DecisionNode parentNode;
 
@@ -39,15 +39,15 @@ public class DecisionNode {
 	public ArrayList<DecisionNode> getChildNodes() {
 		return childNodes;
 	}
-
-	/** Returns an unvisited child node */
-	public DecisionNode getNotVisitedChild() {
-		for (DecisionNode decNde : childNodes) {
-			if (decNde.visited == true) {
-				return decNde;
-			}
-		}
-		return null;
+	
+	public void setChildGenerated()
+	{
+		this.childGenerated = true;
+	}
+	
+	public boolean hasChildBeenGenerated()
+	{
+		return childGenerated;
 	}
 
 	public int getValue() {
