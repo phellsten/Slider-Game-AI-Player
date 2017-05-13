@@ -29,7 +29,7 @@ public class DecisionTree {
 		System.out.println("Second Level");
 		System.out.println(rootNode.getChildNodes().get(0).getMoves().size());
 		System.out.println("Third Level nodes");
-		System.out.println(rootNode.getChildNodes().get(0).getChildNodes().get(0).getChildNodes().get(0).getChildNodes().size());
+		System.out.println(rootNode.getChildNodes().get(0).getChildNodes().get(0).getChildNodes().size());
 	}
 
 	// The root node of the decision tree
@@ -135,13 +135,14 @@ public class DecisionTree {
 					boolean moved = false;
 					if (newBoard.isFree(i + 1, j, player)) {
 						System.out.println("Position " + i + " " + j + " Can Move Right");
-						Move mve = new Move(i, j, Direction.RIGHT);
-						nde = newNode(mve, node);
-						// Print the new board
-						// Perform recursion on the new node
-						moved = true;
-						if (node.getMoves().size() < PLY_LENGTH)
+
+						if (node.getMoves().size()+1 < PLY_LENGTH)
 						{
+							Move mve = new Move(i, j, Direction.RIGHT);
+							nde = newNode(mve, node);
+							// Print the new board
+							// Perform recursion on the new node
+							moved = true;
 							newBoard = null;
 							calculateMoves(nde, swapPlayer(player));
 							newBoard = constructBoard(node.getMoves());
@@ -149,11 +150,12 @@ public class DecisionTree {
 					}
 					if (newBoard.isFree(i, j + 1, player)) {
 						moved = true;
-						Move mve = new Move(i, j, Direction.UP);
-						nde = newNode(mve, node);
+
 						System.out.println("Position " + i + " " + j + " Can Move Up");
-						if (node.getMoves().size() < PLY_LENGTH)
+						if (node.getMoves().size()+1 < PLY_LENGTH)
 						{
+							Move mve = new Move(i, j, Direction.UP);
+							nde = newNode(mve, node);
 							newBoard = null;
 							calculateMoves(nde, swapPlayer(player));
 							newBoard = constructBoard(node.getMoves());
@@ -164,9 +166,9 @@ public class DecisionTree {
 						if (player == "H") {
 							moved = true;
 							System.out.println("Position " + i + " " + j + " Can Move Down");
-							nde = newNode(new Move(i, j, Direction.DOWN), node);
-							if (node.getMoves().size() < PLY_LENGTH)
+							if (node.getMoves().size()+1 < PLY_LENGTH)
 							{
+								nde = newNode(new Move(i, j, Direction.DOWN), node);
 								newBoard = null;
 								calculateMoves(nde, swapPlayer(player));
 								newBoard = constructBoard(node.getMoves());
@@ -178,9 +180,9 @@ public class DecisionTree {
 						if (player == "V") {
 							moved = true;
 							System.out.println("Position " + i + " " + j + " Can Move Left");
-							nde = newNode(new Move(i, j, Direction.LEFT), node);
-							if (node.getMoves().size() < PLY_LENGTH)
+							if (node.getMoves().size()+1 < PLY_LENGTH)
 							{
+								nde = newNode(new Move(i, j, Direction.LEFT), node);
 								newBoard = null;
 								calculateMoves(nde, swapPlayer(player));
 								newBoard = constructBoard(node.getMoves());
@@ -204,6 +206,15 @@ public class DecisionTree {
 	 * defined parent node
 	 */
 	private DecisionNode newNode(Move move, DecisionNode parentNode) {
+		System.out.println("Moves in new move " + (parentNode.getMoves().size() + 1));
+		if ((parentNode.getMoves().size() +1) >= PLY_LENGTH)
+		{
+			System.out.println("HALT");
+		}
+		else
+		{
+			System.out.println("ADD");
+		}
 		DecisionNode newNode = new DecisionNode(parentNode);
 		// Add the move in
 		newNode.addMove(move);
