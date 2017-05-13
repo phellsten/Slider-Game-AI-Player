@@ -8,8 +8,8 @@ public class DecisionTreeTest {
 		Board testBoard = new Board("+ + + H \n+ + + + \n+ + + +\n+ + + +\n", 4);
 		// Make the Decision Tree Great Again
 		DecisionTree testTree = new DecisionTree(testBoard, "H");
-
 		// Test the moves
 		testTree.calculatePossibleMoves("H");
+		testTree.move(new Move(3,3,Move.Direction.RIGHT));
 	}
 }
