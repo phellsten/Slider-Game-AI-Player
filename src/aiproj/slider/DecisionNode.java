@@ -3,76 +3,71 @@ package aiproj.slider;
 import java.util.ArrayList;
 import java.util.LinkedList;
 
-
 public class DecisionNode {
 	// Value calculated by MiniMax
-			private int value;
+	private int value;
 
-			// Arraylist of Moves which have got us to the current position
-			private LinkedList<Move> moves;
-			
-			boolean visited;
+	// Arraylist of Moves which have got us to the current position
+	private LinkedList<Move> moves;
 
-			private DecisionNode parentNode;
-			
-			/** Constructor for the root node */
-			DecisionNode() {
-				this.childNodes = new ArrayList<DecisionNode>();
-				this.parentNode = null;
-				moves = new LinkedList<Move>();
-			}
+	boolean visited;
 
-			/**
-			 * Constructor for a child node, with the parent node taken as an arguement
-			 */
-			DecisionNode(DecisionNode parentNode) {
-				this.childNodes = new ArrayList<DecisionNode>();
-				this.parentNode = parentNode;
-				parentNode.addChildNode(this);
-				moves = new LinkedList<Move>();
-				moves.addAll(parentNode.moves);
-			}
+	private DecisionNode parentNode;
 
-			// The children of the node
-			ArrayList<DecisionNode> childNodes;
-			
-			/** Get Child nodes */
-			public ArrayList<DecisionNode> getChildNodes()
-			{
-				return childNodes;
-			}
-			
-			/** Returns an unvisited child node */
-			public DecisionNode getNotVisitedChild()
-			{
-				for (DecisionNode decNde : childNodes)
-				{
-					if (decNde.visited == true)
-					{
-						return decNde;
-					}
-				}
-				return null;
-			}
+	/** Constructor for the root node */
+	DecisionNode() {
+		this.childNodes = new ArrayList<DecisionNode>();
+		this.parentNode = null;
+		moves = new LinkedList<Move>();
+	}
 
-			public int getValue() {
-				return value;
-			}
+	/**
+	 * Constructor for a child node, with the parent node taken as an arguement
+	 */
+	DecisionNode(DecisionNode parentNode) {
+		this.childNodes = new ArrayList<DecisionNode>();
+		this.parentNode = parentNode;
+		parentNode.addChildNode(this);
+		moves = new LinkedList<Move>();
+		moves.addAll(parentNode.moves);
+	}
 
-			public void setValue(int value) {
-				this.value = value;
-			}
+	// The children of the node
+	ArrayList<DecisionNode> childNodes;
 
-			public LinkedList<Move> getMoves() {
-				return moves;
-			}
+	/** Get Child nodes */
+	public ArrayList<DecisionNode> getChildNodes() {
+		return childNodes;
+	}
 
-			public void addMove(Move move) {
-				this.moves.add(move);
+	/** Returns an unvisited child node */
+	public DecisionNode getNotVisitedChild() {
+		for (DecisionNode decNde : childNodes) {
+			if (decNde.visited == true) {
+				return decNde;
 			}
+		}
+		return null;
+	}
 
-			/** Adds in a new child node */
-			public void addChildNode(DecisionNode nde) {
-				childNodes.add(nde);
-			}
+	public int getValue() {
+		return value;
+	}
+
+	public void setValue(int value) {
+		this.value = value;
+	}
+
+	public LinkedList<Move> getMoves() {
+		return moves;
+	}
+
+	public void addMove(Move move) {
+		this.moves.add(move);
+	}
+
+	/** Adds in a new child node */
+	public void addChildNode(DecisionNode nde) {
+		childNodes.add(nde);
+	}
 }

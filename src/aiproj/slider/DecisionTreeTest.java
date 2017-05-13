@@ -10,6 +10,6 @@ public class DecisionTreeTest {
 		DecisionTree testTree = new DecisionTree(testBoard, "H");
 		// Test the moves
 		testTree.calculatePossibleMoves("H");
-		testTree.move(new Move(3,3,Move.Direction.RIGHT));
+		testTree.move(new Move(3,3,Move.Direction.DOWN));
 	}
 }

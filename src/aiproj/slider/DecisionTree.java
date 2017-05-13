@@ -189,21 +189,34 @@ public class DecisionTree {
 	 * recalcuate bottom values
 	 */
 	public void move(Move move) {
+		if (move == null) {
+			System.out.println("SKIP");
+			return;
+		}
+
 		// Shift the parent node
 		for (DecisionNode nde : rootNode.getChildNodes()) {
-			for (Move mve : nde.getMoves()) {
-				// Found the required move
+			if (!nde.getMoves().isEmpty()) {
+				Move mve = nde.getMoves().get(0);
 				if (mve.i == move.i && move.j == mve.j && move.d == mve.d) {
-					shiftBoard(nde);
+					this.rootNode = nde;
+					this.rootBoard = constructBoard(nde.getMoves());
+					System.out.println("NEW BOARD TEST");
+					rootBoard.printDebug();
+					removeRedundantMoves(rootNode);
 				}
 			}
 		}
 	}
-
-	/** Peforms a shift on the board */
-	private void shiftBoard(DecisionNode shiftNode) {
-		this.rootNode = shiftNode;
-		// Change the moves stored to remove original node
+	
+	/** Recurses down the tree to remove uneeded moves */
+	private void removeRedundantMoves(DecisionNode nde)
+	{
+		for (DecisionNode childNode : nde.getChildNodes())
+		{
+			childNode.getMoves().remove(0);
+			removeRedundantMoves(childNode);
+		}
 	}
 
 	private int getUtility(Board board, String player) {
