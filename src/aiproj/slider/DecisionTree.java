@@ -47,7 +47,7 @@ public class DecisionTree {
 		{
 			// Have to create new nodes
 			System.out.println("HAVE TO CREATE NEW NODES");
-			System.out.println("MOVES " + nde.getMoves().size());
+			calculateMoves(nde, this.playerString);
 			return;
 		}
 		// Recurse through each branch to find end
@@ -127,7 +127,6 @@ public class DecisionTree {
 				if (newBoard.blocks[i][j].equals(player)) {
 					boolean moved = false;
 					if (newBoard.isFree(i + 1, j, player)) {
-						System.out.println("MOVE SIZE" + node.getMoves().size());
 						System.out.println("Position " + i + " " + j + " Can Move Right");
 						Move mve = new Move(i, j, Direction.RIGHT);
 						nde = newNode(mve, node);
@@ -201,12 +200,6 @@ public class DecisionTree {
 		DecisionNode newNode = new DecisionNode(parentNode);
 		// Add the move in
 		newNode.addMove(move);
-		System.out.println("Adding Moves");
-		for (Move mve : newNode.getMoves())
-		{
-			System.out.print(mve + " ");
-		}
-		System.out.print("\n");
 		return newNode;
 	}
 
@@ -227,7 +220,6 @@ public class DecisionTree {
 				if (mve.i == move.i && move.j == mve.j && move.d == mve.d) {
 					this.rootNode = nde;
 					this.rootBoard = constructBoard(nde.getMoves());
-					System.out.println("NEW BOARD TEST");
 					rootBoard.printDebug();
 					rootNode.getMoves().remove(0);
 					removeRedundantMoves(rootNode);
