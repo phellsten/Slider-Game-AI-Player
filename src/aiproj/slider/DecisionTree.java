@@ -30,6 +30,8 @@ public class DecisionTree {
 		System.out.println(rootNode.getChildNodes().get(0).getMoves().size());
 		System.out.println("Third Level nodes");
 		System.out.println(rootNode.getChildNodes().get(0).getChildNodes().get(0).getMoves().size());
+		System.out.println("FURTER TEST");
+		System.out.println(rootNode.getChildNodes().get(0).getChildNodes().get(0).getChildNodes().size());
 	}
 
 	// The root node of the decision tree
@@ -155,9 +157,7 @@ public class DecisionTree {
 						System.out.println("Position " + i + " " + j + " Can Move Up");
 						System.out.println("SIZE " + (node.getMoves().size() + 1));
 						System.out.println(node.getMoves().size() + 1 < PLY_LENGTH);
-						if (node.getMoves().size() + 1 >= PLY_LENGTH) {
-							System.out.println("INVALID");
-						} else {
+						if (node.getMoves().size() + 1 < PLY_LENGTH) {
 							Move mve = new Move(i, j, Direction.UP);
 							nde = newNode(mve, node);
 							newBoard = null;
@@ -169,12 +169,7 @@ public class DecisionTree {
 						// only H can move down
 						if (player == "H") {
 							moved = true;
-							System.out.println("Position " + i + " " + j + " Can Move Down");
-							System.out.println("SIZE " + (node.getMoves().size() + 1));
-							System.out.println(node.getMoves().size() + 1 < PLY_LENGTH);
-							if (node.getMoves().size() + 1 >= PLY_LENGTH) {
-								System.out.println("INVALID");
-							} else {
+							if (node.getMoves().size() + 1 < PLY_LENGTH) {
 								nde = newNode(new Move(i, j, Direction.DOWN), node);
 								newBoard = null;
 								calculateMoves(nde, swapPlayer(player));
@@ -186,12 +181,7 @@ public class DecisionTree {
 						// only V can move left
 						if (player == "V") {
 							moved = true;
-							System.out.println("SIZE " + (node.getMoves().size() + 1));
-							System.out.println("Position " + i + " " + j + " Can Move Left");
-							System.out.println(node.getMoves().size() + 1 < PLY_LENGTH);
-							if (node.getMoves().size() + 1 >= PLY_LENGTH) {
-								System.out.println("INVALID");
-							} else {
+							if (node.getMoves().size() + 1 < PLY_LENGTH) {
 								nde = newNode(new Move(i, j, Direction.LEFT), node);
 								newBoard = null;
 								calculateMoves(nde, swapPlayer(player));
