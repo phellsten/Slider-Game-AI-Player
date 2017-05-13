@@ -59,7 +59,9 @@ public class DecisionTree {
 			if (d == Direction.UP) {
 				y+=1;
 			} else if (d == Direction.RIGHT) {
+				System.out.println("RIGHT");
 				x+=1;
+				System.out.println(x);
 			} else if (d == Direction.DOWN) {
 				y-=1;
 			} else if (d == Direction.LEFT) {
@@ -101,6 +103,7 @@ public class DecisionTree {
 		
 		// Now calculate the new board
 		Board newBoard = constructBoard(node.getMoves());
+		newBoard.printDebug();
 
 		for (j = 0; j < newBoard.size; j++) {
 			for (i = 0; i < newBoard.size; i++) {
@@ -111,7 +114,6 @@ public class DecisionTree {
 						Move mve = new Move(i, j, Direction.RIGHT);
 						nde = newNode(mve, node);
 						// Print the new board
-						newBoard.printDebug();
 						// Perform recursion on the new node
 						moved = true;
 						if (nde.getMoves().size() == PLY_LENGTH)
@@ -127,7 +129,6 @@ public class DecisionTree {
 						Move mve = new Move(i, j, Direction.UP);
 						nde = newNode(mve, node);
 						System.out.println("Position " + i + " " + j + " Can Move Up");
-						newBoard.printDebug();
 						if (nde.getMoves().size() == PLY_LENGTH)
 						{
 							return;
@@ -142,7 +143,6 @@ public class DecisionTree {
 							moved = true;
 							System.out.println("Position " + i + " " + j + " Can Move Down");
 							nde = newNode(new Move(i, j, Direction.DOWN), node);
-							newBoard.printDebug();
 							if (nde.getMoves().size() == PLY_LENGTH)
 							{
 								return;
@@ -158,7 +158,6 @@ public class DecisionTree {
 							moved = true;
 							System.out.println("Position " + i + " " + j + " Can Move Left");
 							nde = newNode(new Move(i, j, Direction.LEFT), node);
-							newBoard.printDebug();
 							if (nde.getMoves().size() == PLY_LENGTH)
 							{
 								return;
