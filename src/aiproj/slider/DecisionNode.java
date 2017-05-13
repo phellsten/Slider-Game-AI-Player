@@ -36,6 +36,12 @@ public class DecisionNode {
 			// The children of the node
 			ArrayList<DecisionNode> childNodes;
 			
+			/** Get Child nodes */
+			public ArrayList<DecisionNode> getChildNodes()
+			{
+				return childNodes;
+			}
+			
 			/** Returns an unvisited child node */
 			public DecisionNode getNotVisitedChild()
 			{

@@ -195,7 +195,11 @@ public class DecisionTree {
 	 * values
 	 */
 	public void move(Move move) {
-
+		// Shift the parent node
+		for (DecisionNode nde : rootNode.getChildNodes())
+		{
+			System.out.println(nde.getMoves().get(1));
+		}
 	}
 
 	private int getUtility(Board board, String player) {
