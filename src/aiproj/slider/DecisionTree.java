@@ -15,19 +15,6 @@ public class DecisionTree {
 		// Start calculation of possible moves.
 	}
 
-	public void debug() {
-		System.out.println("Printing root node moves");
-		for (Move mve : rootNode.getMoves()) {
-			System.out.println(mve);
-		}
-		System.out.println("Printing Child Node Moves");
-		for (DecisionNode nde : rootNode.getChildNodes()) {
-			for (Move mve : nde.getMoves()) {
-				System.out.println(mve);
-			}
-		}
-	}
-
 	// We can afford 3 ply toilet paper, unlike the University
 	public static final int PLY_LENGTH = 3;
 	public final String HOR_PLAYER = "H";
@@ -52,9 +39,6 @@ public class DecisionTree {
 	 */
 	public Board constructBoard(LinkedList<Move> moves) {
 		System.out.println("Reconstructing Board");
-		for (Move mve : moves) {
-			System.out.println("MOVE " + mve.i + " " + mve.j + " " + mve.d);
-		}
 		Board newBoard = new Board(rootBoard);
 		int i = 1;
 		for (Move mve : moves) {
@@ -70,9 +54,7 @@ public class DecisionTree {
 			if (d == Direction.UP) {
 				y += 1;
 			} else if (d == Direction.RIGHT) {
-				System.out.println("RIGHT");
 				x += 1;
-				System.out.println(x);
 			} else if (d == Direction.DOWN) {
 				y -= 1;
 			} else if (d == Direction.LEFT) {
@@ -81,7 +63,7 @@ public class DecisionTree {
 			if (x < newBoard.size && y < newBoard.size) {
 				newBoard.blocks[x][y] = piece;
 			}
-			System.out.println("*" + i + ": ");
+			// System.out.println("*" + i + ": ");
 			i++;
 		}
 		return newBoard;
@@ -102,11 +84,12 @@ public class DecisionTree {
 	 */
 	private void calculateMoves(DecisionNode node, String player) {
 		int i;
+
 		int j;
 		// Check to see if the ply limit has been reached. If so don't process
 		// the nodes
 
-		if (node.getMoves().size() >= PLY_LENGTH) {
+		if (node.getMoves().size() == PLY_LENGTH) {
 			System.out.println("Ply limit reached");
 			return;
 		}
@@ -121,6 +104,7 @@ public class DecisionTree {
 				if (newBoard.blocks[i][j].equals(player)) {
 					boolean moved = false;
 					if (newBoard.isFree(i + 1, j, player)) {
+						System.out.println("MOVE SIZE" + node.getMoves().size());
 						System.out.println("Position " + i + " " + j + " Can Move Right");
 						Move mve = new Move(i, j, Direction.RIGHT);
 						nde = newNode(mve, node);
@@ -194,6 +178,12 @@ public class DecisionTree {
 		DecisionNode newNode = new DecisionNode(parentNode);
 		// Add the move in
 		newNode.addMove(move);
+		System.out.println("Adding Moves");
+		for (Move mve : newNode.getMoves())
+		{
+			System.out.print(mve + " ");
+		}
+		System.out.print("\n");
 		return newNode;
 	}
 
