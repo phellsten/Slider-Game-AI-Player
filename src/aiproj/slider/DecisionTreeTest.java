@@ -12,9 +12,8 @@ public class DecisionTreeTest {
 		testTree.calculatePossibleMoves("H");
 		testTree.debug();
 		System.out.println("________________BEFORE MOVE __________________");
-		//testTree.move(new Move(0,1,Move.Direction.RIGHT));
-		//testTree.debug();
-		// Print the new board
-		// testTree.extendNodes();
+		testTree.move(new Move(0,1,Move.Direction.RIGHT));
+		testTree.debug();
+		testTree.extendNodes();
 	}
 }

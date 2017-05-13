@@ -29,9 +29,6 @@ public class DecisionTree {
 		System.out.println("Second Level");
 		System.out.println(rootNode.getChildNodes().get(0).getMoves().size());
 		System.out.println("Third Level nodes");
-		System.out.println(rootNode.getChildNodes().get(0).getChildNodes().get(0).getMoves().size());
-		System.out.println("FURTER TEST");
-		System.out.println(rootNode.getChildNodes().get(0).getChildNodes().get(0).getChildNodes().size());
 	}
 
 	// The root node of the decision tree
@@ -229,7 +226,6 @@ public class DecisionTree {
 				if (mve.i == move.i && move.j == mve.j && move.d == mve.d) {
 					this.rootNode = nde;
 					this.rootBoard = constructBoard(nde.getMoves());
-					rootBoard.printDebug();
 					rootNode.getMoves().remove(0);
 					removeRedundantMoves(rootNode);
 				}
