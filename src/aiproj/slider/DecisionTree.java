@@ -118,8 +118,8 @@ public class DecisionTree {
 		int j;
 		// Check to see if the ply limit has been reached. If so don't process
 		// the nodes
-
-		if ((node.getMoves().size()) >= PLY_LENGTH) {
+		int size = node.getMoves().size()
+		if (size >= PLY_LENGTH) {
 			System.out.println("Ply limit reached");
 			return;
 		}
@@ -141,6 +141,9 @@ public class DecisionTree {
 						} else {
 							Move mve = new Move(i, j, Direction.RIGHT);
 							nde = newNode(mve, node);
+							if(size == PLY_LENGTH) {
+								nde.heuristicValue = getUtility(newBoard, player);
+							}
 							// Print the new board
 							// Perform recursion on the new node
 							newBoard = null;
@@ -157,6 +160,9 @@ public class DecisionTree {
 						if (node.getMoves().size() + 1 < PLY_LENGTH) {
 							Move mve = new Move(i, j, Direction.UP);
 							nde = newNode(mve, node);
+							if(size == PLY_LENGTH) {
+								nde.heuristicValue = getUtility(newBoard, player);
+							}
 							newBoard = null;
 							calculateMoves(nde, swapPlayer(player));
 							newBoard = constructBoard(node.getMoves());
@@ -168,6 +174,9 @@ public class DecisionTree {
 							moved = true;
 							if (node.getMoves().size() + 1 < PLY_LENGTH) {
 								nde = newNode(new Move(i, j, Direction.DOWN), node);
+								if(size == PLY_LENGTH) {
+									nde.heuristicValue = getUtility(newBoard, player);
+								}
 								newBoard = null;
 								calculateMoves(nde, swapPlayer(player));
 								newBoard = constructBoard(node.getMoves());
@@ -180,6 +189,9 @@ public class DecisionTree {
 							moved = true;
 							if (node.getMoves().size() + 1 < PLY_LENGTH) {
 								nde = newNode(new Move(i, j, Direction.LEFT), node);
+								if(size == PLY_LENGTH) {
+									nde.heuristicValue = getUtility(newBoard, player);
+								}
 								newBoard = null;
 								calculateMoves(nde, swapPlayer(player));
 								newBoard = constructBoard(node.getMoves());
