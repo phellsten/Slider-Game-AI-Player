@@ -2,13 +2,14 @@ package aiproj.slider;
 
 public class DecisionTreeTest {
 	public static void main(String[] args) {
-
+		System.out.println("TEST");
 		Negamax nmax = new Negamax();
 		// Create a normal 3x3 board
-		Board testBoard = new Board("+ + H V\n"
-			      				  + "+ + + +\n" 
-			      				  + "+ + + +\n" 
-			      				  + "+ V V +\n", 4);
+		Board testBoard = new Board("H + + + +\n"
+			      				  + "H + + + +\n" 
+			      				  + "+ + V + H\n" 
+			      				  + "H B + V V\n"
+			      			      + "+ V + + +\n" , 5);
 
 		// Board testBoard = new Board("H + + + \nH + + + \nH + + +\n+ V V V\n",
 		// 4);
@@ -19,12 +20,12 @@ public class DecisionTreeTest {
 		// Test the moves
 		testTree.calculatePossibleMoves("H");
 		//testTree.debug();
-		//System.out.println("________________BEFORE MOVE __________________");
+		System.out.println("________________BEFORE MOVE __________________");
 		// I wonder what the best move is
 		try {
-			//System.out.println(nmax.getBestMove(testTree));
+			System.out.println(nmax.getBestMove(testTree));
 		} catch (Exception e) {
-			//System.out.println("ERROR FINDING MOVE");
+			System.out.println("ERROR FINDING MOVE");
 		}
 		// Our Move
 		// testTree.move(new Move(0,1,Move.Direction.RIGHT));
