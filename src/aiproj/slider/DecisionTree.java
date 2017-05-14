@@ -257,45 +257,56 @@ public class DecisionTree {
 	}
 
 	public int getUtility(Board board, String player) {
-
 		int value = 0;
 		// check if accessing correct
 		int i, j, numH = 0, numV = 0, bonus = 0;
 		for (i = 0; i < board.size; i++) {
 			for (j = 0; j < board.size; j++) {
-				System.out.println("checking i = " + i + ", j = " + j + ".. = " + board.blocks[i][j]);
-				System.out.println(player);
-				if (board.blocks[i][j] == "H" && player == "H") {
-					value += i;
-					numH++;
-					System.out.println("check tile");
-				} else if (board.blocks[i][j] == "V" && player == "V") {
-					value += j;
-					numV++;
-					System.out.println("check tile");
 
-				} else if (board.blocks[i][j] == "H" && player == "V") {
-					value -= i;
-					numH++;
-					System.out.println("check tile");
-
-				} else if (board.blocks[i][j] == "V" && player == "H") {
-					value -= j;
-					numV++;
-					System.out.println("check tile");
-
+				if(player == "H") {
+					//System.out.println("checking i = " + i + ", j = " + j + ".. = " + board.blocks[i][j]);
+					//System.out.println(player);
+					
+					if (board.blocks[i][j].equals("H")) {
+						//System.out.println("H at " + i + "," + j + ", +=" + i);
+						value += i;
+						numH++;
+						
+					}
+					else if (board.blocks[i][j].equals("V")) {
+						//System.out.println("V at " + i + "," + j + ", -=" + j);
+						value -= j;
+						numV++;
+					}
+					
+				}
+				else {
+					if (board.blocks[i][j].equals("V")) {
+						//System.out.println("V at " + i + "," + j + ", +=" + j);
+						value += j;
+						numV++;
+					}
+					if (board.blocks[i][j].equals("H")) {
+						//System.out.println("V at " + i + "," + j + ", -=" + i);
+						value -= i;
+						numH++;
+					}
 				}
 			}
 		}
+
 		if (player == "V") {
 			bonus += (board.size - numV - 1) * board.size;
 			bonus -= (board.size - numH - 1) * board.size;
 		} else if (player == "H") {
+
 			bonus += (board.size - numH - 1) * board.size;
 			bonus -= (board.size - numV - 1) * board.size;
+			
+
 		}
 		value += bonus;
-		System.out.println("UTILITY: " + value);
+
 		return value;
 	}
 }
