@@ -37,19 +37,27 @@ public class SliderPhai implements SliderPlayer {
 		if(move == null) {
 			return;
 		}
-		
-		//board.movePiece(move.i, move.j, move.d);
-		tree.move(move);
+		System.out.println("Updating with move: " + move);
+		tree.getRootBoard().movePiece(move.i, move.j, move.d);
+		//tree.move(move);
 		tree.extendNodes();
 		
 	}
 
 	@Override
 	public Move move() {
+		System.out.println("*****");
+		tree.getRootBoard().printDebug();
+		System.out.println("*****");
+
 		tree.calculatePossibleMoves(this.player);
 		try {
 			Move bestMove = nmax.getBestMove(tree);
+			System.out.println("Best move is: " + bestMove);
 			update(bestMove);
+			System.out.println("*****");
+			tree.getRootBoard().printDebug();
+			System.out.println("*****");
 			return bestMove;
 		} catch (Exception e) {
 			//System.out.println("ERROR FINDING MOVE");
