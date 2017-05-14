@@ -22,6 +22,11 @@ public class DecisionTree {
 
 	// Board the game is to be played on
 	private Board rootBoard;
+	
+	public Board getRootBoard()
+	{
+		return this.rootBoard;
+	}
 
 	public void debug() {
 	}
