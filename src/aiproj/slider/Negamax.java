@@ -14,6 +14,8 @@ public class Negamax {
 	{
 		// Get the best child node
 		DecisionNode bestNde = getBestChildNode(tree);
+		// Sanity check for debugging
+		assert(bestNde.getMoves().size() == 0);
 		return bestNde.getMoves().get(0);
 	}
 	
