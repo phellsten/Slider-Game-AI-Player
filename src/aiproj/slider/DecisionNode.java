@@ -11,6 +11,14 @@ public class DecisionNode {
 	private LinkedList<Move> moves;
 
 	boolean childGenerated;
+	
+	// The player who makes the decision for this node
+	private String player;
+	
+	public String getPlayer()
+	{
+		return player;
+	}
 
 	/** Constructor for the root node */
 	DecisionNode() {
