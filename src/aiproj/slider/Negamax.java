@@ -27,19 +27,19 @@ public class Negamax {
 
 		Integer bestValue = null;
 		for (DecisionNode childNde : nde.getChildNodes()) {
+			//System.out.println(childNde.getValue());
 			int value = -negamax(childNde);
 			if (bestValue == null) {
 				bestValue = value;
 			}
 			childNde.setValue(value);
-			bestValue = Math.max(bestValue, value);
+			bestValue = Math.min(bestValue, value);
 		}
 		return bestValue;
 	}
 
 	public DecisionNode getBestChildNode(DecisionTree tree) throws Exception {
 		int bestValue = negamax(tree.getRootNode());
-		System.out.println(bestValue);
 		// Find the node with this value
 		for (DecisionNode childNde : tree.getRootNode().getChildNodes()) {
 			if (childNde.getValue() == bestValue) {
