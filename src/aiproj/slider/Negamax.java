@@ -9,5 +9,10 @@ package aiproj.slider;
  * 
  */
 public class Negamax {
-
+	// TODO Once complete write it with AlphaBeta Pruning
+	public void performNegamax() {
+		// Check that the node is not a root node, or a terminal node
+		
+		// Find the best value
+	}
 }
