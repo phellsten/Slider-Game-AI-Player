@@ -1,7 +1,6 @@
 package aiproj.slider;
 
 import aiproj.slider.SliderPlayer;
-import aima.core.learning.inductive.DecisionTree;
 import aiproj.slider.Move;
 
 
@@ -10,7 +9,7 @@ import aiproj.slider.Move;
 public class SliderPhai implements SliderPlayer {
 
 	Board board;
-	char player;
+	String player;
 	
 	public SliderPhai() {
 		
@@ -19,10 +18,10 @@ public class SliderPhai implements SliderPlayer {
 	@Override
 	public void init(int dimension, String board, char player) {
 		this.board = new Board(board, dimension);
-		this.player = player;
-		System.out.println("0, 0: " + this.board.blocks[0][0]);
-		System.out.println("1, 2: " + this.board.blocks[1][2]);
-		System.out.println("3, 1: " + this.board.blocks[3][1]);
+		this.player = Character.toString(player);
+		//System.out.println("0, 0: " + this.board.blocks[0][0]);
+		//System.out.println("1, 2: " + this.board.blocks[1][2]);
+		//System.out.println("3, 1: " + this.board.blocks[3][1]);
 
 	}
 
@@ -42,8 +41,15 @@ public class SliderPhai implements SliderPlayer {
 
 	@Override
 	public Move move() {
-		// TODO Auto-generated method stub
-		return null;
+		Negamax nmax = new Negamax();
+		DecisionTree tree = new DecisionTree(this.board, this.player);
+		tree.calculatePossibleMoves(this.player);
+		try {
+			return nmax.getBestMove(tree);
+		} catch (Exception e) {
+			//System.out.println("ERROR FINDING MOVE");
+			return null;
+		}
 	}
 	
 }

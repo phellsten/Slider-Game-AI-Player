@@ -55,11 +55,11 @@ public class DecisionTree {
 
 	private void recNodeExtension(DecisionNode nde) {
 		if (nde.getChildNodes().size() == 0) {
-			System.out.println("Node Moves " + nde.getMoves().size());
+			//System.out.println("Node Moves " + nde.getMoves().size());
 			// System.out.println("Node Moves " + nde.getMoves().get(0) + " " +
 			// nde.getMoves().get(1));
-			System.out.println("CreateBoard");
-			rootBoard.printDebug();
+			//System.out.println("CreateBoard");
+			//rootBoard.printDebug();
 			// Have to create new nodes
 			calculateMoves(nde, this.playerString);
 			return;
@@ -125,29 +125,29 @@ public class DecisionTree {
 		// the nodes
 		int size = node.getMoves().size();
 		if (size >= PLY_LENGTH) {
-			System.out.println("Ply limit reached");
+			//System.out.println("Ply limit reached");
 			return;
 		}
 		DecisionNode nde;
 
 		// Now calculate the new board
 		Board newBoard = constructBoard(node.getMoves());
-		newBoard.printDebug();
+		//newBoard.printDebug();
 		for (j = 0; j < newBoard.size; j++) {
 			for (i = 0; i < newBoard.size; i++) {
 				if (newBoard.blocks[i][j].equals(player)) {
-					System.out.println("PLAYER FOUND");
+					//System.out.println("PLAYER FOUND");
 					if (newBoard.isFree(i + 1, j, player)) {
 						moved = true;
-						System.out.println("Position " + i + " " + j + " Can Move Right");
-						System.out.println("SIZE " + (node.getMoves().size() + 1));
+						//System.out.println("Position " + i + " " + j + " Can Move Right");
+						//System.out.println("SIZE " + (node.getMoves().size() + 1));
 						if (node.getMoves().size() + 1 >= PLY_LENGTH) {
-							System.out.println("INVALID");
+							//System.out.println("INVALID");
 						} else {
 							Move mve = new Move(i, j, Direction.RIGHT);
 							nde = newNode(mve, node);
 							if (nde.getMoves().size()+1 == PLY_LENGTH) {
-								System.out.println("GETTING HEURISTIC VALUE @ Size " + nde.getMoves().size());
+								//System.out.println("GETTING HEURISTIC VALUE @ Size " + nde.getMoves().size());
 								nde.setValue(getUtility(newBoard, player));
 							}
 							// Print the new board
@@ -160,14 +160,14 @@ public class DecisionTree {
 					if (newBoard.isFree(i, j + 1, player)) {
 						moved = true;
 
-						System.out.println("Position " + i + " " + j + " Can Move Up");
-						System.out.println("SIZE " + (node.getMoves().size() + 1));
-						System.out.println(node.getMoves().size() + 1 < PLY_LENGTH);
+						//System.out.println("Position " + i + " " + j + " Can Move Up");
+						//System.out.println("SIZE " + (node.getMoves().size() + 1));
+						//System.out.println(node.getMoves().size() + 1 < PLY_LENGTH);
 						if (node.getMoves().size() + 1 < PLY_LENGTH) {
 							Move mve = new Move(i, j, Direction.UP);
 							nde = newNode(mve, node);
 							if (nde.getMoves().size()+1 == PLY_LENGTH) {
-								System.out.println("GETTING HEURISTIC VALUE @ Size " + nde.getMoves().size());
+								//System.out.println("GETTING HEURISTIC VALUE @ Size " + nde.getMoves().size());
 								nde.setValue(getUtility(newBoard, player));
 							}
 							newBoard = null;
@@ -182,7 +182,7 @@ public class DecisionTree {
 							if (node.getMoves().size() + 1 < PLY_LENGTH) {
 								nde = newNode(new Move(i, j, Direction.DOWN), node);
 								if (nde.getMoves().size()+1 == PLY_LENGTH) {
-									System.out.println("GETTING HEURISTIC VALUE @ Size " + nde.getMoves().size());
+									//System.out.println("GETTING HEURISTIC VALUE @ Size " + nde.getMoves().size());
 									nde.setValue(getUtility(newBoard, player));
 								}
 								newBoard = null;
@@ -198,7 +198,7 @@ public class DecisionTree {
 							if (node.getMoves().size() + 1 < PLY_LENGTH) {
 								nde = newNode(new Move(i, j, Direction.LEFT), node);
 								if (nde.getMoves().size()+1 == PLY_LENGTH) {
-									System.out.println("GETTING HEURISTIC VALUE @ Size " + nde.getMoves().size());
+									//System.out.println("GETTING HEURISTIC VALUE @ Size " + nde.getMoves().size());
 									nde.setValue(getUtility(newBoard, player));
 								}
 								newBoard = null;
@@ -234,7 +234,7 @@ public class DecisionTree {
 	 */
 	public void move(Move move) {
 		if (move == null) {
-			System.out.println("SKIP");
+			//System.out.println("SKIP");
 			return;
 		}
 
@@ -261,7 +261,7 @@ public class DecisionTree {
 	}
 
 	public int getUtility(Board board, String player) {
-		System.out.println("UTILITY CALLED");
+		//System.out.println("UTILITY CALLED");
 		int value = 0;
 		// check if accessing correct
 		int i, j, numH = 0, numV = 0, bonus = 0;
