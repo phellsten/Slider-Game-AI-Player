@@ -206,8 +206,7 @@ public class DecisionTree {
 
 					// If we can't move insert a null move, to indicate a skip
 					if (!moved) {
-						// Create the null move to represent a skip
-						nde = newNode(null, node);
+						//nde = newNode(null, node);
 					}
 				}
 			}
