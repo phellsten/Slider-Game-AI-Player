@@ -19,8 +19,6 @@ public class DecisionNode {
 		return player;
 	}
 
-	int heuristicValue = 0;
-
 	/** Constructor for the root node */
 	DecisionNode() {
 		this.childNodes = new ArrayList<DecisionNode>();

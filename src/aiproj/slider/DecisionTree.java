@@ -148,7 +148,7 @@ public class DecisionTree {
 							nde = newNode(mve, node);
 							if (nde.getMoves().size()+1 == PLY_LENGTH) {
 								System.out.println("GETTING HEURISTIC VALUE @ Size " + nde.getMoves().size());
-								nde.heuristicValue = getUtility(newBoard, player);
+								nde.setValue(getUtility(newBoard, player));
 							}
 							// Print the new board
 							// Perform recursion on the new node
@@ -168,7 +168,7 @@ public class DecisionTree {
 							nde = newNode(mve, node);
 							if (nde.getMoves().size()+1 == PLY_LENGTH) {
 								System.out.println("GETTING HEURISTIC VALUE @ Size " + nde.getMoves().size());
-								nde.heuristicValue = getUtility(newBoard, player);
+								nde.setValue(getUtility(newBoard, player));
 							}
 							newBoard = null;
 							calculateMoves(nde, swapPlayer(player));
@@ -183,7 +183,7 @@ public class DecisionTree {
 								nde = newNode(new Move(i, j, Direction.DOWN), node);
 								if (nde.getMoves().size()+1 == PLY_LENGTH) {
 									System.out.println("GETTING HEURISTIC VALUE @ Size " + nde.getMoves().size());
-									nde.heuristicValue = getUtility(newBoard, player);
+									nde.setValue(getUtility(newBoard, player));
 								}
 								newBoard = null;
 								calculateMoves(nde, swapPlayer(player));
@@ -199,7 +199,7 @@ public class DecisionTree {
 								nde = newNode(new Move(i, j, Direction.LEFT), node);
 								if (nde.getMoves().size()+1 == PLY_LENGTH) {
 									System.out.println("GETTING HEURISTIC VALUE @ Size " + nde.getMoves().size());
-									nde.heuristicValue = getUtility(newBoard, player);
+									nde.setValue(getUtility(newBoard, player));
 								}
 								newBoard = null;
 								calculateMoves(nde, swapPlayer(player));

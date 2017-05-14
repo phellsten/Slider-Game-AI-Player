@@ -39,6 +39,7 @@ public class Negamax {
 
 	public DecisionNode getBestChildNode(DecisionTree tree) throws Exception {
 		int bestValue = negamax(tree.getRootNode());
+		System.out.println(bestValue);
 		// Find the node with this value
 		for (DecisionNode childNde : tree.getRootNode().getChildNodes()) {
 			if (childNde.getValue() == bestValue) {
