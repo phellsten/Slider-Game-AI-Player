@@ -19,6 +19,7 @@ public class DecisionNode {
 	{
 		return player;
 	}
+	int heuristicValue = 0;
 
 	/** Constructor for the root node */
 	DecisionNode() {
@@ -34,6 +35,7 @@ public class DecisionNode {
 		parentNode.addChildNode(this);
 		moves = new LinkedList<Move>();
 		moves.addAll(parentNode.moves);
+
 	}
 
 	// The children of the node
