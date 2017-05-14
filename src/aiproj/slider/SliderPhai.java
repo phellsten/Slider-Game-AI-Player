@@ -45,6 +45,7 @@ public class SliderPhai implements SliderPlayer {
 		DecisionTree tree = new DecisionTree(this.board, this.player);
 		tree.calculatePossibleMoves(this.player);
 		try {
+			update(nmax.getBestMove(tree));
 			return nmax.getBestMove(tree);
 		} catch (Exception e) {
 			//System.out.println("ERROR FINDING MOVE");
