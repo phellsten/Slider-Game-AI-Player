@@ -43,7 +43,7 @@ public class DecisionTree {
 
 	/** Calculates all possible moves from the initial board config */
 	public void calculatePossibleMoves(String player) {
-		rootBoard.printDebug();
+		// rootBoard.printDebug();
 		calculateMoves(rootNode, playerString);
 	}
 
@@ -146,7 +146,8 @@ public class DecisionTree {
 						} else {
 							Move mve = new Move(i, j, Direction.RIGHT);
 							nde = newNode(mve, node);
-							if (size-1 == PLY_LENGTH) {
+							if (nde.getMoves().size()+1 == PLY_LENGTH) {
+								System.out.println("GETTING HEURISTIC VALUE @ Size " + nde.getMoves().size());
 								nde.heuristicValue = getUtility(newBoard, player);
 							}
 							// Print the new board
@@ -165,7 +166,8 @@ public class DecisionTree {
 						if (node.getMoves().size() + 1 < PLY_LENGTH) {
 							Move mve = new Move(i, j, Direction.UP);
 							nde = newNode(mve, node);
-							if (size-1 == PLY_LENGTH) {
+							if (nde.getMoves().size()+1 == PLY_LENGTH) {
+								System.out.println("GETTING HEURISTIC VALUE @ Size " + nde.getMoves().size());
 								nde.heuristicValue = getUtility(newBoard, player);
 							}
 							newBoard = null;
@@ -179,7 +181,8 @@ public class DecisionTree {
 							moved = true;
 							if (node.getMoves().size() + 1 < PLY_LENGTH) {
 								nde = newNode(new Move(i, j, Direction.DOWN), node);
-								if (size-1 == PLY_LENGTH) {
+								if (nde.getMoves().size()+1 == PLY_LENGTH) {
+									System.out.println("GETTING HEURISTIC VALUE @ Size " + nde.getMoves().size());
 									nde.heuristicValue = getUtility(newBoard, player);
 								}
 								newBoard = null;
@@ -194,7 +197,8 @@ public class DecisionTree {
 							moved = true;
 							if (node.getMoves().size() + 1 < PLY_LENGTH) {
 								nde = newNode(new Move(i, j, Direction.LEFT), node);
-								if (size-1 == PLY_LENGTH) {
+								if (nde.getMoves().size()+1 == PLY_LENGTH) {
+									System.out.println("GETTING HEURISTIC VALUE @ Size " + nde.getMoves().size());
 									nde.heuristicValue = getUtility(newBoard, player);
 								}
 								newBoard = null;
@@ -257,7 +261,7 @@ public class DecisionTree {
 	}
 
 	public int getUtility(Board board, String player) {
-
+		System.out.println("UTILITY CALLED");
 		int value = 0;
 		// check if accessing correct
 		int i, j, numH = 0, numV = 0, bonus = 0;
