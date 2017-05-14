@@ -5,10 +5,10 @@ public class DecisionTreeTest {
 		System.out.println("TEST");
 		Negamax nmax = new Negamax();
 		// Create a normal 3x3 board
-		Board testBoard = new Board("H + + +\n"
-								  + "H + + +\n" 
+		Board testBoard = new Board("+ + + +\n"
+								  + "+ H + +\n" 
 				                  + "H B + +\n" 
-								  + "B V V V\n", 4);
+								  + "V + V V\n", 4);
 		// Board testBoard = new Board("H + + + \nH + + + \nH + + +\n+ V V V\n",
 		// 4);
 		// Board testBoard = new Board("+ + + H \n+ + + + \n+ + + +\n+ + + +\n",
@@ -31,6 +31,6 @@ public class DecisionTreeTest {
 		// testTree.move(new Move(1,0,Move.Direction.LEFT));
 		// testTree.extendNodes();
 		testTree.debug();
-		System.out.println(testTree.getUtility(testBoard, "H"));
+		System.out.println(testTree.getUtility(testBoard, "V"));
 	}
 }
