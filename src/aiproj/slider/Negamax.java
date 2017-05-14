@@ -10,6 +10,13 @@ package aiproj.slider;
  * 
  */
 public class Negamax {
+	public Move getBestMove(DecisionTree tree) throws Exception
+	{
+		// Get the best child node
+		DecisionNode bestNde = getBestChildNode(tree);
+		return bestNde.getMoves().get(0);
+	}
+	
 	private int negamax(DecisionNode nde) {
 		// If there are no child nodes, return evaluation Function
 		if (nde.getChildNodes().isEmpty()) {
