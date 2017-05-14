@@ -13,6 +13,7 @@ public class DecisionTreeTest {
 		testTree.debug();
 		System.out.println("________________BEFORE MOVE __________________");
 		testTree.move(new Move(0,1,Move.Direction.RIGHT));
+		testTree.move(new Move(1,0,Move.Direction.LEFT));
 		testTree.debug();
 		testTree.extendNodes();
 	}

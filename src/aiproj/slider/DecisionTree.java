@@ -24,11 +24,6 @@ public class DecisionTree {
 	private Board rootBoard;
 
 	public void debug() {
-		System.out.println("Root Node");
-		System.out.println(rootNode.getMoves().size());
-		System.out.println("Second Level");
-		System.out.println(rootNode.getChildNodes().get(0).getMoves().size());
-		System.out.println("Third Level nodes");
 	}
 
 	// The root node of the decision tree
