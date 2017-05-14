@@ -11,14 +11,14 @@ public class DecisionNode {
 	private LinkedList<Move> moves;
 
 	boolean childGenerated;
-	
+
 	// The player who makes the decision for this node
 	private String player;
-	
-	public String getPlayer()
-	{
+
+	public String getPlayer() {
 		return player;
 	}
+
 	int heuristicValue = 0;
 
 	/** Constructor for the root node */
@@ -45,14 +45,12 @@ public class DecisionNode {
 	public ArrayList<DecisionNode> getChildNodes() {
 		return childNodes;
 	}
-	
-	public void setChildGenerated()
-	{
+
+	public void setChildGenerated() {
 		this.childGenerated = true;
 	}
-	
-	public boolean hasChildBeenGenerated()
-	{
+
+	public boolean hasChildBeenGenerated() {
 		return childGenerated;
 	}
 

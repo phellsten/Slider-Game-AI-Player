@@ -22,9 +22,8 @@ public class DecisionTree {
 
 	// Board the game is to be played on
 	private Board rootBoard;
-	
-	public Board getRootBoard()
-	{
+
+	public Board getRootBoard() {
 		return this.rootBoard;
 	}
 
@@ -33,10 +32,9 @@ public class DecisionTree {
 
 	// The root node of the decision tree
 	private DecisionNode rootNode;
-	
+
 	/** Fetches the root node of the tree */
-	public DecisionNode getRootNode()
-	{
+	public DecisionNode getRootNode() {
 		return rootNode;
 	}
 
@@ -45,6 +43,7 @@ public class DecisionTree {
 
 	/** Calculates all possible moves from the initial board config */
 	public void calculatePossibleMoves(String player) {
+		rootBoard.printDebug();
 		calculateMoves(rootNode, playerString);
 	}
 
@@ -134,10 +133,10 @@ public class DecisionTree {
 		// Now calculate the new board
 		Board newBoard = constructBoard(node.getMoves());
 		newBoard.printDebug();
-
 		for (j = 0; j < newBoard.size; j++) {
 			for (i = 0; i < newBoard.size; i++) {
 				if (newBoard.blocks[i][j].equals(player)) {
+					System.out.println("PLAYER FOUND");
 					if (newBoard.isFree(i + 1, j, player)) {
 						moved = true;
 						System.out.println("Position " + i + " " + j + " Can Move Right");
@@ -147,7 +146,7 @@ public class DecisionTree {
 						} else {
 							Move mve = new Move(i, j, Direction.RIGHT);
 							nde = newNode(mve, node);
-							if(size == PLY_LENGTH) {
+							if (size == PLY_LENGTH) {
 								nde.heuristicValue = getUtility(newBoard, player);
 							}
 							// Print the new board
@@ -166,7 +165,7 @@ public class DecisionTree {
 						if (node.getMoves().size() + 1 < PLY_LENGTH) {
 							Move mve = new Move(i, j, Direction.UP);
 							nde = newNode(mve, node);
-							if(size == PLY_LENGTH) {
+							if (size == PLY_LENGTH) {
 								nde.heuristicValue = getUtility(newBoard, player);
 							}
 							newBoard = null;
@@ -180,7 +179,7 @@ public class DecisionTree {
 							moved = true;
 							if (node.getMoves().size() + 1 < PLY_LENGTH) {
 								nde = newNode(new Move(i, j, Direction.DOWN), node);
-								if(size == PLY_LENGTH) {
+								if (size == PLY_LENGTH) {
 									nde.heuristicValue = getUtility(newBoard, player);
 								}
 								newBoard = null;
@@ -195,7 +194,7 @@ public class DecisionTree {
 							moved = true;
 							if (node.getMoves().size() + 1 < PLY_LENGTH) {
 								nde = newNode(new Move(i, j, Direction.LEFT), node);
-								if(size == PLY_LENGTH) {
+								if (size == PLY_LENGTH) {
 									nde.heuristicValue = getUtility(newBoard, player);
 								}
 								newBoard = null;
@@ -209,7 +208,6 @@ public class DecisionTree {
 					if (!moved) {
 						// Create the null move to represent a skip
 						nde = newNode(null, node);
-						return;
 					}
 				}
 			}
