@@ -10,6 +10,10 @@ public class DecisionTree {
 		// Start construction of DecisionTree, and its root nodes
 		this.rootBoard = board;
 		this.playerString = playerString;
+		if (playerString.equals(VER_PLAYER))
+		{
+			System.out.println("SKIP BRANCH GENERATION");
+		}
 		// Create a new root node
 		this.rootNode = new DecisionNode();
 		// Start calculation of possible moves.
@@ -234,7 +238,7 @@ public class DecisionTree {
 	 */
 	public void move(Move move) {
 		if (move == null) {
-			//System.out.println("SKIP");
+			System.out.println("SKIP");
 			return;
 		}
 
@@ -243,13 +247,17 @@ public class DecisionTree {
 			if (!nde.getMoves().isEmpty()) {
 				Move mve = nde.getMoves().get(0);
 				if (mve.i == move.i && move.j == mve.j && move.d == mve.d) {
+					System.out.println("FOUND");
 					this.rootNode = nde;
 					this.rootBoard = constructBoard(nde.getMoves());
+					System.out.println("NEW ROOT BOARD");
+					rootBoard.printDebug();
 					rootNode.getMoves().remove(0);
 					removeRedundantMoves(rootNode);
 				}
 			}
 		}
+		System.out.println("NEW DEBUG BOARD");
 	}
 
 	/** Recurses down the tree to remove uneeded moves */
