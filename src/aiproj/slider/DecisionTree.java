@@ -118,7 +118,7 @@ public class DecisionTree {
 		int j;
 		// Check to see if the ply limit has been reached. If so don't process
 		// the nodes
-		int size = node.getMoves().size()
+		int size = node.getMoves().size();
 		if (size >= PLY_LENGTH) {
 			System.out.println("Ply limit reached");
 			return;
