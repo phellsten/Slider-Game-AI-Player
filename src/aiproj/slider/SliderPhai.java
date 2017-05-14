@@ -37,7 +37,7 @@ public class SliderPhai implements SliderPlayer {
 		if(move == null) {
 			return;
 		}
-		System.out.println("Updating with move: " + move);
+		System.out.println("SP Updating with move: " + move);
 		tree.getRootBoard().movePiece(move.i, move.j, move.d);
 		//tree.move(move);
 		tree.extendNodes();
@@ -54,7 +54,7 @@ public class SliderPhai implements SliderPlayer {
 		try {
 			Move bestMove = nmax.getBestMove(tree);
 			System.out.println("Best move is: " + bestMove);
-			update(bestMove);
+			// update(bestMove);
 			System.out.println("*****");
 			tree.getRootBoard().printDebug();
 			System.out.println("*****");
