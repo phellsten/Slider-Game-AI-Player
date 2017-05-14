@@ -37,6 +37,7 @@ public class SliderPhai implements SliderPlayer {
 	/** Updates the other oppoent */
 	@Override
 	public void update(Move move) {
+		System.out.println("PLAYER " + player + " UPDATING");
 		// current board representation : board;
 		// opponents move: move;
 		// opponent moved piece board[move.i][move.j] in direction move.d
@@ -51,6 +52,7 @@ public class SliderPhai implements SliderPlayer {
 			tmpBoard.movePiece(move.i, move.j, move.d);
 			// Make the decision tree
 			tree = new DecisionTree(tmpBoard, this.player);
+			tree.getRootBoard().printDebug();
 			// Clear it for the Garbage Collector
 			tmpBoard = null;
 		}
@@ -65,11 +67,12 @@ public class SliderPhai implements SliderPlayer {
 	/** Makes a move for ourself */
 	@Override
 	public Move move() {
+		System.out.println("PLAYER " + player + " IS MAKING MOVE");
 		tree.calculatePossibleMoves(this.player);
 		try {
 			Move bestMove = nmax.getBestMove(tree);
 			System.out.println("OUR Best move is: " + bestMove);
-			update(bestMove);
+			tree.move(bestMove);
 			return bestMove;
 		} catch (Exception e) {
 			//System.out.println("ERROR FINDING MOVE");

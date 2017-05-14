@@ -254,6 +254,7 @@ public class DecisionTree {
 					rootBoard.printDebug();
 					rootNode.getMoves().remove(0);
 					removeRedundantMoves(rootNode);
+					return;
 				}
 			}
 		}
