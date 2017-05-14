@@ -165,7 +165,7 @@ public class DecisionTree {
 						if (node.getMoves().size() + 1 < PLY_LENGTH) {
 							Move mve = new Move(i, j, Direction.UP);
 							nde = newNode(mve, node);
-							if (size == PLY_LENGTH) {
+							if (size-1 == PLY_LENGTH) {
 								nde.heuristicValue = getUtility(newBoard, player);
 							}
 							newBoard = null;
@@ -179,7 +179,7 @@ public class DecisionTree {
 							moved = true;
 							if (node.getMoves().size() + 1 < PLY_LENGTH) {
 								nde = newNode(new Move(i, j, Direction.DOWN), node);
-								if (size == PLY_LENGTH) {
+								if (size-1 == PLY_LENGTH) {
 									nde.heuristicValue = getUtility(newBoard, player);
 								}
 								newBoard = null;
@@ -194,7 +194,7 @@ public class DecisionTree {
 							moved = true;
 							if (node.getMoves().size() + 1 < PLY_LENGTH) {
 								nde = newNode(new Move(i, j, Direction.LEFT), node);
-								if (size == PLY_LENGTH) {
+								if (size-1 == PLY_LENGTH) {
 									nde.heuristicValue = getUtility(newBoard, player);
 								}
 								newBoard = null;
@@ -256,25 +256,34 @@ public class DecisionTree {
 		}
 	}
 
-	private int getUtility(Board board, String player) {
+	public int getUtility(Board board, String player) {
 
 		int value = 0;
 		// check if accessing correct
 		int i, j, numH = 0, numV = 0, bonus = 0;
 		for (i = 0; i < board.size; i++) {
 			for (j = 0; j < board.size; j++) {
+				System.out.println("checking i = " + i + ", j = " + j + ".. = " + board.blocks[i][j]);
+				System.out.println(player);
 				if (board.blocks[i][j] == "H" && player == "H") {
 					value += i;
 					numH++;
+					System.out.println("check tile");
 				} else if (board.blocks[i][j] == "V" && player == "V") {
 					value += j;
 					numV++;
+					System.out.println("check tile");
+
 				} else if (board.blocks[i][j] == "H" && player == "V") {
 					value -= i;
 					numH++;
+					System.out.println("check tile");
+
 				} else if (board.blocks[i][j] == "V" && player == "H") {
 					value -= j;
 					numV++;
+					System.out.println("check tile");
+
 				}
 			}
 		}
@@ -286,6 +295,7 @@ public class DecisionTree {
 			bonus -= (board.size - numV - 1) * board.size;
 		}
 		value += bonus;
+		System.out.println("UTILITY: " + value);
 		return value;
 	}
 }
