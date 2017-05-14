@@ -6,13 +6,21 @@ package aiproj.slider;
  * This is a simplified version of minimax, using the property max(a,b) =
  * -min(-a, -b)
  *
+ * This function makes the assumption that it is always called at your turn!
  * 
  */
 public class Negamax {
-	// TODO Once complete write it with AlphaBeta Pruning
-	public void performNegamax() {
-		// Check that the node is not a root node, or a terminal node
-		
-		// Find the best value
+	public int negamax(DecisionNode nde) {
+		// If there are no child nodes, return evaluation Function
+		if (nde.getChildNodes().isEmpty()) {
+			return nde.getValue();
+		}
+
+		Integer bestValue = null;
+		for (DecisionNode childNde : nde.getChildNodes()) {
+			int value = -negamax(childNde);
+			bestValue = Math.max(bestValue, value);
+		}
+		return bestValue;
 	}
 }

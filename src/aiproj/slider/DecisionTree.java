@@ -33,6 +33,12 @@ public class DecisionTree {
 
 	// The root node of the decision tree
 	private DecisionNode rootNode;
+	
+	/** Fetches the root node of the tree */
+	public DecisionNode getRootNode()
+	{
+		return rootNode;
+	}
 
 	// The string of the player
 	String playerString;

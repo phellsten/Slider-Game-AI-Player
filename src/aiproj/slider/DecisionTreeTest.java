@@ -12,9 +12,11 @@ public class DecisionTreeTest {
 		testTree.calculatePossibleMoves("H");
 		testTree.debug();
 		System.out.println("________________BEFORE MOVE __________________");
+		// Our Move
 		testTree.move(new Move(0,1,Move.Direction.RIGHT));
+		// Our Oppoents Move
 		testTree.move(new Move(1,0,Move.Direction.LEFT));
-		testTree.debug();
 		testTree.extendNodes();
+		testTree.debug();
 	}
 }
