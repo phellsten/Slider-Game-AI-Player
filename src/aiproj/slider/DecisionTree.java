@@ -146,7 +146,7 @@ public class DecisionTree {
 						} else {
 							Move mve = new Move(i, j, Direction.RIGHT);
 							nde = newNode(mve, node);
-							if (size == PLY_LENGTH) {
+							if (size-1 == PLY_LENGTH) {
 								nde.heuristicValue = getUtility(newBoard, player);
 							}
 							// Print the new board
