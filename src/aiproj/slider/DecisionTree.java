@@ -322,6 +322,6 @@ public class DecisionTree {
 		}
 		value += bonus;
 
-		return value;
+		return -value;
 	}
 }

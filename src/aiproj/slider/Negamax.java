@@ -35,16 +35,19 @@ public class Negamax {
 				bestValue = value;
 			}
 			childNde.setValue(value);
-			bestValue = Math.min(bestValue, value);
+			bestValue = Math.max(bestValue, value);
 		}
 		return bestValue;
 	}
 
 	public DecisionNode getBestChildNode(DecisionTree tree) throws Exception {
 		int bestValue = negamax(tree.getRootNode());
+		System.out.println("The best value child node is " + bestValue);
 		// Find the node with this value
 		for (DecisionNode childNde : tree.getRootNode().getChildNodes()) {
 			if (childNde.getValue() == bestValue) {
+				System.out.println(childNde.getMoves());
+				System.out.println(childNde.getValue());
 				System.out.println("best value: " + bestValue);
 				return childNde;
 			}
