@@ -30,7 +30,10 @@ public class SliderPhai implements SliderPlayer {
 		}
 		else
 		{
-			tree = new DecisionTree(nBoard, this.player);
+			System.out.println(this.player);
+			tree = new DecisionTree(nBoard, "H");
+			// Test the moves
+
 		}
 	}
 
@@ -51,7 +54,7 @@ public class SliderPhai implements SliderPlayer {
 			// Update the physical game board
 			tmpBoard.movePiece(move.i, move.j, move.d);
 			// Make the decision tree
-			tree = new DecisionTree(tmpBoard, this.player);
+			tree = new DecisionTree(tmpBoard, "V");
 			//tree.getRootBoard().printDebug();
 			// Clear it for the Garbage Collector
 			tmpBoard = null;
@@ -81,6 +84,7 @@ public class SliderPhai implements SliderPlayer {
 			tree.move(bestMove);
 			return bestMove;
 		} catch (Exception e) {
+			
 			//System.out.println("ERROR FINDING MOVE");
 			return null;
 		}
