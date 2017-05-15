@@ -36,6 +36,8 @@ public class SliderPhai implements SliderPlayer {
 		}
 	}
 
+	boolean firstMove = true;
+
 	/** Updates the other oppoent */
 	@Override
 	public void update(Move move) {
@@ -49,7 +51,14 @@ public class SliderPhai implements SliderPlayer {
 			// Board stays the same
 			// However still make it our board at the root
 			System.out.println("^^^^^^^ NULL MOVE ^^^^");
-			tree.move(move);
+			if (firstMove) {
+				tree.move(move);
+				firstMove = false;
+			} else {
+				System.out.println("RECONSTRUCTING " + this.player);
+				tree = new DecisionTree(tree.getRootBoard(), this.player);
+				tree.calculatePossibleMoves(this.player);
+			}
 			return;
 		}
 
@@ -76,29 +85,28 @@ public class SliderPhai implements SliderPlayer {
 			// Ordinary move
 			System.out.println("APPLYING MOVE " + move);
 
-			if(tree.move(move) == 0) {
+			if (tree.move(move) == 0) {
 				System.out.println("OH NOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO");
 				LinkedList<Move> test = new LinkedList<>();
 				test.add(move);
 				Board newBoard = tree.constructBoard(test);
-				if(this.player.equals("H")) {
+				if (this.player.equals("H")) {
 					this.tree = new DecisionTree(newBoard, "H");
 
-				}
-				else {
+				} else {
 					this.tree = new DecisionTree(newBoard, "V");
 
 				}
 				tree.calculatePossibleMoves(player);
-				//tree.extendNodes();
-				
+				// tree.extendNodes();
+
 				int i = 1;
 				System.out.println("Moves we can make: ");
 				for (DecisionNode m : tree.getRootNode().childNodes) {
 					System.out.println(i + ": " + m.getMoves() + ": " + m.getValue());
 					i++;
 				}
-				
+
 			}
 			tree.extendNodes();
 			System.out.println("PRINTING DEBUG TREE");
