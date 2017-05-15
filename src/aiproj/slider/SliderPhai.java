@@ -3,18 +3,15 @@ package aiproj.slider;
 import aiproj.slider.SliderPlayer;
 import aiproj.slider.Move;
 
-
-
-
 public class SliderPhai implements SliderPlayer {
 
 	String player;
 	Negamax nmax;
 	DecisionTree tree;
 	Board tmpBoard = null;
-	
+
 	public SliderPhai() {
-		
+
 	}
 
 	@Override
@@ -23,14 +20,11 @@ public class SliderPhai implements SliderPlayer {
 		this.player = Character.toString(player);
 		nmax = new Negamax();
 		// Detect second player
-		if(player == 'V')
-		{
+		if (player == 'V') {
 			tree = null;
 			tmpBoard = nBoard;
-		}
-		else
-		{
-			//System.out.println(this.player);
+		} else {
+			// System.out.println(this.player);
 			tree = new DecisionTree(nBoard, "H");
 			tree.calculatePossibleMoves(this.player);
 
@@ -47,24 +41,21 @@ public class SliderPhai implements SliderPlayer {
 		// opponents move: move;
 		// opponent moved piece board[move.i][move.j] in direction move.d
 		// new board representation:...
-		if(move == null) {
+		if (move == null) {
 			return;
 		}
-		
-		if (tree == null)
-		{
+
+		if (tree == null) {
 			// Update the physical game board
 			tmpBoard.movePiece(move.i, move.j, move.d);
 			// Make the decision tree
 			tree = new DecisionTree(tmpBoard, "V");
 			tree.calculatePossibleMoves(this.player);
 
-			//tree.getRootBoard().printDebug();
+			// tree.getRootBoard().printDebug();
 			// Clear it for the Garbage Collector
 			tmpBoard = null;
-		}
-		else
-		{
+		} else {
 			// Ordinary move
 			tree.move(move);
 			tree.extendNodes();
@@ -76,9 +67,9 @@ public class SliderPhai implements SliderPlayer {
 	public Move move() {
 		System.out.println("PLAYER " + player + " IS MAKING MOVE");
 		try {
-			int i =1;
+			int i = 1;
 			System.out.println("Moves we can make: ");
-			for(DecisionNode m : tree.getRootNode().childNodes) {
+			for (DecisionNode m : tree.getRootNode().childNodes) {
 				System.out.println(i + ": " + m.getMoves() + ": " + m.getValue());
 				i++;
 			}
@@ -87,10 +78,10 @@ public class SliderPhai implements SliderPlayer {
 			tree.move(bestMove);
 			return bestMove;
 		} catch (Exception e) {
-			
-			//System.out.println("ERROR FINDING MOVE");
+
+			// System.out.println("ERROR FINDING MOVE");
 			return null;
 		}
 	}
-	
+
 }
