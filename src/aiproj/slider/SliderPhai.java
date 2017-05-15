@@ -30,8 +30,10 @@ public class SliderPhai implements SliderPlayer {
 		}
 		else
 		{
-			System.out.println(this.player);
+			//System.out.println(this.player);
 			tree = new DecisionTree(nBoard, "H");
+			tree.calculatePossibleMoves(this.player);
+
 			// Test the moves
 
 		}
@@ -55,6 +57,8 @@ public class SliderPhai implements SliderPlayer {
 			tmpBoard.movePiece(move.i, move.j, move.d);
 			// Make the decision tree
 			tree = new DecisionTree(tmpBoard, "V");
+			tree.calculatePossibleMoves(this.player);
+
 			//tree.getRootBoard().printDebug();
 			// Clear it for the Garbage Collector
 			tmpBoard = null;
@@ -71,12 +75,11 @@ public class SliderPhai implements SliderPlayer {
 	@Override
 	public Move move() {
 		System.out.println("PLAYER " + player + " IS MAKING MOVE");
-		tree.calculatePossibleMoves(this.player);
 		try {
 			int i =1;
 			System.out.println("Moves we can make: ");
 			for(DecisionNode m : tree.getRootNode().childNodes) {
-				System.out.println(i + ": " + m.getMoves());
+				System.out.println(i + ": " + m.getMoves() + ": " + m.getValue());
 				i++;
 			}
 			Move bestMove = nmax.getBestMove(tree);
