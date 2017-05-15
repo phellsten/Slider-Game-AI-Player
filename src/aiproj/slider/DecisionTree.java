@@ -237,16 +237,18 @@ public class DecisionTree {
 	 * DecisionTree Moves the DecisionTree to the appropriate node, and
 	 * recalcuate bottom values
 	 */
-	public void move(Move move) {
+	public int move(Move move) {
 		if (move == null) {
 			System.out.println("SKIP");
-			return;
+			return -1;
 		}
+		
 
 		// Shift the parent node
 		for (DecisionNode nde : rootNode.getChildNodes()) {
 			if (!nde.getMoves().isEmpty()) {
 				Move mve = nde.getMoves().get(0);
+				System.out.println(mve);
 				if (mve.i == move.i && move.j == mve.j && move.d == mve.d) {
 					System.out.println("FOUND");
 					this.rootNode = nde;
@@ -255,11 +257,12 @@ public class DecisionTree {
 					rootBoard.printDebug();
 					rootNode.getMoves().remove(0);
 					removeRedundantMoves(rootNode);
-					return;
+					return 1;
 				}
 			}
 		}
 		System.out.println("NEW DEBUG BOARD");
+		return 0;
 	}
 
 	/** Recurses down the tree to remove uneeded moves */

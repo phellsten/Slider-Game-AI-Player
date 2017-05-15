@@ -1,6 +1,9 @@
 package aiproj.slider;
 
 import aiproj.slider.SliderPlayer;
+
+import java.util.LinkedList;
+
 import aiproj.slider.Move;
 
 public class SliderPhai implements SliderPlayer {
@@ -64,7 +67,6 @@ public class SliderPhai implements SliderPlayer {
 		} else {
 			System.out.println("BEFORE UPDATE");
 			tree.getRootBoard().printDebug();
-			System.out.println("APPLYING MOVE " + move);
 			System.out.println("POSSIBLE MOVES ");
 			for (DecisionNode chd : tree.getRootNode().getChildNodes()) {
 				for (Move mve : chd.getMoves()) {
@@ -72,7 +74,32 @@ public class SliderPhai implements SliderPlayer {
 				}
 			}
 			// Ordinary move
-			tree.move(move);
+			System.out.println("APPLYING MOVE " + move);
+
+			if(tree.move(move) == 0) {
+				System.out.println("OH NOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO");
+				LinkedList<Move> test = new LinkedList<>();
+				test.add(move);
+				Board newBoard = tree.constructBoard(test);
+				if(this.player.equals("H")) {
+					this.tree = new DecisionTree(newBoard, "H");
+
+				}
+				else {
+					this.tree = new DecisionTree(newBoard, "V");
+
+				}
+				tree.calculatePossibleMoves(player);
+				//tree.extendNodes();
+				
+				int i = 1;
+				System.out.println("Moves we can make: ");
+				for (DecisionNode m : tree.getRootNode().childNodes) {
+					System.out.println(i + ": " + m.getMoves() + ": " + m.getValue());
+					i++;
+				}
+				
+			}
 			tree.extendNodes();
 			System.out.println("PRINTING DEBUG TREE");
 			tree.getRootBoard().printDebug();
@@ -97,7 +124,9 @@ public class SliderPhai implements SliderPlayer {
 			return bestMove;
 		} catch (Exception e) {
 
-			// System.out.println("ERROR FINDING MOVE");
+			System.out.println("ERROR  BOARD MOVE");
+			tree.getRootBoard().printDebug();
+
 			return null;
 		}
 	}
