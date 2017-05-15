@@ -42,9 +42,15 @@ public class SliderPhai implements SliderPlayer {
 		// opponent moved piece board[move.i][move.j] in direction move.d
 		// new board representation:...
 		if (move == null) {
+			// Oppoent hasn't made a move
+			// Board stays the same
+			// However still make it our board at the root
+			System.out.println("^^^^^^^ NULL MOVE ^^^^");
+			tree.move(move);
 			return;
 		}
 
+		// Handle the case if we are going second
 		if (tree == null) {
 			// Update the physical game board
 			tmpBoard.movePiece(move.i, move.j, move.d);
@@ -56,9 +62,21 @@ public class SliderPhai implements SliderPlayer {
 			// Clear it for the Garbage Collector
 			tmpBoard = null;
 		} else {
+			System.out.println("BEFORE UPDATE");
+			tree.getRootBoard().printDebug();
+			System.out.println("APPLYING MOVE " + move);
+			System.out.println("POSSIBLE MOVES ");
+			for (DecisionNode chd : tree.getRootNode().getChildNodes()) {
+				for (Move mve : chd.getMoves()) {
+					System.out.println(mve);
+				}
+			}
 			// Ordinary move
 			tree.move(move);
 			tree.extendNodes();
+			System.out.println("PRINTING DEBUG TREE");
+			tree.getRootBoard().printDebug();
+			System.out.println("TREE SZE " + tree.getRootNode().getChildNodes().size());
 		}
 	}
 
