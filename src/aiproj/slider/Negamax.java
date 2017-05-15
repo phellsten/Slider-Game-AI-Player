@@ -27,7 +27,7 @@ public class Negamax {
 
 		Integer bestValue = null;
 		for (DecisionNode childNde : nde.getChildNodes()) {
-			int value = -negamax(childNde);
+			int value = negamax(childNde);
 			if (bestValue == null) {
 				bestValue = value;
 			}
