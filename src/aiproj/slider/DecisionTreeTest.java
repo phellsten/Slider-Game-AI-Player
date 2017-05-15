@@ -5,9 +5,9 @@ public class DecisionTreeTest {
 		System.out.println("TEST");
 		Negamax nmax = new Negamax();
 		// Create a normal 3x3 board
-		Board testBoard = new Board("H + + + +\n"
-			      				  + "H + + + +\n" 
-			      				  + "+ + V + H\n" 
+		Board testBoard = new Board("H B + + +\n"
+			      				  + "H B + + +\n" 
+			      				  + "B + V + H\n" 
 			      				  + "H B + V V\n"
 			      			      + "+ V + + +\n" , 5);
 
@@ -19,6 +19,11 @@ public class DecisionTreeTest {
 		DecisionTree testTree = new DecisionTree(testBoard, "H");
 		// Test the moves
 		testTree.calculatePossibleMoves("H");
+		int i = 0;
+		for(DecisionNode m : testTree.getRootNode().childNodes) {
+			System.out.println(i + ": " + m.getMoves());
+			i++;
+		}
 		//testTree.debug();
 		System.out.println("________________BEFORE MOVE __________________");
 		// I wonder what the best move is
