@@ -53,7 +53,6 @@ public class SliderPhai implements SliderPlayer {
 			System.out.println("^^^^^^^ NULL MOVE ^^^^");
 			if (firstMove) {
 				tree.move(move);
-				firstMove = false;
 			} else {
 				System.out.println("RECONSTRUCTING " + this.player);
 				tree = new DecisionTree(tree.getRootBoard(), this.player);
@@ -61,6 +60,7 @@ public class SliderPhai implements SliderPlayer {
 			}
 			return;
 		}
+		firstMove = false;
 
 		// Handle the case if we are going second
 		if (tree == null) {
