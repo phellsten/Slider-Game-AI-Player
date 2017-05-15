@@ -22,20 +22,17 @@ public class Negamax {
 	private int negamax(DecisionNode nde) {
 		// If there are no child nodes, return evaluation Function
 		if (nde.getChildNodes().isEmpty()) {
-			//System.out.println("no child nodes");
 			return nde.getValue();
 		}
 
 		Integer bestValue = null;
 		for (DecisionNode childNde : nde.getChildNodes()) {
-			
-			//System.out.println(childNde.getValue());
 			int value = -negamax(childNde);
 			if (bestValue == null) {
 				bestValue = value;
 			}
-			childNde.setValue(value);
 			bestValue = Math.max(bestValue, value);
+			childNde.setValue(bestValue);
 		}
 		return bestValue;
 	}
