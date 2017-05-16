@@ -34,22 +34,6 @@ public class Board {
 		this.size = anotherBoard.size;
 		this.blocks = copyBlocks(anotherBoard.blocks);
 	}
-	
-	/** Prints the board to assist with debugging */
-	public void printDebug()
-	{
-		System.out.println("START DEBUG");
-		// Process the board one by one to print it out
-		for (int y = this.size-1; y >= 0; y--)
-		{
-			for (int x = 0; x < this.size; x++)
-			{
-				System.out.print(blocks[x][y]);
-			}
-			System.out.print('\n');
-		}
-		System.out.println("FINISH DEBUG");
-	}
 
 	public Board(String args, int size) {
 		boardID = 1;
@@ -59,7 +43,6 @@ public class Board {
 		// Convert args to mutable LinkedList
 
 		String[] line = args.split("\n");
-		// line = {"H + + +", "H + B +", ...
 
 		List<String> list = Arrays.asList(line);
 		Collections.reverse(list);
@@ -91,7 +74,6 @@ public class Board {
 	}
 
 	public void movePiece(int x, int y, Direction d) {
-		System.out.println("***MOVE PIECE");
 		String piece = blocks[x][y];
 		blocks[x][y] = "+";
 		if (d == Direction.UP) {

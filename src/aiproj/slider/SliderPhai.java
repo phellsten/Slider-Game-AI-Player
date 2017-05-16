@@ -27,7 +27,6 @@ public class SliderPhai implements SliderPlayer {
 			tree = null;
 			tmpBoard = nBoard;
 		} else {
-			// System.out.println(this.player);
 			tree = new DecisionTree(nBoard, "H");
 			tree.calculatePossibleMoves(this.player);
 
@@ -41,7 +40,6 @@ public class SliderPhai implements SliderPlayer {
 	/** Updates the other oppoent */
 	@Override
 	public void update(Move move) {
-		System.out.println("PLAYER " + player + " UPDATING");
 		// current board representation : board;
 		// opponents move: move;
 		// opponent moved piece board[move.i][move.j] in direction move.d
@@ -50,11 +48,9 @@ public class SliderPhai implements SliderPlayer {
 			// Oppoent hasn't made a move
 			// Board stays the same
 			// However still make it our board at the root
-			System.out.println("^^^^^^^ NULL MOVE ^^^^");
 			if (firstMove) {
 				tree.move(move);
 			} else {
-				System.out.println("RECONSTRUCTING " + this.player);
 				tree = new DecisionTree(tree.getRootBoard(), this.player);
 				tree.calculatePossibleMoves(this.player);
 			}
@@ -70,23 +66,12 @@ public class SliderPhai implements SliderPlayer {
 			tree = new DecisionTree(tmpBoard, "V");
 			tree.calculatePossibleMoves(this.player);
 
-			// tree.getRootBoard().printDebug();
 			// Clear it for the Garbage Collector
 			tmpBoard = null;
 		} else {
-			System.out.println("BEFORE UPDATE");
-			tree.getRootBoard().printDebug();
-			System.out.println("POSSIBLE MOVES ");
-			for (DecisionNode chd : tree.getRootNode().getChildNodes()) {
-				for (Move mve : chd.getMoves()) {
-					System.out.println(mve);
-				}
-			}
 			// Ordinary move
-			System.out.println("APPLYING MOVE " + move);
 
-			if (tree.move(move) == 0) {
-				System.out.println("OH NOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO");
+			////////////////////////////////////////////////////////////
 				LinkedList<Move> test = new LinkedList<>();
 				test.add(move);
 				Board newBoard = tree.constructBoard(test);
@@ -98,42 +83,20 @@ public class SliderPhai implements SliderPlayer {
 
 				}
 				tree.calculatePossibleMoves(player);
-				// tree.extendNodes();
 
-				int i = 1;
-				System.out.println("Moves we can make: ");
-				for (DecisionNode m : tree.getRootNode().childNodes) {
-					System.out.println(i + ": " + m.getMoves() + ": " + m.getValue());
-					i++;
-				}
+				////////////////////////////////////////////////////////
 
-			}
-			tree.extendNodes();
-			System.out.println("PRINTING DEBUG TREE");
-			tree.getRootBoard().printDebug();
-			System.out.println("TREE SZE " + tree.getRootNode().getChildNodes().size());
 		}
 	}
 
 	/** Makes a move for ourself */
 	@Override
 	public Move move() {
-		System.out.println("PLAYER " + player + " IS MAKING MOVE");
 		try {
-			int i = 1;
-			System.out.println("Moves we can make: ");
-			for (DecisionNode m : tree.getRootNode().childNodes) {
-				System.out.println(i + ": " + m.getMoves() + ": " + m.getValue());
-				i++;
-			}
 			Move bestMove = nmax.getBestMove(tree);
-			System.out.println("OUR Best move is: " + bestMove);
 			tree.move(bestMove);
 			return bestMove;
 		} catch (Exception e) {
-
-			System.out.println("ERROR  BOARD MOVE");
-			tree.getRootBoard().printDebug();
 
 			return null;
 		}
