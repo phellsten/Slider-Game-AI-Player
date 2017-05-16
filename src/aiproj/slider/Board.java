@@ -16,13 +16,10 @@ public class Board {
 	
 	public int boardID;
 	
-	private String[][] copyBlocks(String blocks[][])
-	{
+	private String[][] copyBlocks(String blocks[][]) {
 		String[][] retStr = new String[this.size][this.size];
-		for (int i = 0; i<this.size; i++)
-		{
-			for (int j=0; j<this.size; j++)
-			{
+		for (int i = 0; i<this.size; i++) {
+			for (int j = 0; j < this.size; j++) {
 				retStr[i][j] = blocks[i][j];
 			}
 		}

@@ -72,19 +72,19 @@ public class SliderPhai implements SliderPlayer {
 			// Ordinary move
 
 			////////////////////////////////////////////////////////////
-				LinkedList<Move> test = new LinkedList<>();
-				test.add(move);
-				Board newBoard = tree.constructBoard(test);
-				if (this.player.equals("H")) {
-					this.tree = new DecisionTree(newBoard, "H");
+			LinkedList<Move> test = new LinkedList<>();
+			test.add(move);
+			Board newBoard = tree.constructBoard(test);
+			if (this.player.equals("H")) {
+				this.tree = new DecisionTree(newBoard, "H");
 
-				} else {
-					this.tree = new DecisionTree(newBoard, "V");
+			} else {
+				this.tree = new DecisionTree(newBoard, "V");
 
-				}
-				tree.calculatePossibleMoves(player);
+			}
+			tree.calculatePossibleMoves(player);
 
-				////////////////////////////////////////////////////////
+			////////////////////////////////////////////////////////
 
 		}
 	}

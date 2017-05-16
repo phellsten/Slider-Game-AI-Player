@@ -1,3 +1,5 @@
+// Patrick Hudgell phudgell
+// Paul Hellsten phellsten
 package aiproj.slider;
 
 import java.util.ArrayList;
@@ -7,13 +9,16 @@ public class DecisionNode {
 	// Value calculated by MiniMax
 	private int value;
 
-	// Arraylist of Moves which have got us to the current position
+	// Linked list of Moves which have got us to the current position
 	private LinkedList<Move> moves;
 
-	boolean childGenerated;
+	private boolean childGenerated;
 
 	// The player who makes the decision for this node
 	private String player;
+
+	// The children of the node
+	private ArrayList<DecisionNode> childNodes;
 
 	public String getPlayer() {
 		return player;
@@ -26,7 +31,7 @@ public class DecisionNode {
 	}
 
 	/**
-	 * Constructor for a child node, with the parent node taken as an arguement
+	 * Constructor for a child node, with the parent node taken as an argument
 	 */
 	DecisionNode(DecisionNode parentNode) {
 		this.childNodes = new ArrayList<DecisionNode>();
@@ -36,9 +41,11 @@ public class DecisionNode {
 
 	}
 
-	// The children of the node
-	ArrayList<DecisionNode> childNodes;
-
+	/** Adds in a new child node */
+	public void addChildNode(DecisionNode nde) {
+		childNodes.add(nde);
+	}
+	
 	/** Get Child nodes */
 	public ArrayList<DecisionNode> getChildNodes() {
 		return childNodes;
@@ -68,8 +75,4 @@ public class DecisionNode {
 		this.moves.add(move);
 	}
 
-	/** Adds in a new child node */
-	public void addChildNode(DecisionNode nde) {
-		childNodes.add(nde);
-	}
 }

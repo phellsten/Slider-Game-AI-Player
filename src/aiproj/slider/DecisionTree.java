@@ -1,6 +1,5 @@
 package aiproj.slider;
 
-import java.util.ArrayList;
 import java.util.LinkedList;
 
 import aiproj.slider.Move.Direction;
@@ -16,7 +15,6 @@ public class DecisionTree {
 		// Start calculation of possible moves.
 	}
 
-	// We can afford 5 ply toilet paper, unlike the University
 	public static final int PLY_LENGTH = 5;
 	public final String HOR_PLAYER = "H";
 	public final String VER_PLAYER = "V";
@@ -107,7 +105,7 @@ public class DecisionTree {
 	 * Calculates the moves for the board, and places them in the speicified
 	 * node
 	 */
-	
+
 	private void calculateMoves(DecisionNode node, String player) {
 		int i;
 		int j;
@@ -126,12 +124,11 @@ public class DecisionTree {
 				if (newBoard.blocks[i][j].equals(player)) {
 					if (newBoard.isFree(i + 1, j, player)) {
 						if (node.getMoves().size() + 1 >= PLY_LENGTH) {
-							
-						} 
-						else {
+
+						} else {
 							Move mve = new Move(i, j, Direction.RIGHT);
 							nde = newNode(mve, node);
-							if (nde.getMoves().size()+1 == PLY_LENGTH) {
+							if (nde.getMoves().size() + 1 == PLY_LENGTH) {
 								nde.setValue(getUtility(newBoard, player));
 							}
 							// Perform recursion on the new node
@@ -144,7 +141,7 @@ public class DecisionTree {
 						if (node.getMoves().size() + 1 < PLY_LENGTH) {
 							Move mve = new Move(i, j, Direction.UP);
 							nde = newNode(mve, node);
-							if (nde.getMoves().size()+1 == PLY_LENGTH) {
+							if (nde.getMoves().size() + 1 == PLY_LENGTH) {
 								nde.setValue(getUtility(newBoard, player));
 							}
 							newBoard = null;
@@ -157,7 +154,7 @@ public class DecisionTree {
 						if (player == "H") {
 							if (node.getMoves().size() + 1 < PLY_LENGTH) {
 								nde = newNode(new Move(i, j, Direction.DOWN), node);
-								if (nde.getMoves().size()+1 == PLY_LENGTH) {
+								if (nde.getMoves().size() + 1 == PLY_LENGTH) {
 									nde.setValue(getUtility(newBoard, player));
 								}
 								newBoard = null;
@@ -171,7 +168,7 @@ public class DecisionTree {
 						if (player == "V") {
 							if (node.getMoves().size() + 1 < PLY_LENGTH) {
 								nde = newNode(new Move(i, j, Direction.LEFT), node);
-								if (nde.getMoves().size()+1 == PLY_LENGTH) {
+								if (nde.getMoves().size() + 1 == PLY_LENGTH) {
 									nde.setValue(getUtility(newBoard, player));
 								}
 								newBoard = null;
@@ -205,7 +202,6 @@ public class DecisionTree {
 		if (move == null) {
 			return -1;
 		}
-		
 
 		// Shift the parent node
 		for (DecisionNode nde : rootNode.getChildNodes()) {
@@ -238,19 +234,17 @@ public class DecisionTree {
 		for (i = 0; i < board.size; i++) {
 			for (j = 0; j < board.size; j++) {
 
-				if(player == "H") {
+				if (player == "H") {
 					if (board.blocks[i][j].equals("H")) {
 						value += i;
 						numH++;
-						
-					}
-					else if (board.blocks[i][j].equals("V")) {
+
+					} else if (board.blocks[i][j].equals("V")) {
 						value -= j;
 						numV++;
 					}
-					
-				}
-				else {
+
+				} else {
 					if (board.blocks[i][j].equals("V")) {
 						value += j;
 						numV++;
@@ -270,7 +264,6 @@ public class DecisionTree {
 
 			bonus += (board.size - numH - 1) * 2 * board.size;
 			bonus -= (board.size - numV - 1) * board.size;
-			
 
 		}
 		value += bonus;
