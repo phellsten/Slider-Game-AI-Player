@@ -10,26 +10,18 @@ public class DecisionTree {
 		// Start construction of DecisionTree, and its root nodes
 		this.rootBoard = board;
 		this.playerString = playerString;
-		if (playerString.equals(VER_PLAYER)) {
-			System.out.println("SKIP BRANCH GENERATION");
-		}
 		// Create a new root node
 		this.rootNode = new DecisionNode();
 		// Start calculation of possible moves.
 	}
 
-	// We can afford 3 ply toilet paper, unlike the University
+	// We can afford 5 ply toilet paper, unlike the University
 	public static final int PLY_LENGTH = 5;
 	public final String HOR_PLAYER = "H";
 	public final String VER_PLAYER = "V";
 
 	// Board the game is to be played on
 	private Board rootBoard;
-
-	/** Unprunes a node from the decision tree */
-	private void unprune(DecisionNode nde) {
-		recNodeExtension(nde);
-	}
 
 	public Board getRootBoard() {
 		return this.rootBoard;
@@ -51,7 +43,6 @@ public class DecisionTree {
 
 	/** Calculates all possible moves from the initial board config */
 	public void calculatePossibleMoves(String player) {
-		// rootBoard.printDebug();
 		calculateMoves(rootNode, playerString);
 	}
 
@@ -101,7 +92,6 @@ public class DecisionTree {
 			if (x < newBoard.size && y < newBoard.size) {
 				newBoard.blocks[x][y] = piece;
 			}
-			// System.out.println("*" + i + ": ");
 			i++;
 		}
 		return newBoard;
@@ -124,15 +114,6 @@ public class DecisionTree {
 		}
 	}
 
-	/** Calculates possible moves from a board specififed in board */
-	private void boardCalculateMoves(Board board, String playerStr) {
-
-	}
-
-	private boolean alphaBetaPrune() {
-		return false;
-	}
-
 	/**
 	 * Calculates the moves for the board, and places them in the speicified
 	 * node
@@ -145,18 +126,15 @@ public class DecisionTree {
 		// the nodes
 		int size = node.getMoves().size();
 		if (size >= PLY_LENGTH) {
-			System.out.println("(((Ply limit reached");
 			return;
 		}
 		DecisionNode nde;
 
 		// Now calculate the new board
 		Board newBoard = constructBoard(node.getMoves());
-		// newBoard.printDebug();
 		for (j = 0; j < newBoard.size; j++) {
 			for (i = 0; i < newBoard.size; i++) {
 				if (newBoard.blocks[i][j].equals(player)) {
-					// System.out.println("PLAYER FOUND");
 					if (newBoard.isFree(i + 1, j, player)) {
 						moved = true;
 						if (node.getMoves().size() + 1 >= PLY_LENGTH) {
@@ -213,8 +191,6 @@ public class DecisionTree {
 							if (node.getMoves().size() + 1 < PLY_LENGTH) {
 								nde = addNewChildNode(new Move(i, j, Direction.LEFT), node);
 								if (nde.getMoves().size() + 1 == PLY_LENGTH) {
-									// System.out.println("GETTING HEURISTIC
-									// VALUE @ Size " + nde.getMoves().size());
 									nde.setValue(getUtility(newBoard, player));
 								}
 								newBoard = null;
@@ -223,17 +199,12 @@ public class DecisionTree {
 							}
 						}
 					}
-
-					// If we can't move insert a null move, to indicate a skip
-					if (!moved) {
-						// nde = newNode(null, node);
-					}
 				}
 			}
 		}
 		// Code to perform Alpha beta pruning goes here
-		// alphaBetaPrune(node, Double.NEGATIVE_INFINITY, Double.POSITIVE_INFINITY, player);
-		// Finished with node, possibly perform clean up
+		// alphaBetaPrune(node, Double.NEGATIVE_INFINITY,
+		// Double.POSITIVE_INFINITY, player);
 	}
 
 	private double alphaBetaPrune(DecisionNode nde, double alpha, double beta, String curPlay) {
@@ -286,7 +257,6 @@ public class DecisionTree {
 	 */
 	public int move(Move move) {
 		if (move == null) {
-			System.out.println("SKIP");
 			return -1;
 		}
 
@@ -294,20 +264,15 @@ public class DecisionTree {
 		for (DecisionNode nde : rootNode.getChildNodes()) {
 			if (!nde.getMoves().isEmpty()) {
 				Move mve = nde.getMoves().get(0);
-				System.out.println(mve);
 				if (mve.i == move.i && move.j == mve.j && move.d == mve.d) {
-					System.out.println("FOUND");
 					this.rootNode = nde;
 					this.rootBoard = constructBoard(nde.getMoves());
-					System.out.println("NEW ROOT BOARD");
-					rootBoard.printDebug();
 					rootNode.getMoves().remove(0);
 					removeRedundantMoves(rootNode);
 					return 1;
 				}
 			}
 		}
-		System.out.println("NEW DEBUG BOARD");
 		return 0;
 	}
 
@@ -320,7 +285,6 @@ public class DecisionTree {
 	}
 
 	public int getUtility(Board board, String player) {
-		// System.out.println("UTILITY CALLED");
 		int value = 0;
 		// check if accessing correct
 		int i, j, numH = 0, numV = 0, bonus = 0;
@@ -328,33 +292,21 @@ public class DecisionTree {
 			for (j = 0; j < board.size; j++) {
 
 				if (player == HOR_PLAYER) {
-					// System.out.println("checking i = " + i + ", j = " + j +
-					// ".. = " + board.blocks[i][j]);
-					// System.out.println(player);
-
 					if (board.blocks[i][j].equals(HOR_PLAYER)) {
-						// System.out.println("H at " + i + "," + j + ", +=" +
-						// i);
 						value += i;
 						numH++;
 
 					} else if (board.blocks[i][j].equals(VER_PLAYER)) {
-						// System.out.println("V at " + i + "," + j + ", -=" +
-						// j);
 						value -= j;
 						numV++;
 					}
 
 				} else {
 					if (board.blocks[i][j].equals(VER_PLAYER)) {
-						// System.out.println("V at " + i + "," + j + ", +=" +
-						// j);
 						value += j;
 						numV++;
 					}
 					if (board.blocks[i][j].equals(HOR_PLAYER)) {
-						// System.out.println("V at " + i + "," + j + ", -=" +
-						// i);
 						value -= i;
 						numH++;
 					}
