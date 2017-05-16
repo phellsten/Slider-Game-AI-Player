@@ -21,17 +21,6 @@ public class DecisionNode {
 		return this.pruned;
 	}
 
-	public void setUnpruned() {
-		this.pruned = false;
-	}
-
-	public void prune() {
-		this.pruned = true;
-
-		// Remove all the child nodes
-		this.childNodes.clear();
-	}
-
 	public String getPlayer() {
 		return player;
 	}
@@ -54,7 +43,7 @@ public class DecisionNode {
 	}
 
 	// The children of the node
-	ArrayList<DecisionNode> childNodes;
+	private ArrayList<DecisionNode> childNodes;
 
 	/** Get Child nodes */
 	public ArrayList<DecisionNode> getChildNodes() {

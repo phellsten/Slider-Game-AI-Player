@@ -28,9 +28,6 @@ public class DecisionTree {
 		return this.rootBoard;
 	}
 
-	public void debug() {
-	}
-
 	// The root node of the decision tree
 	private DecisionNode rootNode;
 
