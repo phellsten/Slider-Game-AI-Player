@@ -14,12 +14,22 @@ public class DecisionNode {
 
 	// The player who makes the decision for this node
 	private String player;
-	
+
 	private boolean pruned = false;
-	
-	public void prune()
-	{
+
+	public boolean getPrunedState() {
+		return this.pruned;
+	}
+
+	public void setUnpruned() {
+		this.pruned = false;
+	}
+
+	public void prune() {
 		this.pruned = true;
+
+		// Remove all the child nodes
+		this.childNodes.clear();
 	}
 
 	public String getPlayer() {

@@ -27,6 +27,18 @@ public class DecisionTree {
 	// Board the game is to be played on
 	private Board rootBoard;
 
+	/** Unprunes a node from the decision tree */
+	public void unprune(DecisionNode nde)
+	{
+		recNodeExtension(nde);
+	}
+	
+	/** Prunes a node from the decision tree */
+	public void prune(DecisionNode nde)
+	{
+		nde.prune();
+	}
+	
 	public Board getRootBoard() {
 		return this.rootBoard;
 	}
