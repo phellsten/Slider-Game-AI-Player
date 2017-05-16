@@ -1,6 +1,5 @@
 package aiproj.slider;
 
-import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.LinkedList;
 
@@ -30,11 +29,6 @@ public class DecisionTree {
 	/** Unprunes a node from the decision tree */
 	private void unprune(DecisionNode nde) {
 		recNodeExtension(nde);
-	}
-
-	/** Prunes a node from the decision tree */
-	private void prune(DecisionNode nde) {
-		nde.prune();
 	}
 
 	public Board getRootBoard() {
@@ -199,7 +193,7 @@ public class DecisionTree {
 					}
 					if (newBoard.isFree(i, j - 1, player)) {
 						// only H can move down
-						if (player == "H") {
+						if (player.equals(HOR_PLAYER)) {
 							moved = true;
 							if (node.getMoves().size() + 1 < PLY_LENGTH) {
 								nde = addNewChildNode(new Move(i, j, Direction.DOWN), node);
@@ -214,7 +208,7 @@ public class DecisionTree {
 					}
 					if (newBoard.isFree(i - 1, j, player)) {
 						// only V can move left
-						if (player == "V") {
+						if (player.equals(VER_PLAYER)) {
 							moved = true;
 							if (node.getMoves().size() + 1 < PLY_LENGTH) {
 								nde = addNewChildNode(new Move(i, j, Direction.LEFT), node);
@@ -238,7 +232,7 @@ public class DecisionTree {
 			}
 		}
 		// Code to perform Alpha beta pruning goes here
-		alphaBetaPrune(node, Double.NEGATIVE_INFINITY, Double.POSITIVE_INFINITY, player);
+		// alphaBetaPrune(node, Double.NEGATIVE_INFINITY, Double.POSITIVE_INFINITY, player);
 		// Finished with node, possibly perform clean up
 	}
 
@@ -333,18 +327,18 @@ public class DecisionTree {
 		for (i = 0; i < board.size; i++) {
 			for (j = 0; j < board.size; j++) {
 
-				if (player == "H") {
+				if (player == HOR_PLAYER) {
 					// System.out.println("checking i = " + i + ", j = " + j +
 					// ".. = " + board.blocks[i][j]);
 					// System.out.println(player);
 
-					if (board.blocks[i][j].equals("H")) {
+					if (board.blocks[i][j].equals(HOR_PLAYER)) {
 						// System.out.println("H at " + i + "," + j + ", +=" +
 						// i);
 						value += i;
 						numH++;
 
-					} else if (board.blocks[i][j].equals("V")) {
+					} else if (board.blocks[i][j].equals(VER_PLAYER)) {
 						// System.out.println("V at " + i + "," + j + ", -=" +
 						// j);
 						value -= j;
@@ -352,13 +346,13 @@ public class DecisionTree {
 					}
 
 				} else {
-					if (board.blocks[i][j].equals("V")) {
+					if (board.blocks[i][j].equals(VER_PLAYER)) {
 						// System.out.println("V at " + i + "," + j + ", +=" +
 						// j);
 						value += j;
 						numV++;
 					}
-					if (board.blocks[i][j].equals("H")) {
+					if (board.blocks[i][j].equals(HOR_PLAYER)) {
 						// System.out.println("V at " + i + "," + j + ", -=" +
 						// i);
 						value -= i;
@@ -368,10 +362,10 @@ public class DecisionTree {
 			}
 		}
 
-		if (player == "V") {
+		if (player == VER_PLAYER) {
 			bonus += (board.size - numV - 1) * board.size;
 			bonus -= (board.size - numH - 1) * board.size;
-		} else if (player == "H") {
+		} else if (player == HOR_PLAYER) {
 
 			bonus += (board.size - numH - 1) * board.size;
 			bonus -= (board.size - numV - 1) * board.size;
