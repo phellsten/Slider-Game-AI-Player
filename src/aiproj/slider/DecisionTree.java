@@ -1,6 +1,7 @@
 package aiproj.slider;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.LinkedList;
 
 import aiproj.slider.Move.Direction;
@@ -237,8 +238,6 @@ public class DecisionTree {
 			}
 		}
 		// Code to perform Alpha beta pruning goes here
-		//
-		System.out.println("DONE");
 		alphaBetaPrune(node, Double.NEGATIVE_INFINITY, Double.POSITIVE_INFINITY, player);
 		// Finished with node, possibly perform clean up
 	}
@@ -250,26 +249,27 @@ public class DecisionTree {
 		if (curPlay.equals(this.playerString)) {
 			// Maximize the player
 			Double value = Double.NEGATIVE_INFINITY;
-			for (DecisionNode chiNde : nde.getChildNodes()) {
-				value = Double.max(value, alphaBetaPrune(chiNde, alpha, beta, swapPlayer(curPlay)));
+			Iterator<DecisionNode> itr = nde.getChildNodes().iterator();
+			while (itr.hasNext()) {
+				DecisionNode chiNode = itr.next();
+				value = Double.max(value, alphaBetaPrune(chiNode, alpha, beta, swapPlayer(curPlay)));
 				alpha = Double.max(alpha, value);
 				if (beta <= alpha) {
 					// Beta Cut off
-					System.out.println("CUT OFF BOARD ");
-					System.out.println(chiNde.getMoves().get(0));
+					itr.remove();
 				}
 			}
 			return value;
 		} else {
 			// Minimizing
 			Double value = Double.POSITIVE_INFINITY;
-			for (DecisionNode chiNode : nde.getChildNodes())
-			{
+			Iterator<DecisionNode> itr = nde.getChildNodes().iterator();
+			while (itr.hasNext()) {
+				DecisionNode chiNode = itr.next();
 				value = Double.min(value, alphaBetaPrune(chiNode, alpha, beta, swapPlayer(curPlay)));
 				beta = Double.min(beta, value);
-				if (beta <= alpha)
-				{
-					System.out.println("CUT OFF BOARD");
+				if (beta <= alpha) {
+					itr.remove();
 				}
 			}
 			return value;
