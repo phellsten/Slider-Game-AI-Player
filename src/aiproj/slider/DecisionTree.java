@@ -19,6 +19,7 @@ public class DecisionTree {
 	public static final int PLY_LENGTH = 5;
 	public final String HOR_PLAYER = "H";
 	public final String VER_PLAYER = "V";
+	public final String CROSS = "+";
 
 	// Board the game is to be played on
 	private Board rootBoard;
@@ -79,7 +80,7 @@ public class DecisionTree {
 			Direction d = mve.d;
 
 			String piece = newBoard.blocks[x][y];
-			newBoard.blocks[x][y] = "+";
+			newBoard.blocks[x][y] = CROSS;
 			if (d == Direction.UP) {
 				y += 1;
 			} else if (d == Direction.RIGHT) {
