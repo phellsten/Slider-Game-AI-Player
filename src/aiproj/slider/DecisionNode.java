@@ -14,6 +14,13 @@ public class DecisionNode {
 
 	// The player who makes the decision for this node
 	private String player;
+	
+	private boolean pruned = false;
+	
+	public void prune()
+	{
+		this.pruned = true;
+	}
 
 	public String getPlayer() {
 		return player;
