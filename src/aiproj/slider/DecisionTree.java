@@ -57,7 +57,7 @@ public class DecisionTree {
 	/** Calculates all possible moves from the initial board config */
 	public void calculatePossibleMoves(String player) {
 		// rootBoard.printDebug();
-		calculateMoves(rootNode, playerString, Double.NEGATIVE_INFINITY, Double.POSITIVE_INFINITY);
+		calculateMoves(rootNode, playerString);
 	}
 
 	/** Extends node out. Used after a board move to make the new nodes */
@@ -69,7 +69,7 @@ public class DecisionTree {
 	private void recNodeExtension(DecisionNode nde) {
 		if (nde.getChildNodes().size() == 0) {
 			// Have to create new nodes
-			calculateMoves(nde, this.playerString, Double.NEGATIVE_INFINITY, Double.POSITIVE_INFINITY);
+			calculateMoves(nde, this.playerString);
 			return;
 		}
 		// Recurse through each branch to find end
@@ -121,12 +121,28 @@ public class DecisionTree {
 		}
 	}
 
+	/** Constructs a tree using the alpha Beta algorithm */
+	public void alphaBetaConstruct(DecisionNode nde, String playerStr, double alpha, double beta) {
+		// Detect terminal node
+		if (nde.getMoves().size() + 1 >= PLY_LENGTH) {
+			return;
+		}
+	}
+
+	/** Calculates possible moves from a board specififed in board */
+	private void boardCalculateMoves(Board board, String playerStr) {
+
+	}
+
+	private boolean alphaBetaPrune() {
+		return false;
+	}
+
 	/**
 	 * Calculates the moves for the board, and places them in the speicified
 	 * node
 	 */
-
-	private void calculateMoves(DecisionNode node, String player, double alpha, double beta) {
+	private void calculateMoves(DecisionNode node, String player) {
 		int i;
 		boolean moved = false;
 		int j;
@@ -134,7 +150,7 @@ public class DecisionTree {
 		// the nodes
 		int size = node.getMoves().size();
 		if (size >= PLY_LENGTH) {
-			// System.out.println("Ply limit reached");
+			System.out.println("(((Ply limit reached");
 			return;
 		}
 		DecisionNode nde;
@@ -151,9 +167,10 @@ public class DecisionTree {
 						if (node.getMoves().size() + 1 >= PLY_LENGTH) {
 						} else {
 							Move mve = new Move(i, j, Direction.RIGHT);
-							
+
 							// Create the new child node
 							nde = addNewChildNode(mve, node);
+
 							if (nde.getMoves().size() + 1 == PLY_LENGTH) {
 								nde.setValue(getUtility(newBoard, player));
 							}
@@ -161,7 +178,7 @@ public class DecisionTree {
 							// Board cleared to reduce memory usage during
 							// recursion
 							newBoard = null;
-							calculateMoves(nde, swapPlayer(player), Double.NEGATIVE_INFINITY, Double.POSITIVE_INFINITY);
+							calculateMoves(nde, swapPlayer(player));
 							newBoard = constructBoard(node.getMoves());
 						}
 					}
@@ -171,12 +188,11 @@ public class DecisionTree {
 							Move mve = new Move(i, j, Direction.UP);
 							nde = addNewChildNode(mve, node);
 							if (nde.getMoves().size() + 1 == PLY_LENGTH) {
-								// System.out.println("GETTING HEURISTIC VALUE @
-								// Size " + nde.getMoves().size());
+								// At final node, set its utility function value
 								nde.setValue(getUtility(newBoard, player));
 							}
 							newBoard = null;
-							calculateMoves(nde, swapPlayer(player), Double.NEGATIVE_INFINITY, Double.POSITIVE_INFINITY);
+							calculateMoves(nde, swapPlayer(player));
 							newBoard = constructBoard(node.getMoves());
 						}
 					}
@@ -187,12 +203,10 @@ public class DecisionTree {
 							if (node.getMoves().size() + 1 < PLY_LENGTH) {
 								nde = addNewChildNode(new Move(i, j, Direction.DOWN), node);
 								if (nde.getMoves().size() + 1 == PLY_LENGTH) {
-									// System.out.println("GETTING HEURISTIC
-									// VALUE @ Size " + nde.getMoves().size());
 									nde.setValue(getUtility(newBoard, player));
 								}
 								newBoard = null;
-								calculateMoves(nde, swapPlayer(player), Double.NEGATIVE_INFINITY, Double.POSITIVE_INFINITY);
+								calculateMoves(nde, swapPlayer(player));
 								newBoard = constructBoard(node.getMoves());
 							}
 						}
@@ -209,7 +223,7 @@ public class DecisionTree {
 									nde.setValue(getUtility(newBoard, player));
 								}
 								newBoard = null;
-								calculateMoves(nde, swapPlayer(player), Double.NEGATIVE_INFINITY, Double.POSITIVE_INFINITY);
+								calculateMoves(nde, swapPlayer(player));
 								newBoard = constructBoard(node.getMoves());
 							}
 						}
@@ -222,7 +236,44 @@ public class DecisionTree {
 				}
 			}
 		}
+		// Code to perform Alpha beta pruning goes here
+		//
+		System.out.println("DONE");
+		alphaBetaPrune(node, Double.NEGATIVE_INFINITY, Double.POSITIVE_INFINITY, player);
 		// Finished with node, possibly perform clean up
+	}
+
+	private double alphaBetaPrune(DecisionNode nde, double alpha, double beta, String curPlay) {
+		if (nde.getMoves().size() + 1 >= PLY_LENGTH || nde.getChildNodes().size() == 0) {
+			return nde.getValue();
+		}
+		if (curPlay.equals(this.playerString)) {
+			// Maximize the player
+			Double value = Double.NEGATIVE_INFINITY;
+			for (DecisionNode chiNde : nde.getChildNodes()) {
+				value = Double.max(value, alphaBetaPrune(chiNde, alpha, beta, swapPlayer(curPlay)));
+				alpha = Double.max(alpha, value);
+				if (beta <= alpha) {
+					// Beta Cut off
+					System.out.println("CUT OFF BOARD ");
+					System.out.println(chiNde.getMoves().get(0));
+				}
+			}
+			return value;
+		} else {
+			// Minimizing
+			Double value = Double.POSITIVE_INFINITY;
+			for (DecisionNode chiNode : nde.getChildNodes())
+			{
+				value = Double.min(value, alphaBetaPrune(chiNode, alpha, beta, swapPlayer(curPlay)));
+				beta = Double.min(beta, value);
+				if (beta <= alpha)
+				{
+					System.out.println("CUT OFF BOARD");
+				}
+			}
+			return value;
+		}
 	}
 
 	/**
