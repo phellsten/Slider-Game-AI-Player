@@ -1,5 +1,6 @@
+// Patrick Hudgell phudgell
+// Paul Hellsten phellsten
 package aiproj.slider;
-
 import java.util.LinkedList;
 
 import aiproj.slider.Move.Direction;

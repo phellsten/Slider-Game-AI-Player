@@ -1,3 +1,5 @@
+// Patrick Hudgell phudgell
+// Paul Hellsten phellsten
 package aiproj.slider;
 
 /**
@@ -18,7 +20,6 @@ public class Negamax {
 		return bestNde.getMoves().get(0);
 	}
 
-	// TODO Impliment Alpha Beta
 	private int negamax(DecisionNode nde) {
 		// If there are no child nodes, return evaluation Function
 		if (nde.getChildNodes().isEmpty()) {

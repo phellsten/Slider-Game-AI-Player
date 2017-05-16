@@ -2,6 +2,8 @@
 // Paul Hellsten phellsten
 package aiproj.slider;
 
+//Patrick Hudgell phudgell
+//Paul Hellsten phellsten
 import java.util.ArrayList;
 import java.util.LinkedList;
 
