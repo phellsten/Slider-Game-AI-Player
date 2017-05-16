@@ -10,8 +10,7 @@ public class DecisionTree {
 		// Start construction of DecisionTree, and its root nodes
 		this.rootBoard = board;
 		this.playerString = playerString;
-		if (playerString.equals(VER_PLAYER))
-		{
+		if (playerString.equals(VER_PLAYER)) {
 			System.out.println("SKIP BRANCH GENERATION");
 		}
 		// Create a new root node
@@ -28,17 +27,15 @@ public class DecisionTree {
 	private Board rootBoard;
 
 	/** Unprunes a node from the decision tree */
-	public void unprune(DecisionNode nde)
-	{
+	private void unprune(DecisionNode nde) {
 		recNodeExtension(nde);
 	}
-	
+
 	/** Prunes a node from the decision tree */
-	public void prune(DecisionNode nde)
-	{
+	private void prune(DecisionNode nde) {
 		nde.prune();
 	}
-	
+
 	public Board getRootBoard() {
 		return this.rootBoard;
 	}
@@ -60,7 +57,7 @@ public class DecisionTree {
 	/** Calculates all possible moves from the initial board config */
 	public void calculatePossibleMoves(String player) {
 		// rootBoard.printDebug();
-		calculateMoves(rootNode, playerString);
+		calculateMoves(rootNode, playerString, Double.NEGATIVE_INFINITY, Double.POSITIVE_INFINITY);
 	}
 
 	/** Extends node out. Used after a board move to make the new nodes */
@@ -71,13 +68,8 @@ public class DecisionTree {
 
 	private void recNodeExtension(DecisionNode nde) {
 		if (nde.getChildNodes().size() == 0) {
-			//System.out.println("Node Moves " + nde.getMoves().size());
-			// System.out.println("Node Moves " + nde.getMoves().get(0) + " " +
-			// nde.getMoves().get(1));
-			//System.out.println("CreateBoard");
-			//rootBoard.printDebug();
 			// Have to create new nodes
-			calculateMoves(nde, this.playerString);
+			calculateMoves(nde, this.playerString, Double.NEGATIVE_INFINITY, Double.POSITIVE_INFINITY);
 			return;
 		}
 		// Recurse through each branch to find end
@@ -133,8 +125,8 @@ public class DecisionTree {
 	 * Calculates the moves for the board, and places them in the speicified
 	 * node
 	 */
-	
-	private void calculateMoves(DecisionNode node, String player) {
+
+	private void calculateMoves(DecisionNode node, String player, double alpha, double beta) {
 		int i;
 		boolean moved = false;
 		int j;
@@ -142,53 +134,49 @@ public class DecisionTree {
 		// the nodes
 		int size = node.getMoves().size();
 		if (size >= PLY_LENGTH) {
-			//System.out.println("Ply limit reached");
+			// System.out.println("Ply limit reached");
 			return;
 		}
 		DecisionNode nde;
 
 		// Now calculate the new board
 		Board newBoard = constructBoard(node.getMoves());
-		//newBoard.printDebug();
+		// newBoard.printDebug();
 		for (j = 0; j < newBoard.size; j++) {
 			for (i = 0; i < newBoard.size; i++) {
 				if (newBoard.blocks[i][j].equals(player)) {
-					//System.out.println("PLAYER FOUND");
+					// System.out.println("PLAYER FOUND");
 					if (newBoard.isFree(i + 1, j, player)) {
 						moved = true;
-						//System.out.println("Position " + i + " " + j + " Can Move Right");
-						//System.out.println("SIZE " + (node.getMoves().size() + 1));
 						if (node.getMoves().size() + 1 >= PLY_LENGTH) {
-							//System.out.println("INVALID");
 						} else {
 							Move mve = new Move(i, j, Direction.RIGHT);
-							nde = newNode(mve, node);
-							if (nde.getMoves().size()+1 == PLY_LENGTH) {
-								//System.out.println("GETTING HEURISTIC VALUE @ Size " + nde.getMoves().size());
+							
+							// Create the new child node
+							nde = addNewChildNode(mve, node);
+							if (nde.getMoves().size() + 1 == PLY_LENGTH) {
 								nde.setValue(getUtility(newBoard, player));
 							}
-							// Print the new board
-							// Perform recursion on the new node
+
+							// Board cleared to reduce memory usage during
+							// recursion
 							newBoard = null;
-							calculateMoves(nde, swapPlayer(player));
+							calculateMoves(nde, swapPlayer(player), Double.NEGATIVE_INFINITY, Double.POSITIVE_INFINITY);
 							newBoard = constructBoard(node.getMoves());
 						}
 					}
 					if (newBoard.isFree(i, j + 1, player)) {
 						moved = true;
-
-						//System.out.println("Position " + i + " " + j + " Can Move Up");
-						//System.out.println("SIZE " + (node.getMoves().size() + 1));
-						//System.out.println(node.getMoves().size() + 1 < PLY_LENGTH);
 						if (node.getMoves().size() + 1 < PLY_LENGTH) {
 							Move mve = new Move(i, j, Direction.UP);
-							nde = newNode(mve, node);
-							if (nde.getMoves().size()+1 == PLY_LENGTH) {
-								//System.out.println("GETTING HEURISTIC VALUE @ Size " + nde.getMoves().size());
+							nde = addNewChildNode(mve, node);
+							if (nde.getMoves().size() + 1 == PLY_LENGTH) {
+								// System.out.println("GETTING HEURISTIC VALUE @
+								// Size " + nde.getMoves().size());
 								nde.setValue(getUtility(newBoard, player));
 							}
 							newBoard = null;
-							calculateMoves(nde, swapPlayer(player));
+							calculateMoves(nde, swapPlayer(player), Double.NEGATIVE_INFINITY, Double.POSITIVE_INFINITY);
 							newBoard = constructBoard(node.getMoves());
 						}
 					}
@@ -197,13 +185,14 @@ public class DecisionTree {
 						if (player == "H") {
 							moved = true;
 							if (node.getMoves().size() + 1 < PLY_LENGTH) {
-								nde = newNode(new Move(i, j, Direction.DOWN), node);
-								if (nde.getMoves().size()+1 == PLY_LENGTH) {
-									//System.out.println("GETTING HEURISTIC VALUE @ Size " + nde.getMoves().size());
+								nde = addNewChildNode(new Move(i, j, Direction.DOWN), node);
+								if (nde.getMoves().size() + 1 == PLY_LENGTH) {
+									// System.out.println("GETTING HEURISTIC
+									// VALUE @ Size " + nde.getMoves().size());
 									nde.setValue(getUtility(newBoard, player));
 								}
 								newBoard = null;
-								calculateMoves(nde, swapPlayer(player));
+								calculateMoves(nde, swapPlayer(player), Double.NEGATIVE_INFINITY, Double.POSITIVE_INFINITY);
 								newBoard = constructBoard(node.getMoves());
 							}
 						}
@@ -213,13 +202,14 @@ public class DecisionTree {
 						if (player == "V") {
 							moved = true;
 							if (node.getMoves().size() + 1 < PLY_LENGTH) {
-								nde = newNode(new Move(i, j, Direction.LEFT), node);
-								if (nde.getMoves().size()+1 == PLY_LENGTH) {
-									//System.out.println("GETTING HEURISTIC VALUE @ Size " + nde.getMoves().size());
+								nde = addNewChildNode(new Move(i, j, Direction.LEFT), node);
+								if (nde.getMoves().size() + 1 == PLY_LENGTH) {
+									// System.out.println("GETTING HEURISTIC
+									// VALUE @ Size " + nde.getMoves().size());
 									nde.setValue(getUtility(newBoard, player));
 								}
 								newBoard = null;
-								calculateMoves(nde, swapPlayer(player));
+								calculateMoves(nde, swapPlayer(player), Double.NEGATIVE_INFINITY, Double.POSITIVE_INFINITY);
 								newBoard = constructBoard(node.getMoves());
 							}
 						}
@@ -227,7 +217,7 @@ public class DecisionTree {
 
 					// If we can't move insert a null move, to indicate a skip
 					if (!moved) {
-						//nde = newNode(null, node);
+						// nde = newNode(null, node);
 					}
 				}
 			}
@@ -236,9 +226,9 @@ public class DecisionTree {
 	}
 
 	/**
-	 * defined parent node
+	 * Creates the new child node, from the move specificed
 	 */
-	private DecisionNode newNode(Move move, DecisionNode parentNode) {
+	private DecisionNode addNewChildNode(Move move, DecisionNode parentNode) {
 		DecisionNode newNode = new DecisionNode(parentNode);
 		// Add the move in
 		newNode.addMove(move);
@@ -254,7 +244,6 @@ public class DecisionTree {
 			System.out.println("SKIP");
 			return -1;
 		}
-		
 
 		// Shift the parent node
 		for (DecisionNode nde : rootNode.getChildNodes()) {
@@ -286,38 +275,41 @@ public class DecisionTree {
 	}
 
 	public int getUtility(Board board, String player) {
-		//System.out.println("UTILITY CALLED");
+		// System.out.println("UTILITY CALLED");
 		int value = 0;
 		// check if accessing correct
 		int i, j, numH = 0, numV = 0, bonus = 0;
 		for (i = 0; i < board.size; i++) {
 			for (j = 0; j < board.size; j++) {
 
-				if(player == "H") {
-					//System.out.println("checking i = " + i + ", j = " + j + ".. = " + board.blocks[i][j]);
-					//System.out.println(player);
-					
+				if (player == "H") {
+					// System.out.println("checking i = " + i + ", j = " + j +
+					// ".. = " + board.blocks[i][j]);
+					// System.out.println(player);
+
 					if (board.blocks[i][j].equals("H")) {
-						//System.out.println("H at " + i + "," + j + ", +=" + i);
+						// System.out.println("H at " + i + "," + j + ", +=" +
+						// i);
 						value += i;
 						numH++;
-						
-					}
-					else if (board.blocks[i][j].equals("V")) {
-						//System.out.println("V at " + i + "," + j + ", -=" + j);
+
+					} else if (board.blocks[i][j].equals("V")) {
+						// System.out.println("V at " + i + "," + j + ", -=" +
+						// j);
 						value -= j;
 						numV++;
 					}
-					
-				}
-				else {
+
+				} else {
 					if (board.blocks[i][j].equals("V")) {
-						//System.out.println("V at " + i + "," + j + ", +=" + j);
+						// System.out.println("V at " + i + "," + j + ", +=" +
+						// j);
 						value += j;
 						numV++;
 					}
 					if (board.blocks[i][j].equals("H")) {
-						//System.out.println("V at " + i + "," + j + ", -=" + i);
+						// System.out.println("V at " + i + "," + j + ", -=" +
+						// i);
 						value -= i;
 						numH++;
 					}
@@ -332,7 +324,6 @@ public class DecisionTree {
 
 			bonus += (board.size - numH - 1) * board.size;
 			bonus -= (board.size - numV - 1) * board.size;
-			
 
 		}
 		value += bonus;
