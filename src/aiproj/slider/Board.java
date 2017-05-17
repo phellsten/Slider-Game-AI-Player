@@ -91,7 +91,6 @@ public class Board {
 	}
 
 	public void movePiece(int x, int y, Direction d) {
-		System.out.println("***MOVE PIECE");
 		String piece = blocks[x][y];
 		blocks[x][y] = "+";
 		if (d == Direction.UP) {

@@ -226,24 +226,7 @@ public class Referee {
 
 			// add blocked positions
 			int nblocked = rng.nextInt(3);
-			if (nblocked == 0) {
-				// no blocked positions
-			} else {
-				// one or two blocked positions:
-				int i = 1 + rng.nextInt(n-2);
-				int j = 1 + rng.nextInt(n-2);
-				if (nblocked == 1) {
-					grid[i][j] = Piece.BLOCK;
-				} else if (nblocked == 2) {
-					if (rng.nextBoolean()) {
-						grid[i][i] = Piece.BLOCK;
-						grid[j][j] = Piece.BLOCK;
-					} else {
-						grid[i][j] = Piece.BLOCK;
-						grid[j][i] = Piece.BLOCK;
-					}
-				}
-			}
+			grid[4][5] = Piece.BLOCK;
 		}
 
 		/** represent a board as text for rendering */
