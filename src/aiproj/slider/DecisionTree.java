@@ -17,6 +17,8 @@ public class DecisionTree {
 
 	// We can afford 5 ply toilet paper, unlike the University
 	public static final int PLY_LENGTH = 5;
+
+	// Constants to represent the pieces on the baord
 	public final String HOR_PLAYER = "H";
 	public final String VER_PLAYER = "V";
 	public final String CROSS = "+";
@@ -26,9 +28,6 @@ public class DecisionTree {
 
 	public Board getRootBoard() {
 		return this.rootBoard;
-	}
-
-	public void debug() {
 	}
 
 	// The root node of the decision tree
@@ -106,13 +105,20 @@ public class DecisionTree {
 			return VER_PLAYER;
 		}
 	}
-
-	/** Constructs a tree using the alpha Beta algorithm */
-	public void alphaBetaConstruct(DecisionNode nde, String playerStr, double alpha, double beta) {
-		// Detect terminal node
-		if (nde.getMoves().size() + 1 >= PLY_LENGTH) {
-			return;
+	
+	/** Sets the utility value of the node */
+	private void setUtilityValue(DecisionNode nde, Board nb, String player)
+	{
+		nde.setValue(getUtility(nb, player));
+	}
+	
+	private boolean terminalNode(DecisionNode nde)
+	{
+		if (nde.getMoves().size() + 1 == PLY_LENGTH)
+		{
+			return true;
 		}
+		return false;
 	}
 
 	/**
@@ -145,8 +151,9 @@ public class DecisionTree {
 							// Create the new child node
 							nde = addNewChildNode(mve, node);
 
-							if (nde.getMoves().size() + 1 == PLY_LENGTH) {
-								nde.setValue(getUtility(newBoard, player));
+							// If we are creating a terminal node, set its utility value
+							if (terminalNode(nde)) {
+								setUtilityValue(nde, newBoard, player);
 							}
 
 							// Board cleared to reduce memory usage during
@@ -163,7 +170,7 @@ public class DecisionTree {
 							nde = addNewChildNode(mve, node);
 							if (nde.getMoves().size() + 1 == PLY_LENGTH) {
 								// At final node, set its utility function value
-								nde.setValue(getUtility(newBoard, player));
+								setUtilityValue(nde, newBoard, player);
 							}
 							newBoard = null;
 							calculateMoves(nde, swapPlayer(player));
@@ -176,8 +183,8 @@ public class DecisionTree {
 							moved = true;
 							if (node.getMoves().size() + 1 < PLY_LENGTH) {
 								nde = addNewChildNode(new Move(i, j, Direction.DOWN), node);
-								if (nde.getMoves().size() + 1 == PLY_LENGTH) {
-									nde.setValue(getUtility(newBoard, player));
+								if (terminalNode(nde)) {
+									setUtilityValue(nde, newBoard, player);
 								}
 								newBoard = null;
 								calculateMoves(nde, swapPlayer(player));
@@ -191,8 +198,8 @@ public class DecisionTree {
 							moved = true;
 							if (node.getMoves().size() + 1 < PLY_LENGTH) {
 								nde = addNewChildNode(new Move(i, j, Direction.LEFT), node);
-								if (nde.getMoves().size() + 1 == PLY_LENGTH) {
-									nde.setValue(getUtility(newBoard, player));
+								if (terminalNode(nde)) {
+									setUtilityValue(nde, newBoard, player);
 								}
 								newBoard = null;
 								calculateMoves(nde, swapPlayer(player));
