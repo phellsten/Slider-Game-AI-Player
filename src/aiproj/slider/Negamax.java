@@ -10,6 +10,7 @@ package aiproj.slider;
  * 
  */
 public class Negamax {
+	/** Returns the best move that we can make */
 	public Move getBestMove(DecisionTree tree) throws Exception {
 		// Get the best child node
 		DecisionNode bestNde = getBestChildNode(tree);
@@ -18,7 +19,7 @@ public class Negamax {
 		return bestNde.getMoves().get(0);
 	}
 
-	// TODO Impliment Alpha Beta
+	/** Returns the value of the best node */
 	private int negamax(DecisionNode nde) {
 		// If there are no child nodes, return evaluation Function
 		if (nde.getChildNodes().isEmpty()) {
@@ -37,6 +38,7 @@ public class Negamax {
 		return bestValue;
 	}
 
+	/** Find the best node using this value */
 	public DecisionNode getBestChildNode(DecisionTree tree) throws Exception {
 		int bestValue = negamax(tree.getRootNode());
 		// Find the node with this value
